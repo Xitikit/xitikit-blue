@@ -1,0 +1,13 @@
+rootProject.name = 'xitikit-blue'
+
+include ':azure-ad-b2c-api'
+include ':azure-ad-b2c-api:graph-api'
+include ':azure-ad-b2c-api:open-id-connect'
+
+//PROJECT declarations
+project(':azure-ad-b2c-api')
+        .projectDir = "$rootDir/authorization/azure-ad-b2c-api" as File
+project(':azure-ad-b2c-api:graph-api')
+        .projectDir = "$rootDir/authorization/azure-ad-b2c-api/graph-api" as File
+project(':azure-ad-b2c-api:open-id-connect')
+        .projectDir = "$rootDir/authorization/azure-ad-b2c-api/open-id-connect" as File

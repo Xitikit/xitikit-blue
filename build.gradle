@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://repo.spring.io/milestone" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
+    }
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: "io.spring.dependency-management"
+
+allprojects {
+
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: "io.spring.dependency-management"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    group = 'org.xitikit.blue'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        jcenter()
+        maven { url "https://repo.spring.io/milestone" }
+        mavenCentral()
+    }
+
+    buildscript {
+        dependencies {
+//            compile 'org.projectlombok:lombok:1.16.14'
+//            classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
