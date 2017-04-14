@@ -1,3 +1,4 @@
+project.name = "graph-api"
 group = 'org.xitikit.blue.authorization.azure-ad-b2c-api'
 description = 'graph-api'
 version = '0.0.1-SNAPSHOT'
