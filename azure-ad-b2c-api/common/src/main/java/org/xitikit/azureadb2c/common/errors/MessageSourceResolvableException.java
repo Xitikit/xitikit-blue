@@ -8,30 +8,26 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author Erik R. Jensen
+ * @author J. Keith Hoopes
  */
-public class MessageSourceResolvableException extends RuntimeException implements MessageSourceResolvable {
+public abstract class MessageSourceResolvableException extends RuntimeException implements MessageSourceResolvable {
 
     private List<String> codes = new ArrayList<>();
     private List<Serializable> arguments = new ArrayList<>();
     private String defaultMessage;
 
-    public MessageSourceResolvableException() {
-
-    }
-
-    public MessageSourceResolvableException(String code) {
+    MessageSourceResolvableException(String code) {
 
         codes.add(code);
     }
 
-    public MessageSourceResolvableException(String code, Throwable t) {
+    MessageSourceResolvableException(String code, Throwable t) {
 
         super(t);
         codes.add(code);
     }
 
-    public MessageSourceResolvableException(String code, Serializable... arguments) {
+    MessageSourceResolvableException(String code, Serializable... arguments) {
 
         codes.add(code);
         this.arguments.addAll(Arrays.asList(arguments));

@@ -1,7 +1,12 @@
 package org.xitikit.azureadb2c.common.errors;
 
+import java.io.Serializable;
+
 /**
- * @author Erik Jensen
+ * An exception used to indicate that a requested resource is forbidden
+ * for all users.
+ *
+ * @author J. Keith Hoopes
  */
 public class ForbiddenException extends MessageSourceResolvableException {
 
@@ -10,9 +15,13 @@ public class ForbiddenException extends MessageSourceResolvableException {
         super("Forbidden");
     }
 
-    public ForbiddenException(String message) {
+    public ForbiddenException(Throwable t) {
 
-        super(message);
+        super("Forbidden", t);
     }
 
+    public ForbiddenException(Serializable... message) {
+
+        super("Forbidden", message);
+    }
 }

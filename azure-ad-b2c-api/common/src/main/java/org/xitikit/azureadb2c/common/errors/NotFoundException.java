@@ -1,7 +1,9 @@
 package org.xitikit.azureadb2c.common.errors;
 
+import java.io.Serializable;
+
 /**
- * @author Erik R. Jensen
+ * @author J. Keith Hoopes
  */
 public class NotFoundException extends MessageSourceResolvableException {
 
@@ -10,13 +12,13 @@ public class NotFoundException extends MessageSourceResolvableException {
         super("NotFound");
     }
 
-    public NotFoundException(String message) {
+    public NotFoundException(Serializable... args) {
 
-        super(message);
+        super("NotFound", args);
     }
 
-    public NotFoundException(String message, Throwable t) {
+    public NotFoundException(Throwable t) {
 
-        super(message, t);
+        super("NotFound", t);
     }
 }
