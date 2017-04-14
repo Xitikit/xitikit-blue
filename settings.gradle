@@ -1,8 +1,8 @@
 rootProject.name = 'xitikit-blue'
 
-include ':azure-ad-b2c-api'
-include ':azure-ad-b2c-api:common'
-include ':azure-ad-b2c-api:graph-api'
-include ':azure-ad-b2c-api:open-id-connect'
+include ':blue-api'
+include ':blue-api:common'
+include ':blue-api:graph-api'
+include ':blue-api:open-id-connect'
 include ':examples'
 include ':examples:open-id-connect-example'

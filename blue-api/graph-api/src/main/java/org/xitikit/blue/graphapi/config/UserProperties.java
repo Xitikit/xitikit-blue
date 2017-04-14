@@ -6,17 +6,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ * Copyright Xitikit.org 2017
+ *
+ * @author J. Keith Hoopes *
  */
 @SuppressWarnings("WeakerAccess")
 @Getter
 @Setter
 @Component("graphApiUserProperties")
-@ConfigurationProperties("azure.user.attribute")
+@ConfigurationProperties("blue-kit.user.attribute")
 public class UserProperties {
 
-    private String
-            customAttributeTwoName,
-            customAttributeOnePropertyName;
 }

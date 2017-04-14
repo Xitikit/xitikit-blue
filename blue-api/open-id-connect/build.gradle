@@ -1,11 +1,12 @@
-group = 'org.xitikit.azure-ad-b2c-api'
-description = 'graph-api'
+group = 'org.xitikit.blue-api'
+description = 'open-id-connect'
 version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
 
 dependencies {
 
-    compile project(':azure-ad-b2c-api:common')
-    compile project(':azure-ad-b2c-api:open-id-connect')
+    compile project(':blue-api:common')
 
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.17'
     compile group: 'com.google.code.findbugs', name: 'findbugs', version: '3.0.0'
