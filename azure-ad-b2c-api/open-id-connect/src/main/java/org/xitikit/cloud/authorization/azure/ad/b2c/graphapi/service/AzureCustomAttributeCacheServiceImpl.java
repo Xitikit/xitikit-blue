@@ -9,7 +9,7 @@ import org.xitikit.blue.authorization.azure.ad.b2c.graphapi.config.UserPropertie
 import org.xitikit.blue.authorization.azure.ad.b2c.graphapi.model.Application;
 import org.xitikit.blue.authorization.azure.ad.b2c.graphapi.model.ExtensionProperties;
 import org.xitikit.blue.authorization.azure.ad.b2c.graphapi.model.ExtensionProperty;
-import org.xitikit.blue.authorization.azure.ad.b2c.openidconnect.errors.NotFoundException;
+import org.xitikit.azureadb2c.common.errors.NotFoundException;
 
 import javax.annotation.PostConstruct;
 import java.util.List;

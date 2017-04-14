@@ -1,4 +1,4 @@
-package org.xitikit.blue.authorization.azure.ad.b2c.openidconnect.converters;
+package org.xitikit.azureadb2c.common.converters;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

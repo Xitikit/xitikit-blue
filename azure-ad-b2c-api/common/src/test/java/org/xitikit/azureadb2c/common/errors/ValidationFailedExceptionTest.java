@@ -1,4 +1,4 @@
-package org.xitikit.blue.authorization.azure.ad.b2c.openidconnect.errors;
+package org.xitikit.azureadb2c.common.errors;
 
 import org.junit.Test;
 import org.springframework.validation.ObjectError;

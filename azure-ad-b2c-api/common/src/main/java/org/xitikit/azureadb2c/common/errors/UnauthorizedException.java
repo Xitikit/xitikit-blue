@@ -1,4 +1,4 @@
-package org.xitikit.blue.authorization.azure.ad.b2c.openidconnect.errors;
+package org.xitikit.azureadb2c.common.errors;
 
 /**
  * @author Erik R. Jensen

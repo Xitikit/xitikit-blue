@@ -1,4 +1,4 @@
-package org.xitikit.blue.authorization.azure.ad.b2c.openidconnect.converters;
+package org.xitikit.azureadb2c.common.converters;
 
 /**
  * Created by Keith Hoopes on 9/1/2016.
