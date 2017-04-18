@@ -134,8 +134,7 @@ public class UnauthorizedExceptionTest {
         Object[] arguments = new Object[2];
         arguments[0] = "I am a bill";
         arguments[1] = "Up on Capital Hill";
-
-        log.info(e.addArguments(arguments).setDefaultMessage("default2").toString());
+        e.addArguments(arguments);
 
         boolean foundZero = false;
         boolean foundOne = false;

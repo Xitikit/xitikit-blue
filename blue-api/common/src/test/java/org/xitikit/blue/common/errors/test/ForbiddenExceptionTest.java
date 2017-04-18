@@ -1,6 +1,5 @@
 package org.xitikit.blue.common.errors.test;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.xitikit.blue.common.errors.ForbiddenException;
 import org.xitikit.blue.common.errors.MessageSourceResolvableException;
@@ -9,9 +8,9 @@ import static junit.framework.TestCase.assertTrue;
 
 /**
  * Copyright Xitikit.org 2017
+ *
  * @author J. Keith Hoopes *
  */
-@Slf4j
 public class ForbiddenExceptionTest {
 
     /**
@@ -105,7 +104,7 @@ public class ForbiddenExceptionTest {
     @Test
     public void addArgument() throws Exception {
 
-        MessageSourceResolvableException e = new ForbiddenException("test", "one","two");
+        MessageSourceResolvableException e = new ForbiddenException("test", "one", "two");
         e.addArgument("test").addArgument("test2");
 
         boolean found = false;
@@ -131,8 +130,7 @@ public class ForbiddenExceptionTest {
         Object[] arguments = new Object[2];
         arguments[0] = "zero";
         arguments[1] = "one";
-
-        log.info(e.addArguments(arguments).setDefaultMessage("default2").toString());
+        e.addArguments(arguments).setDefaultMessage("default2");
 
         boolean foundZero = false;
         boolean foundOne = false;

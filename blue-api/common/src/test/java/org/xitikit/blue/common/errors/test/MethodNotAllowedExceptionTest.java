@@ -1,9 +1,8 @@
 package org.xitikit.blue.common.errors.test;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.xitikit.blue.common.errors.MethodNotAllowedException;
 import org.xitikit.blue.common.errors.MessageSourceResolvableException;
+import org.xitikit.blue.common.errors.MethodNotAllowedException;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -12,7 +11,6 @@ import static junit.framework.TestCase.assertTrue;
  *
  * @author J. Keith Hoopes *
  */
-@Slf4j
 public class MethodNotAllowedExceptionTest {
 
     /**
@@ -107,7 +105,7 @@ public class MethodNotAllowedExceptionTest {
     @Test
     public void addArgument() throws Exception {
 
-        MessageSourceResolvableException e = new MethodNotAllowedException("test", "one","two");
+        MessageSourceResolvableException e = new MethodNotAllowedException("test", "one", "two");
         e.addArgument("test").addArgument("test2");
 
         boolean found = false;
@@ -133,8 +131,7 @@ public class MethodNotAllowedExceptionTest {
         Object[] arguments = new Object[2];
         arguments[0] = "zero the hero";
         arguments[1] = "one";
-
-        log.info(e.addArguments(arguments).setDefaultMessage("default2").toString());
+        e.addArguments(arguments).setDefaultMessage("default2");
 
         boolean foundZero = false;
         boolean foundOne = false;

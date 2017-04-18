@@ -1,6 +1,5 @@
 package org.xitikit.blue.common.errors.test;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.xitikit.blue.common.errors.MessageSourceResolvableException;
 import org.xitikit.blue.common.errors.NotFoundException;
@@ -12,7 +11,6 @@ import static junit.framework.TestCase.assertTrue;
  *
  * @author J. Keith Hoopes *
  */
-@Slf4j
 public class NotFoundExceptionTest {
 
     @Test
@@ -129,8 +127,7 @@ public class NotFoundExceptionTest {
         Object[] arguments = new Object[2];
         arguments[0] = "zero the hero";
         arguments[1] = "one is the loneliest number";
-
-        log.info(e.addArguments(arguments).setDefaultMessage("default2").toString());
+        e.addArguments(arguments).setDefaultMessage("default2");
 
         boolean foundZero = false;
         boolean foundOne = false;

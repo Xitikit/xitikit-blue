@@ -12,6 +12,7 @@ import java.time.ZoneOffset;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
 
 /**
@@ -33,7 +34,7 @@ public class UtcUnixDateDeserializerTest {
         DeserializationContext deserializationContext = Mockito.mock(DeserializationContext.class);
         Long unixTimeInput = System.currentTimeMillis() / 1000L;
 
-        when(deserializationContext.readValue(any(JsonParser.class), Long.class)).thenReturn(unixTimeInput);
+        when(deserializationContext.readValue(jsonParser, Long.class)).thenReturn(unixTimeInput);
 
         LocalDateTime result = new UtcUnixDateDeserializer().deserialize(jsonParser, deserializationContext);
         assertTrue(result != null && result.toEpochSecond(ZoneOffset.UTC) == unixTimeInput);
