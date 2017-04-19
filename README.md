@@ -1,5 +1,5 @@
-### Xitikit Blue
-# by xitikit.org
+# Xitikit Blue
+### by xitikit.org
 
 The purpose of xitiki-blue is to provide a better Java API for authentication and user management in Microsoft Azure. 
 
