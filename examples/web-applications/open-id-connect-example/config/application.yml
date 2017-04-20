@@ -91,7 +91,8 @@ azure-ad:
 # Spring Boot is used because we like it, but the
 # actual classes and APIs do NOT depend on any
 # Spring specific artifacts so they can be used in
-# any Java environment
+# any Java environment. Adapt these settings for your
+# specific application.
 server:
   contextPath: /
   port: 8443
