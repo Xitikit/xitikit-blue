@@ -15,7 +15,6 @@
 # The api has been designed to cause the application
 # to fail if any of the values are invalid or missing.
 azure-ad:
-
   b2c:
     #timeout in milliseconds
     nonce:
@@ -23,13 +22,15 @@ azure-ad:
       enabled: true
       #
       timeout: 300000
-    # The "not before" token sometimes comes back from microsoft in the future.
-    # This lets us pad the "notBefore" token validation, in effect saying
-    # "as long as it's not TOO far in the future, we're okay with it."
-    # Keep this value at "0" unless you find that you are failing nonce validation
-
-    notBefore:
-      padding: 0
+      # The "not before" token sometimes comes back from microsoft
+      # in the future. This lets us pad the "notBefore" token
+      # validation, in effect saying "as long as it's not TOO far
+      # in the future, we're okay with it."
+      # Keep this value at "0" if at all possible unless you find
+      # that you are failing "notBefore" nonce validation by a few
+      # milliseconds.
+      notBefore:
+        padding: 0
     # This is the application id, and not the secret
     appId: fake-appId-blue
     # This is the secret created when you clicked "Generate Key" during the application registration
@@ -105,10 +106,11 @@ security:
     # Do NOT use the off loader port or domain here.
     port: 8080
     cors:
-      # origins value should be a comma delimited list of domain origins that
-      # are allowed to access to your api or application. This MUST
-      # be contained in double quotes. If you are doing SSL termination
-      # at your off loader, this needs to be its friendly domain name
+      # origins value should be a comma delimited list of domain
+      # origins that are allowed to access to your api or
+      # application. This MUST be contained in double quotes. If
+      # you are doing SSL termination at your off loader, this
+      # needs to be the off loaders  friendly domain name
       # (NOT ip address)
       origins: "*"
       maxAge: 30000
