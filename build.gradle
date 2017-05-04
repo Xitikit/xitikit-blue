@@ -1,13 +1,12 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url "https://plugins.gradle.org/m2/"}
+        maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://repo.spring.io/milestone" }
         mavenCentral()
     }
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
-        classpath "io.franzbecker:gradle-lombok:1.8"
     }
 }
 
@@ -15,13 +14,12 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: "io.spring.dependency-management"
-apply plugin: 'io.franzbecker.gradle-lombok'
 
-subprojects{
+subprojects {
     buildscript {
         repositories {
             jcenter()
-            maven { url "https://plugins.gradle.org/m2/"}
+            maven { url "https://plugins.gradle.org/m2/" }
             maven { url "https://repo.spring.io/milestone" }
             mavenCentral()
         }
@@ -31,7 +29,6 @@ subprojects{
     apply plugin: 'idea'
     apply plugin: 'eclipse'
     apply plugin: "io.spring.dependency-management"
-    apply plugin: 'io.franzbecker.gradle-lombok'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -41,7 +38,7 @@ subprojects{
 
     repositories {
         jcenter()
-        maven { url "https://plugins.gradle.org/m2/"}
+        maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://repo.spring.io/milestone" }
         mavenCentral()
     }

@@ -1,9 +1,11 @@
 rootProject.name = 'xitikit-blue'
 
-include ':blue-api'
-include ':blue-api:common'
-include ':blue-api:graph-api'
-include ':blue-api:open-id-connect'
+include ':blue-kit'
+include ':blue-kit:b2c-common'
+include ':blue-kit:b2c-authentication'
+include ':blue-kit:b2c-configuration'
+include ':blue-kit:graph-api'
+include ':blue-kit:spring-boot-starter-blue-kit'
 include ':examples'
 include ':examples:web-applications'
 include ':examples:web-applications:spring-boot-security-basic'
@@ -11,6 +13,5 @@ include ':examples:web-applications:spring-boot-security-oauth2'
 include ':examples:mobile-apps'
 include ':examples:mobile-apps:android'
 include ':examples:mobile-apps:ios'
-include 'blue-api:xitikit-blue-configuration'
-findProject(':blue-api:xitikit-blue-configuration')?.name = 'xitikit-blue-configuration'
+
 
