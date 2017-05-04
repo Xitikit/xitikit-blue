@@ -16,12 +16,18 @@
 # to fail if any of the values are invalid or missing.
 azure-ad:
   b2c:
-    #timeout in milliseconds
+    # This is the application id, and not the secret
+    appId: fake-appId-blue
+    # This is the secret created when you clicked "Generate Key" during the application registration
+    appKey: fake-appKey-blue
+    # The domain associated with the Azure AD B2C directory. This will be the same in test as it is in devl
+    domain: fakedomain.onmicrosoft.com
+    # nonce properties
     nonce:
       # disabled by default
       enabled: true
-      #
-      timeout: 300000
+      #timeout in seconds
+      timeout: 300
       # The "not before" token sometimes comes back from microsoft
       # in the future. This lets us pad the "notBefore" token
       # validation, in effect saying "as long as it's not TOO far
@@ -29,14 +35,7 @@ azure-ad:
       # Keep this value at "0" if at all possible unless you find
       # that you are failing "notBefore" nonce validation by a few
       # milliseconds.
-      notBefore:
-        padding: 0
-    # This is the application id, and not the secret
-    appId: fake-appId-blue
-    # This is the secret created when you clicked "Generate Key" during the application registration
-    appKey: fake-appKey-blue
-    # The domain associated with the Azure AD B2C directory. This will be the same in test as it is in devl
-    domain: fakedomain.onmicrosoft.com
+      not-before-padding: 0
     # policy flow configuration for Azure AD B2C
     # policy.${type}.name: always takes the form of "B2C_${ordinal}_${name.given.when.you.created.it}"
     # policy.${type}.redirect: this needs to be the fully qualified url users will be sent to after
@@ -78,9 +77,9 @@ azure-ad:
     user:
       # These are the custom attributes you created in your B2C tenant for users.
       customAttributes:
-        - SecurityAnswerOne
-        - SecurityAnswerTwo
-        - SecurityAnswerThree
+        - extension_11111111111111111111111111111111_ExampleOne
+        - extension_22222222222222222222222222222222_ExampleTwo
+        - extension_33333333333333333333333333333333_ExampleThree
 
 ########################
 # SECURITY CONFIGURATION

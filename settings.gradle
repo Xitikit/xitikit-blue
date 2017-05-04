@@ -11,3 +11,6 @@ include ':examples:web-applications:spring-boot-security-oauth2'
 include ':examples:mobile-apps'
 include ':examples:mobile-apps:android'
 include ':examples:mobile-apps:ios'
+include 'blue-api:xitikit-blue-configuration'
+findProject(':blue-api:xitikit-blue-configuration')?.name = 'xitikit-blue-configuration'
+
