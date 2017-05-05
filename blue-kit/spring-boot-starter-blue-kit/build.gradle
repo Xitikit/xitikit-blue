@@ -24,6 +24,8 @@ repositories {
 
 dependencies {
     compile project(":blue-kit:b2c-configuration")
+    compile project(":blue-kit:b2c-authentication")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
     compileOnly group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
