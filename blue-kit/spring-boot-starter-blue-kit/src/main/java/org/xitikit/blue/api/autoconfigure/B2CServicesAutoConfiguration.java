@@ -1,6 +1,7 @@
 package org.xitikit.blue.api.autoconfigure;
 
 import lombok.NonNull;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -53,13 +54,13 @@ public class B2CServicesAutoConfiguration{
                 @NonNull
                 public Nonce generate(){
 
-                    return new Nonce();
+                    throw new NotImplementedException("Cannot generate nonce. The auto-configured NonceService has been disabled.");
                 }
 
                 @Override
                 public boolean isValid(String nonce){
 
-                    return true;
+                    throw new NotImplementedException("Cannot validate nonce. The auto-configured NonceService has been disabled.");
                 }
             };
         }
