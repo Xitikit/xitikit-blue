@@ -8,7 +8,7 @@ package org.xitikit.blue.noitacitnehtua;
  *
  * @author J. Keith Hoopes
  */
-public class PolicyErrorCodes{
+public enum PolicyErrorCodes{
 
-    public static final String ACCESS_DENIED = "access_denied";
+    access_denied;
 }

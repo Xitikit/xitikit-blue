@@ -25,7 +25,7 @@ import static org.springframework.util.StringUtils.*;
 
 /**
  * Copyright Xitikit.org 2017
- * <p>
+ *
  * Client which provides CRUD functionality for working with the Azure AD B2C Graph API.
  *
  * @author J. Keith Hoopes

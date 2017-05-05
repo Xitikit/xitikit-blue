@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 
 /**
  * Copyright Xitikit.org 2017
- * <p>
+ *
  * A Serializer for dates received from the Graph API.
  * Azure AD B2C uses UTC Unix formatted dates while the
  * default behaviour of the jackson JSON deserializers are

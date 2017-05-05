@@ -14,7 +14,7 @@ public interface NonceService{
      *
      * @return the generated nonce
      */
-    String generate();
+    Nonce generate();
 
     /**
      * Validates a nonce and removes it from the cache if it exists.

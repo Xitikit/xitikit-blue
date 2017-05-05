@@ -14,7 +14,7 @@
 # All properties in this section are required by xitikit-blue
 # The api has been designed to cause the application
 # to fail if any of the values are invalid or missing.
-azure-ad:
+blue-kit:
   b2c:
     # This is the application id, and not the secret
     appId: fake-appId-blue

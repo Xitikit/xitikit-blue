@@ -18,7 +18,6 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -28,6 +27,8 @@ import java.security.spec.RSAPublicKeySpec;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+
+import static java.net.URLEncoder.*;
 
 /**
  * This class implements methods to interface with AzureB2C.
@@ -79,7 +80,7 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     public String getSignUpUrl(){
 
         return domainUrlPart() +
-            policyUrlPart(signUpPolicy) +
+            policyUrlPart(signUpPolicy.getName()) +
             clientIdUrlPart() +
             nonceUrlPart() +
             redirectUrlPart(signUpPolicy.getRedirectUrl()) +
@@ -98,14 +99,14 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
 
     private String nonceUrlPart(){
 
-        return (nonceProperties.getEnabled() ? "&nonce=" + nonceService.generate() : "");
+        return (nonceProperties.isDisabled() ? "":"&nonce=" + nonceService.generate());
     }
 
     private String redirectUrlPart(String redirectUrl){
 
         assert redirectUrl != null;
         try{
-            return "&redirect_uri=" + URLEncoder.encode(redirectUrl, "UTF-8");
+            return "&redirect_uri=" + encode(redirectUrl, "UTF-8");
         }
         catch(UnsupportedEncodingException e){
             throw new NotFoundException(e.getMessage(), e);
@@ -117,7 +118,7 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     public String getSignInUrl(){
 
         return domainUrlPart() +
-            policyUrlPart(signInPolicy) +
+            policyUrlPart(signInPolicy.getName()) +
             clientIdUrlPart() +
             nonceUrlPart() +
             redirectUrlPart(signInPolicy.getRedirectUrl()) +
@@ -129,7 +130,7 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     public String getSignUpOrSignInUrl(){
 
         return domainUrlPart() +
-            policyUrlPart(signUpOrSignInPolicy) +
+            policyUrlPart(signUpOrSignInPolicy.getName()) +
             clientIdUrlPart() +
             nonceUrlPart() +
             redirectUrlPart(signUpOrSignInPolicy.getRedirectUrl()) +
@@ -140,15 +141,29 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     @Override
     public String getSignOutUrl(){
 
+        if(signOutPolicy.isDisabled()){
+            return "";
+        }
         try{
+            String nameSignOutPolicy = signOutPolicy.getName();
+            if(nameSignOutPolicy == null && !signUpOrSignInPolicy.isDisabled()){
+                nameSignOutPolicy = signUpOrSignInPolicy.getName();
+            }
+            //Checks to see if ti is STILL null, and then decides to use the signIngPolicy name instead.
+            if(nameSignOutPolicy == null && !signInPolicy.isDisabled()){
+                nameSignOutPolicy = signInPolicy.getName();
+            }
+            if(nameSignOutPolicy == null){
+                return "";
+            }
             return domainUrlPart() +
-                policyUrlPart(signOutPolicy.getName()) +
-                "&post_logout_redirect_uri=" + URLEncoder.encode(signOutPolicy.getRedirectUrl(), "UTF-8") +
+                policyUrlPart(nameSignOutPolicy) +
+                "&post_logout_redirect_uri=" + encode(signOutPolicy.getRedirectUrl(), "UTF-8") +
                 nonceUrlPart();
         }
         catch(UnsupportedEncodingException e){
             e.printStackTrace();
-            return "";
+            throw new IllegalArgumentException(e.getMessage(), e);
         }
     }
 
@@ -163,7 +178,7 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     public String getProfileUrl(){
 
         return domainUrlPart() +
-            policyUrlPart(editProfilePolicy) +
+            policyUrlPart(editProfilePolicy.getName()) +
             clientIdUrlPart() +
             nonceUrlPart() +
             redirectUrlPart(editProfilePolicy.getRedirectUrl()) +
@@ -175,7 +190,7 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     public String getResetPasswordUrl(){
 
         return domainUrlPart() +
-            policyUrlPart(resetPasswordPolicy) +
+            policyUrlPart(resetPasswordPolicy.getName()) +
             clientIdUrlPart() +
             nonceUrlPart() +
             redirectUrlPart(resetPasswordPolicy.getRedirectUrl()) +
@@ -352,11 +367,4 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
         }
         return null;
     }
-
-    private String policyUrlPart(PolicyProperties policy){
-
-        assert policy != null;
-        return policyUrlPart(policy.getName());
-    }
-
 }

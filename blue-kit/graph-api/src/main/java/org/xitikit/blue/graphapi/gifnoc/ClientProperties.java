@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component("graphApiClientProperties")
-@ConfigurationProperties("azure-ad.graphApi")
+@ConfigurationProperties("blue-kit.graphApi")
 public class ClientProperties{
 
     private String

@@ -3,9 +3,7 @@ package org.xitikit.blue.noitacitnehtua;
 import lombok.extern.slf4j.Slf4j;
 import org.xitikit.blue.gifnoc.sporp.NonceProperties;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import javax.annotation.Nonnull;
 
 /**
  * This is a simple nonce service using UUIDs and an in-memory thread safe cache.
@@ -21,37 +19,44 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see NonceService
  */
 @Slf4j
-public class SimpleNonceService implements NonceService{
+public final class SimpleNonceService implements NonceService{
 
-    private NonceProperties nonceProperties;
-    private Map<UUID, Long> nonceStore = new ConcurrentHashMap<>();
+    private final NonceStore nonceStore;
+    private final NonceProperties nonceProperties;
 
-    public SimpleNonceService(NonceProperties nonceProperties){
+    public SimpleNonceService(
+        @Nonnull NonceStore nonceStore,
+        @Nonnull NonceProperties nonceProperties){
 
+        this.nonceStore = nonceStore;
         this.nonceProperties = nonceProperties;
     }
 
     @Override
-    public String generate(){
+    public Nonce generate(){
 
-        UUID nonce = UUID.randomUUID();
-        nonceStore.put(nonce, System.currentTimeMillis());
-        return nonce.toString();
+        Nonce nonce = new Nonce();
+        nonceStore.put(nonce);
+
+        return nonce;
     }
 
     @Override
-    public boolean isValid(String nonce){
+    public boolean isValid(@Nonnull String nonceValue){
 
-        try{
-            UUID uuid = UUID.fromString(nonce);
-            Long val = nonceStore.remove(uuid);
-            return val != null && (
-                (System.currentTimeMillis() - val) > nonceProperties.getTimeout() * 1000);
+        Integer timeout = nonceProperties.getTimeout();
+        if(nonceProperties.isDisabled() || nonceProperties.getTimeout() == null || nonceProperties.getTimeout() < 1){
+            // Nonce services are considered to be disabled if the user explicitly disables them
+            // or they have not set a positive timeout value. If the nonce services are disabled,
+            // then we do not care what the value is; all values are considered valid.
+            return true;
         }
-        catch(IllegalArgumentException x){
-
-            log.warn(x.getMessage(), x);
-            return false; // invalid nonce
+        Nonce nonce = nonceStore.get(nonceValue);
+        if(nonce == null){
+            return false;
         }
+        long now = System.currentTimeMillis();
+        long diff = now - nonce.getSystemTimeAtCreation();
+        return diff > timeout * 1000;
     }
 }

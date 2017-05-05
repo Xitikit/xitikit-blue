@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @author J. Keith Hoopes on 5/4/2017.
  */
 @Configuration
-@AutoConfigureAfter(B2CPropertiesAutoConfiguration.class)
+@AutoConfigureAfter(B2CPolicyAutoConfiguration.class)
 public class GraphApiAutoConfiguration{
 
 }

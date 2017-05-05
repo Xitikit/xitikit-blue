@@ -17,7 +17,7 @@ public class UnauthorizedExceptionTest{
 
     /**
      * Ensure all constructors are still passing arguments.
-     * <p>
+     *
      * I'm out of witty insults.
      */
     @Test

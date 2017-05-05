@@ -33,7 +33,7 @@ public class SignOutPolicy{
      * The value will be passed along with the request when redirecting the user to Azure.
      * When the user finished authentication, it will be the url to which she is sent.
      */
-    private String redirect;
+    private String redirectUrl;
     /**
      * Optional. Indicates that this policy is NOT going to be used if true.
      */

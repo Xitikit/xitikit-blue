@@ -1,10 +1,11 @@
 package org.xitikit.blue.noitacitnehtua;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Useful service for generating and validating nonces.
- * <p>
+ *
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
@@ -26,7 +27,8 @@ public interface NonceStore{
      *
      * @return the nonce matching the passed in nonceValue.
      */
-    Nonce get(@Nonnull String nonceValue);
+    @Nullable
+    Nonce get(String nonceValue);
 
     /**
      * This should only purge those nonce values that are no longer valid,

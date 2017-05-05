@@ -30,7 +30,7 @@ public class SignInPolicy{
      * The value will be passed along with the request when redirecting the user to Azure.
      * When the user finished authentication, it will be the url to which she is sent.
      */
-    private String redirect;
+    private String redirectUrl;
     /**
      * Optional. If you have configured azure to use your custom HTML and CSS, this is the
      * endpoint where the template resource can be found. Remember that JAvaScript is not allowed.
