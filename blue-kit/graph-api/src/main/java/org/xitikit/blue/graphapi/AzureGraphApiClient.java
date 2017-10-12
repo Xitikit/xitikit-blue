@@ -51,7 +51,7 @@ public class AzureGraphApiClient{
   public void init(){
 
     HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-    int                                    timeout        = clientProperties.getTimeout();
+    int timeout = clientProperties.getTimeout();
     requestFactory.setConnectTimeout(timeout);
     requestFactory.setReadTimeout(timeout);
 
@@ -60,9 +60,9 @@ public class AzureGraphApiClient{
 
   public void deleteUser(String userId){
 
-    AccessToken        accessToken   = getAccessToken();
-    String             fullUrl       = getFullUrl(USERS_PATH + userId);
-    HttpHeaders        headers       = createHeaders(accessToken);
+    AccessToken accessToken = getAccessToken();
+    String fullUrl = getFullUrl(USERS_PATH + userId);
+    HttpHeaders headers = createHeaders(accessToken);
     HttpEntity<Object> requestEntity = new HttpEntity<>(headers);
     if(log.isDebugEnabled()){
       log.debug("Attempting to delete user: " + userId);
@@ -76,10 +76,10 @@ public class AzureGraphApiClient{
 
   public AccessToken getAccessToken(){
 
-    MultiValueMap<String, String> params       = new LinkedMultiValueMap<>();
-    String                        clientId     = clientProperties.getClientId();
-    String                        clientSecret = clientProperties.getClientSecret();
-    String                        baseUrl      = clientProperties.getBaseUrl();
+    MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+    String clientId = clientProperties.getClientId();
+    String clientSecret = clientProperties.getClientSecret();
+    String baseUrl = clientProperties.getBaseUrl();
 
     params.add("client_id", clientId);
     params.add("client_secret", clientSecret);
@@ -151,7 +151,7 @@ public class AzureGraphApiClient{
   public void updateUser(GraphApiUser userRequest){
 
     AccessToken accessToken = getAccessToken();
-    JsonNode    j           = mapper.convertValue(userRequest, JsonNode.class);
+    JsonNode j = mapper.convertValue(userRequest, JsonNode.class);
 
     //        if (userRequest.getLinked() != null || userRequest.isCustomAttributeOneAvailable()) {
     //            Iterator<Map.Entry<String, JsonNode>> fields = j.fields();
@@ -227,9 +227,9 @@ public class AzureGraphApiClient{
 
   public PaginatedUsers getUsers(String filterExpression, Integer pageSize, String nextToken){
 
-    AccessToken        accessToken = getAccessToken();
-    List<GraphApiUser> users       = new ArrayList<>();
-    StringBuilder      sb          = new StringBuilder();
+    AccessToken accessToken = getAccessToken();
+    List<GraphApiUser> users = new ArrayList<>();
+    StringBuilder sb = new StringBuilder();
 
     if(pageSize != null){
       sb

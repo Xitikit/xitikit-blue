@@ -73,14 +73,14 @@ public class NotFoundExceptionTest{
   @Test
   public void addCodes() throws Exception{
 
-    MessageSourceResolvableException e     = new NotFoundException("one is the loneliest number", new Exception("test"));
-    String[]                         codes = new String[2];
+    MessageSourceResolvableException e = new NotFoundException("one is the loneliest number", new Exception("test"));
+    String[] codes = new String[2];
     codes[0] = "zero the hero";
     codes[1] = "one is the loneliest number";
     e.addCodes(codes).addCodes(codes);
 
     boolean foundZero = false;
-    boolean foundOne  = false;
+    boolean foundOne = false;
     for(String code : e.getCodes()){
 
       if("zero the hero".equals(code)){
@@ -124,14 +124,14 @@ public class NotFoundExceptionTest{
   @Test
   public void addArguments() throws Exception{
 
-    MessageSourceResolvableException e         = new NotFoundException();
-    Object[]                         arguments = new Object[2];
+    MessageSourceResolvableException e = new NotFoundException();
+    Object[] arguments = new Object[2];
     arguments[0] = "zero the hero";
     arguments[1] = "one is the loneliest number";
     e.addArguments(arguments).setDefaultMessage("default2");
 
     boolean foundZero = false;
-    boolean foundOne  = false;
+    boolean foundOne = false;
 
     for(Object argArray : e.getArguments()){
 

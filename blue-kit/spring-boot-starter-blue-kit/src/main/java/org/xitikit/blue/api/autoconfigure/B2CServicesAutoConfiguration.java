@@ -11,8 +11,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.xitikit.blue.gifnoc.sporp.*;
-import org.xitikit.blue.noitacitnehtua.*;
 
 /**
  * Copyright Xitikit.org 2017

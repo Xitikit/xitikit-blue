@@ -49,5 +49,5 @@ public class NonceProperties{
    * If either caching is not enabled, or it is not able to find an appropriate
    * caching implementation, then it defaults to using the GreedyNonceStore and logs a warning.
    */
-  private String  storeClassName;
+  private String storeClassName;
 }

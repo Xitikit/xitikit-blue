@@ -36,6 +36,12 @@ public class GraphApiUserService implements IGraphApiUserService{
     azureGraphApiClient.deleteUser(uuid);
   }
 
+  @Override
+  public void updateUser(org.xitikit.blue.graphapi.model.GraphApiUser user){
+
+    azureGraphApiClient.updateUser(user);
+  }
+
   /**
    * Update the azure user.
    *
@@ -59,8 +65,8 @@ public class GraphApiUserService implements IGraphApiUserService{
       //existing users if they actually changed the email address.
       org.xitikit.blue.graphapi.model.GraphApiUser azureUser = getUser(uuid);
       if(!email.equals(azureUser.getSignInEmail())){
-        org.xitikit.blue.graphapi.model.PaginatedUsers     paginatedUsers = azureGraphApiClient.getUsers("$filter=signInNames/any(x:x/value eq '" + email + "')");
-        List<org.xitikit.blue.graphapi.model.GraphApiUser> users          = paginatedUsers.getUsers();
+        org.xitikit.blue.graphapi.model.PaginatedUsers paginatedUsers = azureGraphApiClient.getUsers("$filter=signInNames/any(x:x/value eq '" + email + "')");
+        List<org.xitikit.blue.graphapi.model.GraphApiUser> users = paginatedUsers.getUsers();
         //If one comes back and it matches the email they are trying to change it to, then they can't use that email.
         if(users != null && users.size() != 0){
           if(users.size() == 1 && email.equals(users
@@ -83,20 +89,14 @@ public class GraphApiUserService implements IGraphApiUserService{
   }
 
   @Override
-  public void updateUser(org.xitikit.blue.graphapi.model.GraphApiUser user){
+  public PaginatedUsers getPaginatedUsers(int pageSize, String skipToken){
 
-    azureGraphApiClient.updateUser(user);
+    return azureGraphApiClient.getUsers(null, pageSize, skipToken);
   }
 
   @Override
   public org.xitikit.blue.graphapi.model.GraphApiUser getUser(String uuid){
 
     return azureGraphApiClient.getUser(uuid);
-  }
-
-  @Override
-  public PaginatedUsers getPaginatedUsers(int pageSize, String skipToken){
-
-    return azureGraphApiClient.getUsers(null, pageSize, skipToken);
   }
 }

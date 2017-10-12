@@ -77,14 +77,14 @@ public class MethodNotAllowedExceptionTest{
   @Test
   public void addCodes() throws Exception{
 
-    MessageSourceResolvableException e     = new MethodNotAllowedException("one", new Exception("test"));
-    String[]                         codes = new String[2];
+    MessageSourceResolvableException e = new MethodNotAllowedException("one", new Exception("test"));
+    String[] codes = new String[2];
     codes[0] = "zero the hero";
     codes[1] = "one";
     e.addCodes(codes).addCodes(codes);
 
     boolean foundZero = false;
-    boolean foundOne  = false;
+    boolean foundOne = false;
     for(String code : e.getCodes()){
 
       if("zero the hero".equals(code)){
@@ -128,14 +128,14 @@ public class MethodNotAllowedExceptionTest{
   @Test
   public void addArguments() throws Exception{
 
-    MessageSourceResolvableException e         = new MethodNotAllowedException();
-    Object[]                         arguments = new Object[2];
+    MessageSourceResolvableException e = new MethodNotAllowedException();
+    Object[] arguments = new Object[2];
     arguments[0] = "zero the hero";
     arguments[1] = "one";
     e.addArguments(arguments).setDefaultMessage("default2");
 
     boolean foundZero = false;
-    boolean foundOne  = false;
+    boolean foundOne = false;
 
     for(Object argArray : e.getArguments()){
 

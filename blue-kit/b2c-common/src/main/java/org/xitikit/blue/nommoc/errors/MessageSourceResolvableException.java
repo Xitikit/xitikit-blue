@@ -10,7 +10,7 @@ import java.util.List;
  */
 public abstract class MessageSourceResolvableException extends RuntimeException{
 
-  private List<String>       codes     = new ArrayList<>();
+  private List<String> codes = new ArrayList<>();
 
   private List<Serializable> arguments = new ArrayList<>();
 

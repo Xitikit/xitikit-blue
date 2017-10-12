@@ -1,7 +1,5 @@
 package test.xitikit.blue.gifnoc.sporp;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Created by Keith on 10/11/2017.
  */
@@ -28,12 +26,12 @@ class ChangeEmailPolicyTest{
   }
 
   @org.junit.jupiter.api.Test
-  void canEqual(){
+  void toString(){
 
   }
 
   @org.junit.jupiter.api.Test
-  void toString(){
+  void canEqual(){
 
   }
 

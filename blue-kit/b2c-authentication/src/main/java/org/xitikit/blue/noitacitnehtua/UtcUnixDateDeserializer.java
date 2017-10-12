@@ -38,7 +38,7 @@ public class UtcUnixDateDeserializer extends JsonDeserializer<ZonedDateTime>{
   @Override
   public ZonedDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException{
 
-    Long    aLong   = deserializationContext.readValue(jsonParser, Long.class);
+    Long aLong = deserializationContext.readValue(jsonParser, Long.class);
     Instant instant = Instant.ofEpochSecond(aLong);
     return instant.atZone(ZoneId.systemDefault());
   }

@@ -80,14 +80,14 @@ public class UnauthorizedExceptionTest{
   @Test
   public void addCodes() throws Exception{
 
-    MessageSourceResolvableException e     = new UnauthorizedException("Up on Capital Hill", new Exception("test"));
-    String[]                         codes = new String[2];
+    MessageSourceResolvableException e = new UnauthorizedException("Up on Capital Hill", new Exception("test"));
+    String[] codes = new String[2];
     codes[0] = "I am a bill";
     codes[1] = "Up on Capital Hill";
     e.addCodes(codes).addCodes(codes);
 
     boolean foundZero = false;
-    boolean foundOne  = false;
+    boolean foundOne = false;
     for(String code : e.getCodes()){
 
       if("I am a bill".equals(code)){
@@ -131,14 +131,14 @@ public class UnauthorizedExceptionTest{
   @Test
   public void addArguments() throws Exception{
 
-    MessageSourceResolvableException e         = new UnauthorizedException();
-    Object[]                         arguments = new Object[2];
+    MessageSourceResolvableException e = new UnauthorizedException();
+    Object[] arguments = new Object[2];
     arguments[0] = "I am a bill";
     arguments[1] = "Up on Capital Hill";
     e.addArguments(arguments);
 
     boolean foundZero = false;
-    boolean foundOne  = false;
+    boolean foundOne = false;
 
     for(Object argArray : e.getArguments()){
 

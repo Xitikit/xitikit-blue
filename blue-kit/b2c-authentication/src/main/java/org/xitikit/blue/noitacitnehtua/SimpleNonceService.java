@@ -21,7 +21,7 @@ import javax.annotation.Nonnull;
 @Slf4j
 public final class SimpleNonceService implements NonceService{
 
-  private final NonceStore      nonceStore;
+  private final NonceStore nonceStore;
 
   private final NonceProperties nonceProperties;
 
@@ -54,7 +54,7 @@ public final class SimpleNonceService implements NonceService{
     if(nonce == null){
       return false;
     }
-    long now  = System.currentTimeMillis();
+    long now = System.currentTimeMillis();
     long diff = now - nonce.getSystemTimeAtCreation();
     return diff > timeout * 1000;
   }
