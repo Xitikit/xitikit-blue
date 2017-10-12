@@ -5,18 +5,18 @@ package org.xitikit.blue.nommoc.errors;
  */
 public class ValidationFailedException extends RuntimeException{
 
-    public ValidationFailedException(){
+  public ValidationFailedException(){
 
-        super("ValidationFailed");
-    }
+    super("ValidationFailed");
+  }
 
-    public ValidationFailedException(String message){
+  public ValidationFailedException(String message){
 
-        super(message);
-    }
+    super(message);
+  }
 
-    public ValidationFailedException(String message, Throwable t){
+  public ValidationFailedException(String message, Throwable t){
 
-        super(message, t);
-    }
+    super(message, t);
+  }
 }

@@ -7,18 +7,18 @@ import java.io.Serializable;
  */
 public class NotFoundException extends MessageSourceResolvableException{
 
-    public NotFoundException(){
+  public NotFoundException(){
 
-        super("NotFound");
-    }
+    super("NotFound");
+  }
 
-    public NotFoundException(Serializable... args){
+  public NotFoundException(Serializable... args){
 
-        super("NotFound", args);
-    }
+    super("NotFound", args);
+  }
 
-    public NotFoundException(Throwable t){
+  public NotFoundException(Throwable t){
 
-        super("NotFound", t);
-    }
+    super("NotFound", t);
+  }
 }

@@ -17,53 +17,51 @@ import static junit.framework.TestCase.*;
  * Copyright Xitikit.org 2017
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(
-    classes = TestApplicationContext.class,
-    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = TestApplicationContext.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EnableGraphApiTest{
 
-    @Autowired
-    @Qualifier("graphApiClientProperties")
-    private ClientProperties clientProperties;
+  @Autowired
+  @Qualifier("graphApiClientProperties")
+  private ClientProperties clientProperties;
 
-    @Autowired
-    @Qualifier("graphApiUserProperties")
-    private UserProperties userProperties;
+  @Autowired
+  @Qualifier("graphApiUserProperties")
+  private UserProperties userProperties;
 
-    @Autowired
-    private AzureGraphApiClient azureGraphApiClient;
+  @Autowired
+  private AzureGraphApiClient azureGraphApiClient;
 
-    @Autowired
-    private GraphApiUserService graphApiUserService;
+  @Autowired
+  private GraphApiUserService graphApiUserService;
 
-    @Test
-    public void verifyUserService(){
+  @Test
+  public void verifyUserService(){
 
-        assertNotNull(graphApiUserService);
-    }
+    assertNotNull(graphApiUserService);
+  }
 
-    @Test
-    public void verifyClient(){
+  @Test
+  public void verifyClient(){
 
-        assertNotNull(azureGraphApiClient);
-    }
+    assertNotNull(azureGraphApiClient);
+  }
 
-    @Test
-    public void verifyUserProperties(){
+  @Test
+  public void verifyUserProperties(){
 
-        assertNotNull(userProperties);
-    }
+    assertNotNull(userProperties);
+  }
 
-    @Test
-    public void verifyClientProperties(){
+  @Test
+  public void verifyClientProperties(){
 
-        assertNotNull(clientProperties);
-        assertNotNull(clientProperties.getApiVersion());
-        assertNotNull(clientProperties.getBaseUrl());
-        assertNotNull(clientProperties.getClientId());
-        assertNotNull(clientProperties.getClientSecret());
-        assertNotNull(clientProperties.getTenantId());
-        int timeout = clientProperties.getTimeout();
-        assertTrue(timeout > 0);
-    }
+    assertNotNull(clientProperties);
+    assertNotNull(clientProperties.getApiVersion());
+    assertNotNull(clientProperties.getBaseUrl());
+    assertNotNull(clientProperties.getClientId());
+    assertNotNull(clientProperties.getClientSecret());
+    assertNotNull(clientProperties.getTenantId());
+    int timeout = clientProperties.getTimeout();
+    assertTrue(timeout > 0);
+  }
 }

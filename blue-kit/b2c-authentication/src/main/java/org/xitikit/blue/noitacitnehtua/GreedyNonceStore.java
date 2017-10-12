@@ -18,39 +18,41 @@ import static java.util.stream.Collectors.*;
  */
 public class GreedyNonceStore implements NonceStore{
 
-    private final Map<String, Nonce> nonceStore = new ConcurrentHashMap<>();
+  private final Map<String, Nonce> nonceStore = new ConcurrentHashMap<>();
 
-    private int timeout;
+  private int timeout;
 
-    /**
-     * @param timeout Time in seconds for which a nonce is valid.
-     */
-    public GreedyNonceStore(int timeout){
+  /**
+   * @param timeout Time in seconds for which a nonce is valid.
+   */
+  public GreedyNonceStore(int timeout){
 
-        this.timeout = timeout > 0 ? timeout : 0;
+    this.timeout = timeout > 0 ? timeout : 0;
+  }
+
+  @Override
+  public void put(@Nonnull Nonce nonce){
+
+    nonceStore.put(nonce.getValue(), nonce);
+  }
+
+  @Override
+  public Nonce get(@Nonnull String nonceValue){
+
+    return nonceStore.get(nonceValue);
+  }
+
+  @Override
+  public void purge(){
+
+    if(timeout > 0){
+      long systemTime = System.currentTimeMillis();
+      nonceStore
+        .values()
+        .parallelStream()
+        .filter(n -> (systemTime - n.getSystemTimeAtCreation()) > timeout)
+        .collect(toSet())
+        .forEach(n -> nonceStore.remove(n.getValue()));
     }
-
-    @Override
-    public void put(@Nonnull Nonce nonce){
-
-        nonceStore.put(nonce.getValue(), nonce);
-    }
-
-    @Override
-    public Nonce get(@Nonnull String nonceValue){
-
-        return nonceStore.get(nonceValue);
-    }
-
-    @Override
-    public void purge(){
-
-        if(timeout > 0){
-            long systemTime = System.currentTimeMillis();
-            nonceStore.values().parallelStream()
-                .filter(n -> (systemTime - n.getSystemTimeAtCreation()) > timeout)
-                .collect(toSet())
-                .forEach(n -> nonceStore.remove(n.getValue()));
-        }
-    }
+  }
 }

@@ -14,5 +14,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Applications{
 
-    private List<Application> value;
+  private List<Application> value;
 }

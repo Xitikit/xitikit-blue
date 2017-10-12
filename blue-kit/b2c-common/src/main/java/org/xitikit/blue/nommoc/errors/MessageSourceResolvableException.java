@@ -10,69 +10,71 @@ import java.util.List;
  */
 public abstract class MessageSourceResolvableException extends RuntimeException{
 
-    private List<String> codes = new ArrayList<>();
-    private List<Serializable> arguments = new ArrayList<>();
-    private String defaultMessage;
+  private List<String>       codes     = new ArrayList<>();
 
-    MessageSourceResolvableException(String code){
+  private List<Serializable> arguments = new ArrayList<>();
 
-        codes.add(code);
-    }
+  private String defaultMessage;
 
-    MessageSourceResolvableException(String code, Throwable t){
+  MessageSourceResolvableException(String code){
 
-        super(t);
-        codes.add(code);
-    }
+    codes.add(code);
+  }
 
-    MessageSourceResolvableException(String code, Serializable... arguments){
+  MessageSourceResolvableException(String code, Throwable t){
 
-        codes.add(code);
-        this.arguments.addAll(Arrays.asList(arguments));
-    }
+    super(t);
+    codes.add(code);
+  }
 
-    public MessageSourceResolvableException addCode(String code){
+  MessageSourceResolvableException(String code, Serializable... arguments){
 
-        codes.add(code);
-        return this;
-    }
+    codes.add(code);
+    this.arguments.addAll(Arrays.asList(arguments));
+  }
 
-    public MessageSourceResolvableException addCodes(String... codes){
+  public MessageSourceResolvableException addCode(String code){
 
-        this.codes.addAll(Arrays.asList(codes));
-        return this;
-    }
+    codes.add(code);
+    return this;
+  }
 
-    public String[] getCodes(){
+  public MessageSourceResolvableException addCodes(String... codes){
 
-        return codes.toArray(new String[codes.size()]);
-    }
+    this.codes.addAll(Arrays.asList(codes));
+    return this;
+  }
 
-    public MessageSourceResolvableException addArgument(Serializable argument){
+  public String[] getCodes(){
 
-        arguments.add(argument);
-        return this;
-    }
+    return codes.toArray(new String[codes.size()]);
+  }
 
-    public MessageSourceResolvableException addArguments(Serializable... arguments){
+  public MessageSourceResolvableException addArgument(Serializable argument){
 
-        this.arguments.addAll(Arrays.asList(arguments));
-        return this;
-    }
+    arguments.add(argument);
+    return this;
+  }
 
-    public Object[] getArguments(){
+  public MessageSourceResolvableException addArguments(Serializable... arguments){
 
-        return arguments.toArray(new Object[arguments.size()]);
-    }
+    this.arguments.addAll(Arrays.asList(arguments));
+    return this;
+  }
 
-    public String getDefaultMessage(){
+  public Object[] getArguments(){
 
-        return defaultMessage;
-    }
+    return arguments.toArray(new Object[arguments.size()]);
+  }
 
-    public MessageSourceResolvableException setDefaultMessage(String defaultMessage){
+  public String getDefaultMessage(){
 
-        this.defaultMessage = defaultMessage;
-        return this;
-    }
+    return defaultMessage;
+  }
+
+  public MessageSourceResolvableException setDefaultMessage(String defaultMessage){
+
+    this.defaultMessage = defaultMessage;
+    return this;
+  }
 }

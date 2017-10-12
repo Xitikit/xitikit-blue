@@ -19,20 +19,20 @@ import java.time.ZonedDateTime;
  */
 public class UtcUnixDateSerializer extends JsonSerializer<ZonedDateTime>{
 
-    /**
-     * Converts a ZonedDateTime into a long equal to the seconds
-     * from "January 1, 1970" and writes it out
-     * to the given JsonGenerator.
-     *
-     * @param date               ZonedDateTime
-     * @param jsonGenerator      JsonGenerator
-     * @param serializerProvider SerializerProvider
-     *
-     * @throws IOException @see JsonGenerator.writeNumber(...)
-     */
-    @Override
-    public void serialize(ZonedDateTime date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException{
+  /**
+   * Converts a ZonedDateTime into a long equal to the seconds
+   * from "January 1, 1970" and writes it out
+   * to the given JsonGenerator.
+   *
+   * @param date ZonedDateTime
+   * @param jsonGenerator JsonGenerator
+   * @param serializerProvider SerializerProvider
+   *
+   * @throws IOException @see JsonGenerator.writeNumber(...)
+   */
+  @Override
+  public void serialize(ZonedDateTime date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException{
 
-        jsonGenerator.writeNumber(date.toEpochSecond());
-    }
+    jsonGenerator.writeNumber(date.toEpochSecond());
+  }
 }

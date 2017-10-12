@@ -5,17 +5,17 @@ import lombok.Data;
 
 /**
  * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Application{
 
-    private String displayName;
+  private String displayName;
 
-    private String aapId;
+  private String aapId;
 
-    private String objectId;
+  private String objectId;
 
-    private String objectType;
+  private String objectType;
 }

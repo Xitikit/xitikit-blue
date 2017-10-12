@@ -4,7 +4,8 @@ import javax.annotation.Nonnull;
 import java.util.UUID;
 
 /**
- * Represents a
+ * Represents a unique token used to ensure that
+ * authentication attempts only occur once,and not more.
  *
  * Copyright Xitikit.org 2017
  *
@@ -12,17 +13,18 @@ import java.util.UUID;
  */
 public final class Nonce{
 
-    private final long systemTimeAtCreation = System.currentTimeMillis();
-    private final String value = UUID.randomUUID().toString();
+  private final long systemTimeAtCreation = System.currentTimeMillis();
 
-    @Nonnull
-    public String getValue(){
+  private final String value = UUID.randomUUID().toString();
 
-        return value;
-    }
+  @Nonnull
+  public String getValue(){
 
-    public long getSystemTimeAtCreation(){
+    return value;
+  }
 
-        return systemTimeAtCreation;
-    }
+  public long getSystemTimeAtCreation(){
+
+    return systemTimeAtCreation;
+  }
 }

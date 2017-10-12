@@ -1,5 +1,10 @@
-<code_scheme name="Project">
+<code_scheme name="Xitikit">
+  <option name="GENERATE_FINAL_PARAMETERS" value="true" />
+  <option name="REPLACE_INSTANCEOF" value="true" />
+  <option name="REPLACE_CAST" value="true" />
   <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="1" />
+  <option name="JD_ALIGN_PARAM_COMMENTS" value="false" />
+  <option name="JD_ALIGN_EXCEPTION_COMMENTS" value="false" />
   <option name="JD_ADD_BLANK_AFTER_PARM_COMMENTS" value="true" />
   <option name="JD_ADD_BLANK_AFTER_RETURN" value="true" />
   <option name="JD_P_AT_EMPTY_LINES" value="false" />
@@ -8,42 +13,80 @@
   <option name="JD_KEEP_EMPTY_PARAMETER" value="false" />
   <option name="JD_KEEP_EMPTY_EXCEPTION" value="false" />
   <option name="JD_KEEP_EMPTY_RETURN" value="false" />
-  <option name="HTML_KEEP_BLANK_LINES" value="0" />
-  <option name="HTML_ALIGN_TEXT" value="true" />
-  <option name="HTML_SPACE_INSIDE_EMPTY_TAG" value="true" />
+  <option name="JD_INDENT_ON_CONTINUATION" value="true" />
+  <option name="HTML_ATTRIBUTE_WRAP" value="4" />
+  <option name="HTML_TEXT_WRAP" value="0" />
+  <option name="HTML_KEEP_BLANK_LINES" value="1" />
+  <option name="HTML_QUOTE_STYLE" value="Single" />
+  <option name="HTML_ENFORCE_QUOTES" value="true" />
+  <CssCodeStyleSettings>
+    <option name="HEX_COLOR_UPPER_CASE" value="true" />
+    <option name="HEX_COLOR_LONG_FORMAT" value="true" />
+    <option name="SPACE_BEFORE_OPENING_BRACE" value="false" />
+  </CssCodeStyleSettings>
+  <JSCodeStyleSettings>
+    <option name="FORCE_SEMICOLON_STYLE" value="true" />
+    <option name="SPACE_AFTER_PROPERTY_COLON" value="false" />
+    <option name="ALIGN_VAR_STATEMENTS" value="1" />
+    <option name="SPACE_AFTER_DOTS_IN_REST_PARAMETER" value="true" />
+    <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />
+    <option name="SPACE_BEFORE_CLASS_LBRACE" value="false" />
+    <option name="USE_DOUBLE_QUOTES" value="false" />
+    <option name="ENFORCE_TRAILING_COMMA" value="Remove" />
+    <option name="VAR_DECLARATION_WRAP" value="2" />
+    <option name="OBJECT_LITERAL_WRAP" value="2" />
+    <option name="IMPORTS_WRAP" value="2" />
+    <option name="SPACE_BEFORE_ASYNC_ARROW_LPAREN" value="false" />
+    <option name="IMPORT_SORT_MODULE_NAME" value="true" />
+    <option name="IMPORT_PREFER_ABSOLUTE_PATH" value="TRUE" />
+    <option name="IMPORT_USE_NODE_RESOLUTION" value="TRUE" />
+  </JSCodeStyleSettings>
   <JSON>
     <option name="SPACE_AFTER_COLON" value="false" />
   </JSON>
-  <JavaCodeStyleSettings>
-    <option name="BLANK_LINES_AROUND_INITIALIZER" value="0" />
-  </JavaCodeStyleSettings>
   <Properties>
+    <option name="SPACES_AROUND_KEY_VALUE_DELIMITER" value="true" />
+    <option name="KEEP_BLANK_LINES" value="true" />
     <option name="KEY_VALUE_DELIMITER_CODE" value="1" />
   </Properties>
+  <XML>
+    <option name="XML_ATTRIBUTE_WRAP" value="4" />
+    <option name="XML_TEXT_WRAP" value="0" />
+    <option name="XML_KEEP_BLANK_LINES" value="1" />
+    <option name="XML_KEEP_WHITE_SPACES_INSIDE_CDATA" value="true" />
+  </XML>
+  <codeStyleSettings language="CSS">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
   <codeStyleSettings language="HTML">
     <indentOptions>
-      <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
     </indentOptions>
   </codeStyleSettings>
   <codeStyleSettings language="JAVA">
+    <option name="LINE_COMMENT_AT_FIRST_COLUMN" value="false" />
+    <option name="BLOCK_COMMENT_AT_FIRST_COLUMN" value="false" />
+    <option name="LINE_COMMENT_ADD_SPACE" value="true" />
+    <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
+    <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
     <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
     <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
     <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
-    <option name="BLANK_LINES_BEFORE_IMPORTS" value="0" />
-    <option name="BLANK_LINES_AFTER_IMPORTS" value="0" />
+    <option name="BLANK_LINES_AROUND_FIELD" value="1" />
     <option name="BLANK_LINES_BEFORE_METHOD_BODY" value="1" />
+    <option name="BLANK_LINES_AROUND_FIELD_IN_INTERFACE" value="1" />
     <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
     <option name="BLANK_LINES_AFTER_ANONYMOUS_CLASS_HEADER" value="1" />
-    <option name="ELSE_ON_NEW_LINE" value="true" />
-    <option name="WHILE_ON_NEW_LINE" value="true" />
-    <option name="CATCH_ON_NEW_LINE" value="true" />
-    <option name="FINALLY_ON_NEW_LINE" value="true" />
     <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
     <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
     <option name="ALIGN_MULTILINE_RESOURCES" value="false" />
     <option name="ALIGN_MULTILINE_FOR" value="false" />
-    <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true" />
-    <option name="ALIGN_CONSECUTIVE_VARIABLE_DECLARATIONS" value="true" />
     <option name="SPACE_BEFORE_IF_PARENTHESES" value="false" />
     <option name="SPACE_BEFORE_WHILE_PARENTHESES" value="false" />
     <option name="SPACE_BEFORE_FOR_PARENTHESES" value="false" />
@@ -67,13 +110,16 @@
     <option name="SPACE_BEFORE_WHILE_KEYWORD" value="false" />
     <option name="SPACE_BEFORE_CATCH_KEYWORD" value="false" />
     <option name="SPACE_BEFORE_FINALLY_KEYWORD" value="false" />
+    <option name="RESOURCE_LIST_WRAP" value="2" />
     <option name="KEEP_SIMPLE_LAMBDAS_IN_ONE_LINE" value="true" />
     <option name="IF_BRACE_FORCE" value="3" />
     <option name="DOWHILE_BRACE_FORCE" value="3" />
     <option name="WHILE_BRACE_FORCE" value="3" />
     <option name="FOR_BRACE_FORCE" value="3" />
     <indentOptions>
-      <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
       <option name="USE_RELATIVE_INDENTS" value="true" />
     </indentOptions>
     <arrangement>
@@ -88,20 +134,109 @@
         </group>
         <group>
           <type>DEPENDENT_METHODS</type>
-          <order>BREADTH_FIRST</order>
+          <order>DEPTH_FIRST</order>
         </group>
       </groups>
     </arrangement>
   </codeStyleSettings>
   <codeStyleSettings language="JSON">
+    <option name="KEEP_LINE_BREAKS" value="false" />
+    <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
     <indentOptions>
-      <option name="INDENT_SIZE" value="4" />
-      <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
     </indentOptions>
   </codeStyleSettings>
   <codeStyleSettings language="JSP">
     <indentOptions>
-      <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="JSPX">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="JavaScript">
+    <option name="KEEP_LINE_BREAKS" value="false" />
+    <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
+    <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
+    <option name="SPACE_BEFORE_IF_PARENTHESES" value="false" />
+    <option name="SPACE_BEFORE_WHILE_PARENTHESES" value="false" />
+    <option name="SPACE_BEFORE_FOR_PARENTHESES" value="false" />
+    <option name="SPACE_BEFORE_CATCH_PARENTHESES" value="false" />
+    <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="false" />
+    <option name="SPACE_BEFORE_METHOD_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_IF_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_ELSE_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_WHILE_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_FOR_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_DO_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_SWITCH_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_TRY_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_CATCH_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_FINALLY_LBRACE" value="false" />
+    <option name="SPACE_BEFORE_ELSE_KEYWORD" value="false" />
+    <option name="SPACE_BEFORE_WHILE_KEYWORD" value="false" />
+    <option name="SPACE_BEFORE_CATCH_KEYWORD" value="false" />
+    <option name="SPACE_BEFORE_FINALLY_KEYWORD" value="false" />
+    <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
+    <option name="IF_BRACE_FORCE" value="3" />
+    <option name="DOWHILE_BRACE_FORCE" value="3" />
+    <option name="WHILE_BRACE_FORCE" value="3" />
+    <option name="FOR_BRACE_FORCE" value="3" />
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="LESS">
+    <indentOptions>
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="SASS">
+    <indentOptions>
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="SCSS">
+    <indentOptions>
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="SQL">
+    <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
+    <indentOptions>
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="Stylus">
+    <indentOptions>
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="TypeScript">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="XML">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
     </indentOptions>
   </codeStyleSettings>
 </code_scheme>

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @Configuration
 @ComponentScan("org.xitikit.blue.graphapi")

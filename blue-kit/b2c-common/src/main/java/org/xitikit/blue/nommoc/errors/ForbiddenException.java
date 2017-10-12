@@ -10,18 +10,18 @@ import java.io.Serializable;
  */
 public class ForbiddenException extends MessageSourceResolvableException{
 
-    public ForbiddenException(){
+  public ForbiddenException(){
 
-        super("Forbidden");
-    }
+    super("Forbidden");
+  }
 
-    public ForbiddenException(Throwable t){
+  public ForbiddenException(Throwable t){
 
-        super("Forbidden", t);
-    }
+    super("Forbidden", t);
+  }
 
-    public ForbiddenException(Serializable... message){
+  public ForbiddenException(Serializable... message){
 
-        super("Forbidden", message);
-    }
+    super("Forbidden", message);
+  }
 }

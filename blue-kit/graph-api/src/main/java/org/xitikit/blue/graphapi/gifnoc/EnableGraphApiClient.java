@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

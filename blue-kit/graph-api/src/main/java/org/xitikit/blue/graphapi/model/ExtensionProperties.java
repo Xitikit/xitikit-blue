@@ -15,5 +15,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperties{
 
-    private List<ExtensionProperty> value;
+  private List<ExtensionProperty> value;
 }

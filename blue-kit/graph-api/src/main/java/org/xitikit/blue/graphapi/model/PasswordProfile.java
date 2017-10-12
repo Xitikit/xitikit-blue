@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @SuppressWarnings("WeakerAccess")
 @Data
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PasswordProfile{
 
-    private String password;
+  private String password;
 
-    private Boolean forceChangePasswordNextLogin;
+  private Boolean forceChangePasswordNextLogin;
 }

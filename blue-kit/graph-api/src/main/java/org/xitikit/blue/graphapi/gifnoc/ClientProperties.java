@@ -16,12 +16,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("blue-kit.graphApi")
 public class ClientProperties{
 
-    private String
-        tenantId,
-        clientId,
-        clientSecret,
-        baseUrl,
-        apiVersion;
+  private String tenantId, clientId, clientSecret, baseUrl, apiVersion;
 
-    private int timeout;
+  private int timeout;
 }

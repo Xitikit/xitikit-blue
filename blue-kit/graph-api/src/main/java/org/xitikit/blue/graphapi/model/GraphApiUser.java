@@ -13,9 +13,9 @@ import java.util.List;
 
 /**
  * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  *
- *         Models the request to update an Azure B2C user.
+ *   Models the request to update an Azure B2C user.
  */
 @Data
 @NoArgsConstructor
@@ -24,71 +24,75 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GraphApiUser{
 
-    @JsonProperty("objectId")
-    private String id;
+  @JsonProperty("objectId")
+  private String id;
 
-    private Boolean accountEnabled;
+  private Boolean accountEnabled;
 
-    private PasswordProfile PasswordProfile;
+  private PasswordProfile PasswordProfile;
 
-    private List<SignInName> signInNames;
+  private List<SignInName> signInNames;
 
-    private String surname;
+  private String surname;
 
-    private String displayName;
+  private String displayName;
 
-    private String givenName;
+  private String givenName;
 
-    @JsonProperty("userPrincipalName")
-    private String userPrincipalName;
+  @JsonProperty("userPrincipalName")
+  private String userPrincipalName;
 
-//    @JsonIgnore
-//    public Object getFormattedCustomAttributeOne() {
-//
-//        if (customAttributeOne != null && !"".equals(customAttributeOne.trim())) {
-//
-//            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
-//            try {
-//                Date date = fmt.parse(customAttributeOne);
-//                Calendar calendar = Calendar.getInstance();
-//                calendar.setTime(date);
-//                return LocalDateTime.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0, 0);
-//            } catch (ParseException e) {
-//                return null;
-//            }
-//        }
-//        return null;
-//    }
+  //    @JsonIgnore
+  //    public Object getFormattedCustomAttributeOne() {
+  //
+  //        if (customAttributeOne != null && !"".equals(customAttributeOne.trim())) {
+  //
+  //            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+  //            try {
+  //                Date date = fmt.parse(customAttributeOne);
+  //                Calendar calendar = Calendar.getInstance();
+  //                calendar.setTime(date);
+  //                return LocalDateTime.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0, 0);
+  //            } catch (ParseException e) {
+  //                return null;
+  //            }
+  //        }
+  //        return null;
+  //    }
 
-    @JsonIgnore
-    public String getSignInEmail(){
+  @JsonIgnore
+  public String getSignInEmail(){
 
-        String email = "";
-        if(signInNames != null){
-            for(SignInName signInName : signInNames){
-                if(signInName.getType().equals("emailAddress")){
-                    email = signInName.getValue();
-                    break;
-                }
-            }
+    String email = "";
+    if(signInNames != null){
+      for(SignInName signInName : signInNames){
+        if(signInName
+             .getType()
+             .equals("emailAddress")){
+          email = signInName.getValue();
+          break;
         }
-        return email;
+      }
+    }
+    return email;
+  }
+
+  @JsonIgnore
+  public void setSignInEmail(String signInEmail){
+
+    if(signInNames == null){
+      signInNames = new ArrayList<>();
+      signInNames.add(new SignInName("emailAddress", signInEmail));
+      return;
     }
 
-    @JsonIgnore
-    public void setSignInEmail(String signInEmail){
-
-        if(signInNames == null){
-            signInNames = new ArrayList<>();
-            signInNames.add(new SignInName("emailAddress", signInEmail));
-            return;
-        }
-
-        for(SignInName signInName : signInNames){
-            if(signInName.getType().equals("emailAddress")){
-                signInName.setValue(signInEmail);
-                break;
-            }
-        }
+    for(SignInName signInName : signInNames){
+      if(signInName
+           .getType()
+           .equals("emailAddress")){
+        signInName.setValue(signInEmail);
+        break;
+      }
     }
+  }
 }

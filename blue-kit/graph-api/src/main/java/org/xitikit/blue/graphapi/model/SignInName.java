@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @SuppressWarnings("WeakerAccess")
 @Data
@@ -14,7 +14,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SignInName{//userName or emailAddress
 
-    private String
-        type,
-        value;
+  private String type, value;
 }

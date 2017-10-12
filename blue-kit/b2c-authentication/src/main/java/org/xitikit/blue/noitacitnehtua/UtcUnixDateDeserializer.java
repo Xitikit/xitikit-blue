@@ -21,25 +21,25 @@ import java.time.ZonedDateTime;
  */
 public class UtcUnixDateDeserializer extends JsonDeserializer<ZonedDateTime>{
 
-    /**
-     * Converts the value from the DeserializationContext
-     * to a LocalDateTime.
-     *
-     * Assumes the value being passed is a Long with a value that
-     * represents the number of seconds since January 1 2017.
-     *
-     * @param jsonParser             JsonParser
-     * @param deserializationContext DeserializationContext
-     *
-     * @return ZonedDateTime
-     *
-     * @throws IOException when the value cannot be read, or is improperly formatted.
-     */
-    @Override
-    public ZonedDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException{
+  /**
+   * Converts the value from the DeserializationContext
+   * to a LocalDateTime.
+   *
+   * Assumes the value being passed is a Long with a value that
+   * represents the number of seconds since January 1 2017.
+   *
+   * @param jsonParser JsonParser
+   * @param deserializationContext DeserializationContext
+   *
+   * @return ZonedDateTime
+   *
+   * @throws IOException when the value cannot be read, or is improperly formatted.
+   */
+  @Override
+  public ZonedDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException{
 
-        Long aLong = deserializationContext.readValue(jsonParser, Long.class);
-        Instant instant = Instant.ofEpochSecond(aLong);
-        return instant.atZone(ZoneId.systemDefault());
-    }
+    Long    aLong   = deserializationContext.readValue(jsonParser, Long.class);
+    Instant instant = Instant.ofEpochSecond(aLong);
+    return instant.atZone(ZoneId.systemDefault());
+  }
 }

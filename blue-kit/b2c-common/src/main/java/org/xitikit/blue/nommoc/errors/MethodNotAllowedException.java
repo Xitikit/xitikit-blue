@@ -7,18 +7,18 @@ import java.io.Serializable;
  */
 public class MethodNotAllowedException extends MessageSourceResolvableException{
 
-    public MethodNotAllowedException(){
+  public MethodNotAllowedException(){
 
-        super("MethodNotAllowed");
-    }
+    super("MethodNotAllowed");
+  }
 
-    public MethodNotAllowedException(Serializable... args){
+  public MethodNotAllowedException(Serializable... args){
 
-        super("MethodNotAllowed", args);
-    }
+    super("MethodNotAllowed", args);
+  }
 
-    public MethodNotAllowedException(Throwable t){
+  public MethodNotAllowedException(Throwable t){
 
-        super("MethodNotAllowed", t);
-    }
+    super("MethodNotAllowed", t);
+  }
 }

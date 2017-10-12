@@ -7,18 +7,18 @@ import java.io.Serializable;
  */
 public class UnauthorizedException extends MessageSourceResolvableException{
 
-    public UnauthorizedException(){
+  public UnauthorizedException(){
 
-        super("Unauthorized");
-    }
+    super("Unauthorized");
+  }
 
-    public UnauthorizedException(Serializable... args){
+  public UnauthorizedException(Serializable... args){
 
-        super("Unauthorized", args);
-    }
+    super("Unauthorized", args);
+  }
 
-    public UnauthorizedException(Throwable t){
+  public UnauthorizedException(Throwable t){
 
-        super("Unauthorized", t);
-    }
+    super("Unauthorized", t);
+  }
 }

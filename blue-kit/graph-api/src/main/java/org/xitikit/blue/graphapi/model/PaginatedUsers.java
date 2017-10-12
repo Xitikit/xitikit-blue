@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author J. Keith Hoopes
- *         Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @Data
 @NoArgsConstructor
@@ -23,24 +23,24 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaginatedUsers{
 
-    private List<GraphApiUser> users = new ArrayList<>();
+  private List<GraphApiUser> users = new ArrayList<>();
 
-    @JsonProperty("odata.nextLink")
-    private String nextLink;
+  @JsonProperty("odata.nextLink")
+  private String nextLink;
 
-    @JsonProperty("odata.metadata")
-    private String metaData;
+  @JsonProperty("odata.metadata")
+  private String metaData;
 
-    @JsonIgnore
-    public String getNextLinkToken(){
+  @JsonIgnore
+  public String getNextLinkToken(){
 
-        if(StringUtils.isNotEmpty(nextLink)){
-            int index = nextLink.indexOf("$skiptoken=");
-            if(index != -1){
-                return nextLink.substring(index + "$skiptoken=".length());
-            }
-            return null;
-        }
-        return null;
+    if(StringUtils.isNotEmpty(nextLink)){
+      int index = nextLink.indexOf("$skiptoken=");
+      if(index != -1){
+        return nextLink.substring(index + "$skiptoken=".length());
+      }
+      return null;
     }
+    return null;
+  }
 }
