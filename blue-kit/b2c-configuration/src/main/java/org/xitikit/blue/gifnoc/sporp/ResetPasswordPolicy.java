@@ -5,18 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Wither;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
  */
-@Data
-@Wither
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ResetPasswordPolicy{
+@Component
+@ConfigurationProperties
+public class ResetPasswordPolicy implements AuthenticationPolicy{
 
   /**
    * Required when not disabled.
@@ -44,4 +43,44 @@ public class ResetPasswordPolicy{
    * Optional. Indicates that this policy is NOT going to be used if true.
    */
   private boolean disabled = false;
+
+  @Override public String getName(){
+
+    return name;
+  }
+
+  @Override public void setName(final String name){
+
+    this.name = name;
+  }
+
+  @Override public String getRedirectUrl(){
+
+    return redirectUrl;
+  }
+
+  @Override public void setRedirectUrl(final String redirectUrl){
+
+    this.redirectUrl = redirectUrl;
+  }
+
+  @Override public String getTemplateUrl(){
+
+    return templateUrl;
+  }
+
+  @Override public void setTemplateUrl(final String templateUrl){
+
+    this.templateUrl = templateUrl;
+  }
+
+  @Override public boolean isDisabled(){
+
+    return disabled;
+  }
+
+  @Override public void setDisabled(final boolean disabled){
+
+    this.disabled = disabled;
+  }
 }

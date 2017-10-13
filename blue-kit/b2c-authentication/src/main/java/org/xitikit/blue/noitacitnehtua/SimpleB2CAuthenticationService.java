@@ -2,21 +2,22 @@ package org.xitikit.blue.noitacitnehtua;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.NullNode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.InvalidSignatureException;
 import org.springframework.security.jwt.crypto.sign.RsaVerifier;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.xitikit.blue.gifnoc.sporp.*;
-import org.xitikit.blue.nommoc.errors.NotFoundException;
+import org.xitikit.blue.gifnoc.sporp.B2CProperties;
+import org.xitikit.blue.gifnoc.sporp.NonceProperties;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.KeyFactory;
@@ -28,8 +29,6 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import static java.net.URLEncoder.*;
-
 /**
  * This class implements methods to interface with AzureB2C.
  *
@@ -37,9 +36,8 @@ import static java.net.URLEncoder.*;
  * @see B2CAuthenticationService
  */
 @Slf4j
+@Service("simpleB2CAuthenticationService")
 public final class SimpleB2CAuthenticationService implements B2CAuthenticationService{
-
-  private static final String STANDARD_CONFIGURATION_QUERY = "&response_mode=form_post&scope=openid&response_type=id_token&prompt=login";
 
   private static final Charset UTF8 = Charset.forName("UTF-8");
 
@@ -47,130 +45,31 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
 
   private final B2CProperties b2CProperties;
 
-  private final SignUpPolicy signUpPolicy;
-
-  private final SignInPolicy signInPolicy;
-
-  private final SignUpOrSignInPolicy signUpOrSignInPolicy;
-
-  private final ResetPasswordPolicy resetPasswordPolicy;
-
-  private final EditProfilePolicy editProfilePolicy;
-
-  private final SignOutPolicy signOutPolicy;
-
   private final NonceProperties nonceProperties;
 
   private final NonceService nonceService;
 
-  public SimpleB2CAuthenticationService(B2CProperties b2CProperties, SignUpPolicy signUpPolicy, SignInPolicy signInPolicy, SignUpOrSignInPolicy signUpOrSignInPolicy, ResetPasswordPolicy resetPasswordPolicy, EditProfilePolicy editProfilePolicy, SignOutPolicy signOutPolicy, NonceProperties nonceProperties, NonceService nonceService){
+  private final BlueUrlService blueUrlService;
+
+  private final RestTemplate restTemplate;
+
+  public SimpleB2CAuthenticationService(
+    final B2CProperties b2CProperties,
+    final NonceProperties nonceProperties,
+    final NonceService nonceService,
+    final BlueUrlService blueUrlService,
+    final RestTemplate restTemplate){
 
     this.b2CProperties = b2CProperties;
-    this.signUpPolicy = signUpPolicy;
-    this.signInPolicy = signInPolicy;
-    this.signUpOrSignInPolicy = signUpOrSignInPolicy;
-    this.resetPasswordPolicy = resetPasswordPolicy;
-    this.editProfilePolicy = editProfilePolicy;
-    this.signOutPolicy = signOutPolicy;
     this.nonceProperties = nonceProperties;
     this.nonceService = nonceService;
-  }
-
-  @Nonnull
-  @Override
-  public String getSignUpUrl(){
-
-    return domainUrlPart() + policyUrlPart(signUpPolicy.getName()) + clientIdUrlPart() + nonceUrlPart() + redirectUrlPart(signUpPolicy.getRedirectUrl()) + STANDARD_CONFIGURATION_QUERY;
-  }
-
-  private String domainUrlPart(){
-
-    return "https://login.microsoftonline.com/" + b2CProperties.getDomain();
-  }
-
-  private String clientIdUrlPart(){
-
-    return "&client_Id=" + b2CProperties.getAppId();
-  }
-
-  private String nonceUrlPart(){
-
-    return (nonceProperties.isDisabled() ? "" : "&nonce=" + nonceService.generate());
-  }
-
-  private String redirectUrlPart(String redirectUrl){
-
-    assert redirectUrl != null;
-    try{
-      return "&redirect_uri=" + encode(redirectUrl, "UTF-8");
-    }catch(UnsupportedEncodingException e){
-      throw new NotFoundException(e.getMessage(), e);
-    }
-  }
-
-  private String policyUrlPart(String policyName){
-
-    assert policyName != null && !"".equals(policyName);
-    return "/oauth2/v2.0/authorize?p=" + policyName;
-  }
-
-  @Nonnull
-  @Override
-  public String getSignInUrl(){
-
-    return domainUrlPart() + policyUrlPart(signInPolicy.getName()) + clientIdUrlPart() + nonceUrlPart() + redirectUrlPart(signInPolicy.getRedirectUrl()) + STANDARD_CONFIGURATION_QUERY;
-  }
-
-  @Nonnull
-  @Override
-  public String getSignUpOrSignInUrl(){
-
-    return domainUrlPart() + policyUrlPart(signUpOrSignInPolicy.getName()) + clientIdUrlPart() + nonceUrlPart() + redirectUrlPart(signUpOrSignInPolicy.getRedirectUrl()) + STANDARD_CONFIGURATION_QUERY;
-  }
-
-  @Nonnull
-  @Override
-  public String getSignOutUrl(){
-
-    if(signOutPolicy.isDisabled()){
-      return "";
-    }
-    try{
-      String nameSignOutPolicy = signOutPolicy.getName();
-      if(nameSignOutPolicy == null && !signUpOrSignInPolicy.isDisabled()){
-        nameSignOutPolicy = signUpOrSignInPolicy.getName();
-      }
-      //Checks to see if ti is STILL null, and then decides to use the signIngPolicy name instead.
-      if(nameSignOutPolicy == null && !signInPolicy.isDisabled()){
-        nameSignOutPolicy = signInPolicy.getName();
-      }
-      if(nameSignOutPolicy == null){
-        return "";
-      }
-      return domainUrlPart() + policyUrlPart(nameSignOutPolicy) + "&post_logout_redirect_uri=" + encode(signOutPolicy.getRedirectUrl(), "UTF-8") + nonceUrlPart();
-    }catch(UnsupportedEncodingException e){
-      e.printStackTrace();
-      throw new IllegalArgumentException(e.getMessage(), e);
-    }
-  }
-
-  @Nonnull
-  @Override
-  public String getProfileUrl(){
-
-    return domainUrlPart() + policyUrlPart(editProfilePolicy.getName()) + clientIdUrlPart() + nonceUrlPart() + redirectUrlPart(editProfilePolicy.getRedirectUrl()) + STANDARD_CONFIGURATION_QUERY;
-  }
-
-  @Nonnull
-  @Override
-  public String getResetPasswordUrl(){
-
-    return domainUrlPart() + policyUrlPart(resetPasswordPolicy.getName()) + clientIdUrlPart() + nonceUrlPart() + redirectUrlPart(resetPasswordPolicy.getRedirectUrl()) + STANDARD_CONFIGURATION_QUERY;
+    this.blueUrlService = blueUrlService;
+    this.restTemplate = restTemplate;
   }
 
   @Nullable
   @Override
-  public BlueWebToken decodeAndVerify(@Nonnull String idToken){
+  public BlueWebToken decodeAndVerify(@Nonnull final String idToken){
 
     final long now = System.currentTimeMillis();
     if(log.isTraceEnabled()){
@@ -195,26 +94,26 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
       }
       if(!validateNotBefore(token, now)){
         log.warn("Failed to validate notBefore time in token. This could be a replay attack. 'Now' milliseconds: " + now + "; 'NotBefore' milliseconds: " + token
-                                                                                                                                                              .getNotBefore()
-                                                                                                                                                              .toInstant()
-                                                                                                                                                              .toEpochMilli());
+          .getNotBefore()
+          .toInstant()
+          .toEpochMilli());
         return null;
       }
       if(!validateExpiration(token, now)){
         log.warn("Failed to validate expiration time in token. This could be a replay attack. 'Now' milliseconds: " + now + "; 'Expiration' milliseconds: " + token
-                                                                                                                                                                .getExpiration()
-                                                                                                                                                                .toInstant()
-                                                                                                                                                                .toEpochMilli());
+          .getExpiration()
+          .toInstant()
+          .toEpochMilli());
         return null;
       }
       // Get the key ID we need to use to verify the token
       String keyId = getKeyId(idToken);
-      if(keyId == null){
+      if("".equals(keyId.trim())){
         log.warn("Failed to retrieve key ID for token");
         return null;
       }
       // Get the key and verify the JWT signature
-      RSAPublicKey key = getKey(keyId, token.getAuthContextReference());
+      RSAPublicKey key = rsaPublicKey(keyId, token.getAuthContextReference());
       jwt.verifySignature(new RsaVerifier(key));
       return token;
 
@@ -224,21 +123,15 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     return null;
   }
 
-  private boolean validateAudience(BlueWebToken token){
+  private boolean validateAudience(final BlueWebToken token){
 
     return b2CProperties
-             .getAppId()
-             .equals(token.getAudience());
-  }
-
-  private boolean validateIssuer(BlueWebToken token){
-
-    final String issuer = token.getIssuer();
-    return issuer != null && issuer.startsWith("https://login.microsoftonline.com/") && issuer.endsWith("/v2.0/");
+      .getAppId()
+      .equals(token.getAudience());
   }
 
   @SuppressWarnings("unused")
-  private boolean validateNotBefore(BlueWebToken token, long now){
+  private boolean validateNotBefore(final BlueWebToken token, final long now){
 
     Instant instant = Instant.ofEpochMilli(now + (nonceProperties.getNotBeforePadding() + 1000));
     ZonedDateTime nowWithPadding = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
@@ -249,7 +142,72 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     return comparison <= 0;
   }
 
-  private boolean validateExpiration(BlueWebToken token, long now){
+  /**
+   * Attempts to get an RSAPublicKey for the given policy.
+   *
+   * @param keyId the key ID to fetch
+   * @param policy the policy the key belongs to
+   *
+   * @return the key or null if it could not be fetched
+   */
+  @Nullable
+  private RSAPublicKey rsaPublicKey(
+    @Nonnull final String keyId,
+    @Nonnull final String policy){
+
+    try{
+      JsonNode kidNode = kidForKeyId(
+        keysForPolicy(policy),
+        keyId
+      );
+      return parseKey(
+        modulus(kidNode),
+        exponent(kidNode)
+      );
+
+    }catch(RestClientException | NullPointerException x){
+      log.error("Error retrieving RSA keys for policy [" + policy + "]: " + x.getMessage(), x);
+    }
+    return null;
+  }
+
+  @Nonnull
+  private JsonNode keysForPolicy(@Nonnull final String policy){
+
+    return safeNode(
+      jwksForPolicy(policy).get("keys")
+    );
+  }
+
+  @Nonnull
+  private JsonNode jwksForPolicy(@Nonnull final String policy){
+
+    return safeNode(
+      restTemplate.getForObject(
+        jwksUri(
+          policyMetaData(policy)
+        ),
+        JsonNode.class
+      ));
+  }
+
+  @Nonnull
+  private JsonNode policyMetaData(@Nonnull final String policy){
+
+    return safeNode(
+      restTemplate.getForObject(
+        blueUrlService.wellKnownEndpoint(policy),
+        JsonNode.class
+      ));
+  }
+
+  private static boolean validateIssuer(final BlueWebToken token){
+
+    final String issuer = token.getIssuer();
+    return issuer != null && issuer.startsWith("https://login.microsoftonline.com/") && issuer.endsWith("/v2.0/");
+  }
+
+  private static boolean validateExpiration(final BlueWebToken token, final long now){
 
     Instant instant = Instant.ofEpochMilli(now);
     ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
@@ -265,88 +223,142 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
    *
    * @return the key ID or null
    */
-  @Nullable
-  private String getKeyId(@Nonnull String idToken){
+  @Nonnull
+  private static String getKeyId(@Nonnull final String idToken){
 
     try{
-      String[] parts = idToken.split("\\.");
-      byte[] bytes = Base64.decodeBase64(parts[0]);
-      String json = new String(bytes, UTF8);
-      JsonNode node = mapper.readValue(json, JsonNode.class);
-      if(node.has("kid")){
-        return node
-                 .get("kid")
-                 .asText();
-      }
+
+      return getKeyId(
+        mapper.readValue(
+          new String(
+            safeDecodeBase64(
+              idToken.split("\\.")[0]
+            ),
+            UTF8
+          ),
+          JsonNode.class));
+
     }catch(IOException x){
       log.warn("Failed to parse jwt token header: " + x.getMessage(), x);
     }
-    return null;
+    return "";
+  }
+
+  @Nonnull
+  private static String getKeyId(@Nonnull final JsonNode node){
+
+    return node.has("kid") ? node.get("kid").asText() : "";
   }
 
   /**
-   * Attempts to get an RSAPublicKey for the given policy.
+   * Parses out the modulus.
    *
-   * @param keyId the key ID to fetch
-   * @param policy the policy the key belongs to
+   * @param kidNode JsonNode
    *
-   * @return the key or null if it could not be fetched
+   * @return the modulus from the given node if present.
    */
-  @Nullable
-  private RSAPublicKey getKey(@Nonnull String keyId, @Nonnull String policy){
+  @Nonnull
+  private static byte[] modulus(@Nonnull final JsonNode kidNode){
 
-    RestTemplate restTemplate = new RestTemplate();
-    try{
-      // Get the meta data
-      String url = domainUrlPart() + "/v2.0/.well-known/openid-configuration?p=" + policy;
-      JsonNode node = restTemplate.getForObject(url, JsonNode.class);
+    return safeDecodeBase64(encodedModulus(kidNode));
+  }
 
-      // Get keys
-      url = node
-              .get("jwks_uri")
-              .asText();
-      node = restTemplate.getForObject(url, JsonNode.class);
-      node = node.get("keys");
+  /**
+   * Parses out the exponent.
+   *
+   * @param kidNode JsonNode
+   *
+   * @return the exponent from the given node if present.
+   */
+  @Nonnull
+  private static byte[] exponent(@Nonnull final JsonNode kidNode){
 
-      for(JsonNode keyNode : node){
-        if(keyNode
-             .get("kid")
-             .asText()
-             .equals(keyId)){
-          return parseKey(keyNode
-                            .get("n")
-                            .asText(), keyNode
-                                         .get("e")
-                                         .asText());
-        }
+    return safeDecodeBase64(encodedExponent(kidNode));
+  }
+
+  @Nonnull
+  private static String encodedModulus(@Nonnull final JsonNode keyNode){
+
+    return keyNode.has("n") ? keyNode.get("n").asText() : "";
+  }
+
+  @Nonnull
+  private static String encodedExponent(@Nonnull final JsonNode keyNode){
+
+    return keyNode.has("e") ? keyNode.get("e").asText() : "";
+  }
+
+  @Nonnull
+  private static byte[] safeDecodeBase64(@Nullable final String base){
+
+    return base == null || "".equals(base.trim()) ?
+      new byte[0] :
+      Base64.decodeBase64(base);
+  }
+
+  @Nonnull
+  private static JsonNode kidForKeyId(
+    @Nonnull final JsonNode node,
+    @Nonnull final String keyId){
+
+    for(JsonNode keyNode : node){
+      if(keyNode
+        .get("kid")
+        .asText()
+        .equals(keyId)){
+
+        return keyNode;
       }
-
-    }catch(RestClientException | NullPointerException x){
-      log.error("Error retrieving RSA keys for policy [" + policy + "]: " + x.getMessage(), x);
     }
-    return null;
+    return NullNode.getInstance();
+  }
+
+  @Nonnull
+  private static JsonNode safeNode(@Nullable final JsonNode node){
+
+    return node == null ? NullNode.getInstance() : node;
+  }
+
+  @Nonnull
+  private static String jwksUri(@Nonnull final JsonNode node){
+
+    return node.has("jwks_uri") ? node.get("jwks_uri").asText() : "";
   }
 
   /**
    * Accepts a modulus and exponent base64 encoded string and produces an RSAPublicKey.
    *
-   * @param n the base64 encoded modulus
-   * @param e the base64 encoded exponent
+   * @param modulus the decoded modulus
+   * @param exponent the decoded exponent
    *
    * @return the key or null if it could not be created
    */
   @Nullable
-  private RSAPublicKey parseKey(@Nonnull String n, @Nonnull String e){
+  private static RSAPublicKey parseKey(
+    @Nonnull final byte[] modulus,
+    @Nonnull final byte[] exponent){
 
     try{
-      byte[] modulus = Base64.decodeBase64(n);
-      byte[] exponent = Base64.decodeBase64(e);
-      RSAPublicKeySpec spec = new RSAPublicKeySpec(new BigInteger(1, modulus), new BigInteger(1, exponent));
-      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-      return (RSAPublicKey) keyFactory.generatePublic(spec);
+
+      return (RSAPublicKey) KeyFactory
+        .getInstance("RSA")
+        .generatePublic(
+          rsaPublicKeySpec(modulus, exponent)
+        );
+
     }catch(NoSuchAlgorithmException | InvalidKeySpecException x){
       log.error("Failed to parse RSA public key: " + x.getMessage(), x);
     }
     return null;
+  }
+
+  @Nonnull
+  private static RSAPublicKeySpec rsaPublicKeySpec(
+    @Nonnull final byte[] modulus,
+    @Nonnull final byte[] exponent){
+
+    return new RSAPublicKeySpec(
+      new BigInteger(1, modulus),
+      new BigInteger(1, exponent));
   }
 }

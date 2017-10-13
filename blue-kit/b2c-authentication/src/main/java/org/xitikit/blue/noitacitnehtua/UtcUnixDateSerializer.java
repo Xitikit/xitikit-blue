@@ -31,7 +31,10 @@ public class UtcUnixDateSerializer extends JsonSerializer<ZonedDateTime>{
    * @throws IOException @see JsonGenerator.writeNumber(...)
    */
   @Override
-  public void serialize(ZonedDateTime date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException{
+  public void serialize(
+    final ZonedDateTime date,
+    final JsonGenerator jsonGenerator,
+    final SerializerProvider serializerProvider) throws IOException{
 
     jsonGenerator.writeNumber(date.toEpochSecond());
   }

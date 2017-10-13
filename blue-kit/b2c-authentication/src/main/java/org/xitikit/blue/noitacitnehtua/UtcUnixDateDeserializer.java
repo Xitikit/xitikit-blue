@@ -36,10 +36,17 @@ public class UtcUnixDateDeserializer extends JsonDeserializer<ZonedDateTime>{
    * @throws IOException when the value cannot be read, or is improperly formatted.
    */
   @Override
-  public ZonedDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException{
+  public ZonedDateTime deserialize(
+    final JsonParser jsonParser,
+    final DeserializationContext deserializationContext) throws IOException{
 
-    Long aLong = deserializationContext.readValue(jsonParser, Long.class);
-    Instant instant = Instant.ofEpochSecond(aLong);
-    return instant.atZone(ZoneId.systemDefault());
+    return Instant
+      .ofEpochSecond(
+        deserializationContext
+          .readValue(
+            jsonParser,
+            Long.class))
+      .atZone(
+        ZoneId.systemDefault());
   }
 }

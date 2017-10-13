@@ -25,4 +25,9 @@ public interface NonceService{
    */
   boolean isValid(String nonce);
 
+  /**
+   * Indicates whether or not nonces have been configured.
+   * @return
+   */
+  boolean isDisabled();
 }

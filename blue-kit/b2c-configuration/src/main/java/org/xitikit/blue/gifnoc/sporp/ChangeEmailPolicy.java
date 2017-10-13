@@ -1,10 +1,7 @@
 package org.xitikit.blue.gifnoc.sporp;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Wither;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * There is no functionality currently implemented to allow a user to
@@ -16,15 +13,43 @@ import lombok.experimental.Wither;
  *
  * @author J. Keith Hoopes
  */
-@Data
-@Wither
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ChangeEmailPolicy{
+@Component
+@ConfigurationProperties
+public class ChangeEmailPolicy implements AuthenticationPolicy{
 
-  /**
-   * Indicates that this policy is NOT going to be used if true.
-   */
-  private boolean disabled = true;
+  @Override public String getName(){
+
+    return "";
+  }
+
+  @Override public void setName(final String name){
+
+  }
+
+  @Override public String getRedirectUrl(){
+
+    return "";
+  }
+
+  @Override public void setRedirectUrl(final String redirectUrl){
+
+  }
+
+  @Override public String getTemplateUrl(){
+
+    return "";
+  }
+
+  @Override public void setTemplateUrl(final String templateUrl){
+
+  }
+
+  @Override public boolean isDisabled(){
+
+    return true;
+  }
+
+  @Override public void setDisabled(final boolean disabled){
+
+  }
 }

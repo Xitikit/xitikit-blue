@@ -5,18 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Wither;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
  */
-@Data
-@Wither
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class SignUpOrSignInPolicy{
+@Component
+@ConfigurationProperties
+public class SignUpOrSignInPolicy implements AuthenticationPolicy{
 
   /**
    * This is the exact name of the policy web flow given after it was created.
@@ -42,4 +41,44 @@ public class SignUpOrSignInPolicy{
    * Optional. Indicates that this policy is NOT going to be used if true.
    */
   private boolean disabled = false;
+
+  public String getName(){
+
+    return name;
+  }
+
+  public void setName(final String name){
+
+    this.name = name;
+  }
+
+  public String getRedirectUrl(){
+
+    return redirectUrl;
+  }
+
+  public void setRedirectUrl(final String redirectUrl){
+
+    this.redirectUrl = redirectUrl;
+  }
+
+  public String getTemplateUrl(){
+
+    return templateUrl;
+  }
+
+  public void setTemplateUrl(final String templateUrl){
+
+    this.templateUrl = templateUrl;
+  }
+
+  public boolean isDisabled(){
+
+    return disabled;
+  }
+
+  public void setDisabled(final boolean disabled){
+
+    this.disabled = disabled;
+  }
 }

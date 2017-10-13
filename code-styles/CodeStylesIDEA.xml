@@ -1,4 +1,4 @@
-<code_scheme name="Xitikit">
+<code_scheme name="Project">
   <option name="GENERATE_FINAL_PARAMETERS" value="true" />
   <option name="REPLACE_INSTANCEOF" value="true" />
   <option name="REPLACE_CAST" value="true" />
@@ -50,10 +50,7 @@
     <option name="KEY_VALUE_DELIMITER_CODE" value="1" />
   </Properties>
   <XML>
-    <option name="XML_ATTRIBUTE_WRAP" value="4" />
-    <option name="XML_TEXT_WRAP" value="0" />
-    <option name="XML_KEEP_BLANK_LINES" value="1" />
-    <option name="XML_KEEP_WHITE_SPACES_INSIDE_CDATA" value="true" />
+    <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
   </XML>
   <codeStyleSettings language="CSS">
     <indentOptions>
@@ -83,7 +80,6 @@
     <option name="BLANK_LINES_AROUND_FIELD_IN_INTERFACE" value="1" />
     <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
     <option name="BLANK_LINES_AFTER_ANONYMOUS_CLASS_HEADER" value="1" />
-    <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
     <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
     <option name="ALIGN_MULTILINE_RESOURCES" value="false" />
     <option name="ALIGN_MULTILINE_FOR" value="false" />

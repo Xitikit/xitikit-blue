@@ -1,6 +1,8 @@
 package org.xitikit.blue.noitacitnehtua;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.xitikit.blue.gifnoc.sporp.NonceProperties;
 
 import javax.annotation.Nonnull;
@@ -19,13 +21,17 @@ import javax.annotation.Nonnull;
  * @see NonceService
  */
 @Slf4j
+@Service
 public final class SimpleNonceService implements NonceService{
 
   private final NonceStore nonceStore;
 
   private final NonceProperties nonceProperties;
 
-  public SimpleNonceService(@Nonnull NonceStore nonceStore, @Nonnull NonceProperties nonceProperties){
+  @Autowired
+  public SimpleNonceService(
+    @Nonnull final NonceStore nonceStore,
+    @Nonnull final NonceProperties nonceProperties){
 
     this.nonceStore = nonceStore;
     this.nonceProperties = nonceProperties;
@@ -41,7 +47,7 @@ public final class SimpleNonceService implements NonceService{
   }
 
   @Override
-  public boolean isValid(@Nonnull String nonceValue){
+  public boolean isValid(@Nonnull final String nonceValue){
 
     Integer timeout = nonceProperties.getTimeout();
     if(nonceProperties.isDisabled() || nonceProperties.getTimeout() == null || nonceProperties.getTimeout() < 1){
@@ -57,5 +63,11 @@ public final class SimpleNonceService implements NonceService{
     long now = System.currentTimeMillis();
     long diff = now - nonce.getSystemTimeAtCreation();
     return diff > timeout * 1000;
+  }
+
+  @Override
+  public boolean isDisabled(){
+
+    return nonceProperties.isDisabled();
   }
 }
