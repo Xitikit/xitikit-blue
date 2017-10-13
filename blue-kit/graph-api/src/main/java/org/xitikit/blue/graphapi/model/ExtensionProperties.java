@@ -11,9 +11,18 @@ import java.util.List;
  * @author J. Keith Hoopes
  */
 @SuppressWarnings("WeakerAccess")
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperties{
 
   private List<ExtensionProperty> value;
+
+  public List<ExtensionProperty> getValue(){
+
+    return value;
+  }
+
+  public void setValue(final List<ExtensionProperty> value){
+
+    this.value = value;
+  }
 }

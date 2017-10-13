@@ -1,4 +1,6 @@
-package org.xitikit.blue.noitacitnehtua;
+package org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces;
+
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.BlueWebToken;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,5 +23,4 @@ public interface B2CAuthenticationService{
    */
   @Nullable
   BlueWebToken decodeAndVerify(@Nonnull String idToken);
-
 }

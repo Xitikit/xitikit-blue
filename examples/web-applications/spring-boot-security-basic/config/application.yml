@@ -37,7 +37,7 @@ blue-kit:
       # milliseconds.
       not-before-padding: 0
       # It is recomended to use a "cloud ready" nonce store using a clustered caching mechanism, and NOt the default GreedyNonceStore.
-      store-class-name: org.xitikit.blue.noitacitnehtua.GreedyNonceStore
+      store-class-name: GreedyNonceStore
     # policy flow configuration for Azure AD B2C
     # policy.${type}.name: always takes the form of "B2C_${ordinal}_${name.given.when.you.created.it}"
     # policy.${type}.redirect: this needs to be the fully qualified url users will be sent to after

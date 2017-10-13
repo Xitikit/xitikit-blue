@@ -1,21 +1,10 @@
 package org.xitikit.blue.gifnoc.sporp;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Wither;
-
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
  */
-@Data
-@Wither
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class B2CProperties{
 
   /**
@@ -41,7 +30,7 @@ public class B2CProperties{
   /**
    * The endpoint that a user is redirected to after completing an azure "reset password" policy flow.
    */
-  private String resetPasswordRedirect; //Example: https://localhost:8443/ad/b2c/resetpassword
+  private String resetPasswordRedirect;
 
   /**
    * In milliseconds. How long the user has to complete an action inside of azure.
@@ -53,4 +42,74 @@ public class B2CProperties{
    * time, in effect saying "as long as it's not TOO far in the future, we're okay with it."
    */
   private String notBeforePaddingMilliseconds;
+
+  public String getAppId(){
+
+    return appId;
+  }
+
+  public void setAppId(final String appId){
+
+    this.appId = appId;
+  }
+
+  public String getAppKey(){
+
+    return appKey;
+  }
+
+  public void setAppKey(final String appKey){
+
+    this.appKey = appKey;
+  }
+
+  public String getDomain(){
+
+    return domain;
+  }
+
+  public void setDomain(final String domain){
+
+    this.domain = domain;
+  }
+
+  public String getResetPasswordPolicy(){
+
+    return resetPasswordPolicy;
+  }
+
+  public void setResetPasswordPolicy(final String resetPasswordPolicy){
+
+    this.resetPasswordPolicy = resetPasswordPolicy;
+  }
+
+  public String getResetPasswordRedirect(){
+
+    return resetPasswordRedirect;
+  }
+
+  public void setResetPasswordRedirect(final String resetPasswordRedirect){
+
+    this.resetPasswordRedirect = resetPasswordRedirect;
+  }
+
+  public String getNonceTimeout(){
+
+    return nonceTimeout;
+  }
+
+  public void setNonceTimeout(final String nonceTimeout){
+
+    this.nonceTimeout = nonceTimeout;
+  }
+
+  public String getNotBeforePaddingMilliseconds(){
+
+    return notBeforePaddingMilliseconds;
+  }
+
+  public void setNotBeforePaddingMilliseconds(final String notBeforePaddingMilliseconds){
+
+    this.notBeforePaddingMilliseconds = notBeforePaddingMilliseconds;
+  }
 }

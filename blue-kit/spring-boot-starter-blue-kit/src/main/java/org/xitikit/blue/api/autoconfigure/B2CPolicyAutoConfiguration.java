@@ -1,11 +1,12 @@
 package org.xitikit.blue.api.autoconfigure;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.xitikit.blue.gifnoc.sporp.*;
+import org.xitikit.blue.nommoc.errors.NotFoundException;
 
 /**
  * Copyright Xitikit.org 2017
@@ -83,6 +84,6 @@ public class B2CPolicyAutoConfiguration{
   @ConfigurationProperties("blue-kit.b2c.policy.change-email")
   public ChangeEmailPolicy blueKitChangeEmailPolicy(){
 
-    throw new NotImplementedException("'change-email' is not a valid policy (yet) provided by Microsoft's Azure AD B2C. You must manually change the email using the GraphApi instead.");
+    throw new NotFoundException("'change-email' is not a valid policy (yet) provided by Microsoft's Azure AD B2C. You must manually change the email using the GraphApi instead.");
   }
 }

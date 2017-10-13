@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua;
+package org.xitikit.blue.noitacitnehtua.api.v2dot0;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;

@@ -1,9 +1,11 @@
-package org.xitikit.blue.noitacitnehtua;
+package org.xitikit.blue.noitacitnehtua.api.v2dot0;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xitikit.blue.gifnoc.sporp.NonceProperties;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceService;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceStore;
 
 import javax.annotation.Nonnull;
 

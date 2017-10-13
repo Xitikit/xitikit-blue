@@ -1,4 +1,6 @@
-package org.xitikit.blue.noitacitnehtua;
+package org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces;
+
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.Nonce;
 
 /**
  * Useful service for generating and validating nonces.
@@ -27,7 +29,6 @@ public interface NonceService{
 
   /**
    * Indicates whether or not nonces have been configured.
-   * @return
    */
   boolean isDisabled();
 }

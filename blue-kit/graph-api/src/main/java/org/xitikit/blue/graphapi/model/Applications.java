@@ -10,9 +10,18 @@ import java.util.List;
  *
  * @author J. Keith Hoopes
  */
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Applications{
 
   private List<Application> value;
+
+  public List<Application> getValue(){
+
+    return value;
+  }
+
+  public void setValue(final List<Application> value){
+
+    this.value = value;
+  }
 }

@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua;
+package org.xitikit.blue.noitacitnehtua.api.v2dot0;
 
 import javax.annotation.Nonnull;
 import java.util.UUID;

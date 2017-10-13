@@ -1,21 +1,10 @@
 package org.xitikit.blue.gifnoc.sporp;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Wither;
-
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
  */
-@Data
-@Wither
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class GraphApiProperties{
 
   /**
@@ -42,4 +31,54 @@ public class GraphApiProperties{
    * The current version of the graph api. This will be the same in all environments.
    */
   private String apiVersion;
+
+  public String getTenantId(){
+
+    return tenantId;
+  }
+
+  public void setTenantId(final String tenantId){
+
+    this.tenantId = tenantId;
+  }
+
+  public String getClientId(){
+
+    return clientId;
+  }
+
+  public void setClientId(final String clientId){
+
+    this.clientId = clientId;
+  }
+
+  public String getClientSecret(){
+
+    return clientSecret;
+  }
+
+  public void setClientSecret(final String clientSecret){
+
+    this.clientSecret = clientSecret;
+  }
+
+  public String getBaseUrl(){
+
+    return baseUrl;
+  }
+
+  public void setBaseUrl(final String baseUrl){
+
+    this.baseUrl = baseUrl;
+  }
+
+  public String getApiVersion(){
+
+    return apiVersion;
+  }
+
+  public void setApiVersion(final String apiVersion){
+
+    this.apiVersion = apiVersion;
+  }
 }

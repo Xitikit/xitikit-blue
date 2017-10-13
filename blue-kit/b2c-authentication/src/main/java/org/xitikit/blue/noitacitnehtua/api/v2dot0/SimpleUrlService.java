@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua;
+package org.xitikit.blue.noitacitnehtua.api.v2dot0;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,8 @@ import org.xitikit.blue.gifnoc.sporp.AuthenticationPolicy;
 import org.xitikit.blue.gifnoc.sporp.B2CProperties;
 import org.xitikit.blue.gifnoc.sporp.PolicyConfiguration;
 import org.xitikit.blue.gifnoc.sporp.SignOutPolicy;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceService;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.UrlService;
 import org.xitikit.blue.nommoc.errors.NotFoundException;
 
 import javax.annotation.Nonnull;
@@ -19,7 +21,7 @@ import static java.net.URLEncoder.*;
  * @author J. Keith Hoopes
  */
 @Service
-public class BlueUrlService{
+public class SimpleUrlService implements UrlService{
 
   private static final String STANDARD_CONFIGURATION_QUERY = "&response_mode=form_post&scope=openid&response_type=id_token&prompt=login";
 
@@ -30,19 +32,19 @@ public class BlueUrlService{
   private final NonceService nonceService;
 
   @Autowired
-  public BlueUrlService(
+  public SimpleUrlService(
     final PolicyConfiguration policyConfiguration,
     final B2CProperties b2CProperties,
     final NonceService nonceService){
 
     if(policyConfiguration == null){
-      throw new IllegalArgumentException("Missing parameter 'policyConfiguration' in org.xitikit.blue.noitacitnehtua.BlueUrlService");
+      throw new IllegalArgumentException("Missing parameter 'policyConfiguration' in BlueUrlService");
     }
     if(b2CProperties == null){
-      throw new IllegalArgumentException("Missing parameter 'b2CProperties' in org.xitikit.blue.noitacitnehtua.BlueUrlService");
+      throw new IllegalArgumentException("Missing parameter 'b2CProperties' in BlueUrlService");
     }
     if(nonceService == null){
-      throw new IllegalArgumentException("Missing parameter 'nonceService' in org.xitikit.blue.noitacitnehtua.BlueUrlService");
+      throw new IllegalArgumentException("Missing parameter 'nonceService' in BlueUrlService");
     }
 
     this.policyConfiguration = policyConfiguration;
@@ -50,37 +52,37 @@ public class BlueUrlService{
     this.nonceService = nonceService;
   }
 
-  @Nonnull
+  @Override @Nonnull
   public String getSignUpUrl(){
 
     return getPolicyUrl(policyConfiguration.getSignUpPolicy());
   }
 
-  @Nonnull
+  @Override @Nonnull
   public String getSignInUrl(){
 
     return getPolicyUrl(policyConfiguration.getSignInPolicy());
   }
 
-  @Nonnull
+  @Override @Nonnull
   public String getSignUpOrSignInUrl(){
 
     return getPolicyUrl(policyConfiguration.getSignUpOrSignInPolicy());
   }
 
-  @Nonnull
+  @Override @Nonnull
   public String getProfileUrl(){
 
     return getPolicyUrl(policyConfiguration.getEditProfilePolicy());
   }
 
-  @Nonnull
+  @Override @Nonnull
   public String getResetPasswordUrl(){
 
     return getPolicyUrl(policyConfiguration.getResetPasswordPolicy());
   }
 
-  @Nonnull
+  @Override @Nonnull
   public String getSignOutUrl(){
 
     SignOutPolicy signOutPolicy = policyConfiguration.getSignOutPolicy();
@@ -99,7 +101,7 @@ public class BlueUrlService{
     }
   }
 
-  public String wellKnownEndpoint(final String policy){
+  @Override public String wellKnownEndpoint(final String policy){
 
     return domainUrlPart() + "/v2.0/.well-known/openid-configuration?p=" + policy;
   }
@@ -146,7 +148,7 @@ public class BlueUrlService{
   @Nonnull
   private static String redirectUrlPart(final String redirectUrl){
 
-    assert redirectUrl != null : "Missing 'redirectUrl' in 'org.xitikit.blue.noitacitnehtua.BlueUrlService::redirectUrlPart'.";
+    assert redirectUrl != null : "Missing 'redirectUrl' in 'BlueUrlService::redirectUrlPart'.";
 
     try{
       return "&redirect_uri=" +

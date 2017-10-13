@@ -1,47 +1,49 @@
 package test.xitikit.blue.gifnoc.sporp;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * Created by Keith on 10/11/2017.
  */
 class ChangeEmailPolicyTest{
 
-  @org.junit.jupiter.api.Test
-  void isDisabled(){
+  @Test
+  void isDisabledTest(){
 
   }
 
-  @org.junit.jupiter.api.Test
-  void setDisabled(){
+  @Test
+  void setDisabledTest(){
 
   }
 
-  @org.junit.jupiter.api.Test
-  void equals(){
+  @Test
+  void equalsTest(){
 
   }
 
-  @org.junit.jupiter.api.Test
-  void hashCode(){
+  @Test
+  void hashCodeTest(){
 
   }
 
-  @org.junit.jupiter.api.Test
-  void toString(){
+  @Test
+  void toStringTest(){
 
   }
 
-  @org.junit.jupiter.api.Test
-  void canEqual(){
+  @Test
+  void canEqualTest(){
 
   }
 
-  @org.junit.jupiter.api.Test
-  void builder(){
+  @Test
+  void builderTest(){
 
   }
 
-  @org.junit.jupiter.api.Test
-  void withDisabled(){
+  @Test
+  void withDisabledTest(){
 
   }
 

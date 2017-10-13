@@ -8,12 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.xitikit.blue.noitacitnehtua.B2CAuthenticationService;
-import org.xitikit.blue.noitacitnehtua.BlueWebToken;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.BlueWebToken;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.B2CAuthenticationService;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.UrlService;
 
-import javax.servlet.http.HttpServletResponse;
-
-import static org.xitikit.blue.noitacitnehtua.PolicyErrorCodes.*;
+import static org.xitikit.blue.noitacitnehtua.api.v2dot0.PolicyErrorCodes.*;
 
 /**
  * Handles Azure B2C related requests and redirects.
@@ -25,8 +24,9 @@ import static org.xitikit.blue.noitacitnehtua.PolicyErrorCodes.*;
 @RequestMapping("/bluekit/b2c")
 public class SimpleB2CAuthenticationController implements B2CAuthenticationController{
 
-  @Autowired
-  private B2CAuthenticationService blueKitB2CAuthenticationService;
+  private final B2CAuthenticationService blueKitB2CAuthenticationService;
+
+  private final UrlService urlService;
 
   @Value("${security.auth.successRedirect}")
   private String authSuccessRedirect;
@@ -40,10 +40,17 @@ public class SimpleB2CAuthenticationController implements B2CAuthenticationContr
   @Value("${security.auth.resetPasswordSuccessRedirect}")
   private String resetPasswordSuccessRedirect;
 
+  @Autowired
+  public SimpleB2CAuthenticationController(final B2CAuthenticationService blueKitB2CAuthenticationService, final UrlService urlService){
+
+    this.blueKitB2CAuthenticationService = blueKitB2CAuthenticationService;
+    this.urlService = urlService;
+  }
+
   @RequestMapping(value = "/signout", method = RequestMethod.GET)
   public String signOutRedirect(){
 
-    return "redirect:" + blueKitB2CAuthenticationService.getSignOutUrl();
+    return "redirect:" + urlService.getSignOutUrl();
   }
 
   /**
@@ -54,7 +61,7 @@ public class SimpleB2CAuthenticationController implements B2CAuthenticationContr
   @RequestMapping(value = "/signin", method = RequestMethod.GET)
   public String signInRedirect(){
 
-    return "redirect:" + blueKitB2CAuthenticationService.getSignInUrl();
+    return "redirect:" + urlService.getSignInUrl();
   }
 
   /**
@@ -65,22 +72,28 @@ public class SimpleB2CAuthenticationController implements B2CAuthenticationContr
    *   authentication error
    * @param error an error code string that can be used to classify types of errors that occur, and can be used to
    *   react to errors
-   * @param res the HttpServletResponse object
-   *
    * @return a redirect
    */
   @RequestMapping(value = "/signin", method = RequestMethod.POST)
-  public String signInPost(@RequestParam(value = "id_token", required = false) String idToken, @RequestParam(value = "error_description", required = false) String errorDescription, @RequestParam(value = "error", required = false) String error, HttpServletResponse res){
+  public String signInPost(
+    @RequestParam(value = "id_token", required = false) final String idToken,
+    @RequestParam(value = "error_description", required = false) final String errorDescription,
+    @RequestParam(value = "error", required = false) final String error){
 
-    return authenticatePost(idToken, errorDescription, error, res);
+    return authenticatePost(idToken, errorDescription, error);
   }
 
-  private String authenticatePost(String idToken, String errorDescription, String error, HttpServletResponse res){
+  private String authenticatePost(final String idToken, final String errorDescription, final String error){
 
-    return authenticatePost(idToken, errorDescription, error, res, this.authSuccessRedirect, this.authFailureRedirect);
+    return authenticatePost(idToken, errorDescription, error, this.authSuccessRedirect, this.authFailureRedirect);
   }
 
-  private String authenticatePost(final String idToken, final String errorDescription, final String error, final HttpServletResponse res, final String authSuccessRedirect, final String authFailureRedirect){
+  private String authenticatePost(
+    final String idToken,
+    final String errorDescription,
+    final String error,
+    final String authSuccessRedirect,
+    final String authFailureRedirect){
 
     final String redirect;
 
@@ -94,9 +107,9 @@ public class SimpleB2CAuthenticationController implements B2CAuthenticationContr
       }
     }else{
       if(access_denied
-           .toString()
-           .equals(error) && StringUtils.isNotBlank(errorDescription) && errorDescription.contains("forgotten")){
-        redirect = "redirect:" + blueKitB2CAuthenticationService.getResetPasswordUrl();
+        .toString()
+        .equals(error) && StringUtils.isNotBlank(errorDescription) && errorDescription.contains("forgotten")){
+        redirect = "redirect:" + urlService.getResetPasswordUrl();
       }else{
         if(log.isDebugEnabled()){
           log.debug("Received error from azure - Error: [" + error + "] Description: [" + errorDescription + "]");

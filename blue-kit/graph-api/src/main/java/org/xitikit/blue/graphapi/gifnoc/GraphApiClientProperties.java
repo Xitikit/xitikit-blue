@@ -14,9 +14,10 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component("graphApiClientProperties")
 @ConfigurationProperties("blue-kit.graphApi")
-public class ClientProperties{
+public class GraphApiClientProperties{
 
   private String tenantId, clientId, clientSecret, baseUrl, apiVersion;
 
   private int timeout;
+
 }

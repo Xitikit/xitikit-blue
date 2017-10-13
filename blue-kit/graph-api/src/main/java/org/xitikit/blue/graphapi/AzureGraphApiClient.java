@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.xitikit.blue.graphapi.gifnoc.GraphApiClientProperties;
 import org.xitikit.blue.graphapi.model.*;
 import org.xitikit.blue.graphapi.service.IAzureCustomAttributeCacheService;
 
@@ -45,13 +46,13 @@ public class AzureGraphApiClient{
   private IAzureCustomAttributeCacheService azureCustomAttributeCacheService;
 
   @Autowired
-  private org.xitikit.blue.graphapi.config.ClientProperties clientProperties;
+  private GraphApiClientProperties graphApiClientProperties;
 
   @PostConstruct
   public void init(){
 
     HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-    int timeout = clientProperties.getTimeout();
+    int timeout = graphApiClientProperties.getTimeout();
     requestFactory.setConnectTimeout(timeout);
     requestFactory.setReadTimeout(timeout);
 
@@ -77,9 +78,9 @@ public class AzureGraphApiClient{
   public AccessToken getAccessToken(){
 
     MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-    String clientId = clientProperties.getClientId();
-    String clientSecret = clientProperties.getClientSecret();
-    String baseUrl = clientProperties.getBaseUrl();
+    String clientId = graphApiClientProperties.getClientId();
+    String clientSecret = graphApiClientProperties.getClientSecret();
+    String baseUrl = graphApiClientProperties.getBaseUrl();
 
     params.add("client_id", clientId);
     params.add("client_secret", clientSecret);
@@ -92,12 +93,12 @@ public class AzureGraphApiClient{
 
   private String accessTokenUrl(){
 
-    return "https://login.microsoftonline.com/" + clientProperties.getTenantId() + "/oauth2/token";
+    return "https://login.microsoftonline.com/" + graphApiClientProperties.getTenantId() + "/oauth2/token";
   }
 
   private String getFullUrl(String urlPart){
 
-    String apiVersion = clientProperties.getApiVersion();
+    String apiVersion = graphApiClientProperties.getApiVersion();
     if(urlPart.startsWith("/")){
 
       return baseUrl() + urlPart + "?api-version=" + apiVersion;
@@ -108,7 +109,7 @@ public class AzureGraphApiClient{
 
   private String baseUrl(){
 
-    return combineUrlParts(clientProperties.getBaseUrl(), clientProperties.getTenantId());
+    return combineUrlParts(graphApiClientProperties.getBaseUrl(), graphApiClientProperties.getTenantId());
   }
 
   /**
