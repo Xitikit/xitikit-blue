@@ -13,5 +13,29 @@
   <groupId>org.xitikit.blue.kit</groupId>
   <artifactId>b2c-common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>

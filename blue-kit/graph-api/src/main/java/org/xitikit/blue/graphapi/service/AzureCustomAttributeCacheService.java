@@ -8,7 +8,7 @@ import org.xitikit.blue.graphapi.gifnoc.UserProperties;
 import org.xitikit.blue.graphapi.model.Application;
 import org.xitikit.blue.graphapi.model.ExtensionProperties;
 import org.xitikit.blue.graphapi.model.ExtensionProperty;
-import org.xitikit.blue.nommoc.errors.NotFoundException;
+import org.xitikit.blue.nommoc.errors.exceptions.NotFoundException;
 
 import javax.annotation.PostConstruct;
 import java.util.List;

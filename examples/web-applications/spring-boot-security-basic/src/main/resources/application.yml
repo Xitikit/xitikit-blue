@@ -1,0 +1,119 @@
+# Notes
+#
+# You do not have to use YAML in your own application.
+# We just think it looks cleaner and more organized.
+# It's also standard to never include configuration that
+# should be managed per environment in the produced artifact.
+# This is to cause the application to fail instantly when mistakes
+# are made. This is why you will find that all examples have their
+# configuration files in a separate "config" directory.
+
+################################
+# XITIKIT-BLUE API CONFIGURATION
+#
+# All properties in this section are required by xitikit-blue
+# The api has been designed to cause the application
+# to fail if any of the values are invalid or missing.
+blue-kit:
+  b2c:
+    # This is the application id, and not the secret
+    appId: fake-appId-blue
+    # This is the secret created when you clicked "Generate Key" during the application registration
+    appKey: fake-appKey-blue
+    # The domain associated with the Azure AD B2C directory. This will be the same in test as it is in devl
+    domain: fakedomain.onmicrosoft.com
+    # nonce properties
+    nonce:
+      # disabled by default
+      enabled: true
+      #timeout in seconds
+      timeout: 300
+      # The "not before" token sometimes comes back from microsoft
+      # in the future. This lets us pad the "notBefore" token
+      # validation, in effect saying "as long as it's not TOO far
+      # in the future, we're okay with it."
+      # Keep this value at "0" if at all possible unless you find
+      # that you are failing "notBefore" nonce validation by a few
+      # milliseconds.
+      not-before-padding: 0
+      # It is recomended to use a "cloud ready" nonce store using a clustered caching mechanism, and NOt the default GreedyNonceStore.
+      store-class-name: GreedyNonceStore
+    # policy flow configuration for Azure AD B2C
+    # policy.${type}.name: always takes the form of "B2C_${ordinal}_${name.given.when.you.created.it}"
+    # policy.${type}.redirect: this needs to be the fully qualified url users will be sent to after
+    #   completing a policy flow
+    # policy.${type}.template: the fully qualified url for HTML templates used to completely customize the
+    #   look and feel of the policy flow
+    policy:
+      signIn:
+        name: B2C_1_fake-sign-in
+        redirect: https://localhost:8443/api/b2c/signIn
+        template: https://localhost:8443/template/signIn
+      signUpOrSignIn:
+        name: B2C_1_fake-sign-up-or-sign-in
+        redirect: https://localhost:8443/api/b2c/signUpOrSignIn
+        template: https://localhost:8443/template/signIn
+      signUp:
+        name: B2C_1_default-sign-up
+        redirect: https://localhost:8443/api/b2c/signup
+        template: https://localhost:8443/template/signIn
+      signOut:
+        # There is no need to configure a policy flow nor a template
+        # to sign out a user.
+        redirect: https://localhost:8443/
+      resetPassword:
+        name: B2C_1_default-reset-password
+        redirect: https://localhost:8443/api/b2c/resetPassword
+    # All values needed by the graphApi to manage users and custom attributes
+    graphApi:
+      # This is the id of the B2C directory.
+      tenantId: fake-tenantId-blue
+      # The AppPrincipalId that was generated inside powershell registration
+      clientId: fake-clientId-blue
+      # The Secret that was generated inside powershell registration
+      clientSecret: fake-clientSecret-blue
+      # The base url for the Graph API. This will be the same in all environments.
+      baseUrl: https://graph.windows.net/
+      # The current version of the graph api. This will be the same in all environments.
+      apiVersion: 1.6
+    user:
+      # These are the custom attributes you created in your B2C tenant for users.
+      customAttributes:
+        - extension_11111111111111111111111111111111_ExampleOne
+        - extension_22222222222222222222222222222222_ExampleTwo
+        - extension_33333333333333333333333333333333_ExampleThree
+
+########################
+# SECURITY CONFIGURATION
+#
+# This is not specific to the xitikit-blue APIs.
+# Some standard security configuration is required
+# to be able to interact with the Azure AD APIs.
+# Spring Boot is used because we like it, but the
+# actual classes and APIs do NOT depend on any
+# Spring specific artifacts so they can be used in
+# any Java environment. Adapt these settings for your
+# specific application.
+server:
+  contextPath: /
+  port: 8443
+security:
+  https:
+    # This is used by SpringSecurity. It is only true in devl. In test, uat, and production SSL termination will occur at the off loader.
+    enabled: true
+    # This is used by SpringSecurity. It needs to be present, but does not need a value in test, uat, and prod since SSL termination occurs in the offloader.
+    port: 8443
+  http:
+    # This is used by SpringSecurity, and must be the port on the actual server.
+    # Do NOT use the off loader port or domain here.
+    port: 8080
+    cors:
+      # origins value should be a comma delimited list of domain
+      # origins that are allowed to access to your api or
+      # application. This MUST be contained in double quotes. If
+      # you are doing SSL termination at your off loader, this
+      # needs to be the off loaders  friendly domain name
+      # (NOT ip address)
+      origins: "*"
+      maxAge: 30000
+      allowedMethods: GET,POST,PUT,DELETE,PATCH

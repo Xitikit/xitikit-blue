@@ -1,5 +1,6 @@
 package org.xitikit.blue.graphapi;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import static junit.framework.TestCase.*;
  * Created by Keith Hoopes on 8/30/2016.
  * Copyright Xitikit.org 2017
  */
+@Ignore
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestApplicationContext.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

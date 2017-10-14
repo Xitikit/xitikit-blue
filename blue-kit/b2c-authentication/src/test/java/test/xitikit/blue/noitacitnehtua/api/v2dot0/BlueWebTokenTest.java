@@ -1,7 +1,8 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package test.xitikit.blue.noitacitnehtua.api.v2dot0;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
+import org.xitikit.blue.noitacitnehtua.api.v2dot0.BlueWebToken;
 
 import java.io.IOException;
 import java.time.Instant;

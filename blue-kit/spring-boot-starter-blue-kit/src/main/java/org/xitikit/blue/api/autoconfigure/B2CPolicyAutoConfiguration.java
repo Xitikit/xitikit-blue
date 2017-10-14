@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.xitikit.blue.gifnoc.sporp.*;
-import org.xitikit.blue.nommoc.errors.NotFoundException;
+import org.xitikit.blue.nommoc.errors.exceptions.NotFoundException;
 
 /**
  * Copyright Xitikit.org 2017

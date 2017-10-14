@@ -8,7 +8,7 @@ import org.xitikit.blue.gifnoc.sporp.PolicyConfiguration;
 import org.xitikit.blue.gifnoc.sporp.SignOutPolicy;
 import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceService;
 import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.UrlService;
-import org.xitikit.blue.nommoc.errors.NotFoundException;
+import org.xitikit.blue.nommoc.errors.exceptions.InternalServerErrorException;
 
 import javax.annotation.Nonnull;
 import java.io.UnsupportedEncodingException;
@@ -156,8 +156,7 @@ public class SimpleUrlService implements UrlService{
           redirectUrl,
           "UTF-8");
     }catch(UnsupportedEncodingException e){
-      throw new NotFoundException(e.getMessage(), e);
+      throw new InternalServerErrorException("Unable to construct the redirect url.");
     }
   }
-
 }

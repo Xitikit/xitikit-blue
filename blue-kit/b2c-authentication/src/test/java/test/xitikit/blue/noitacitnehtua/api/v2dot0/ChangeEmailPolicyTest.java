@@ -1,4 +1,4 @@
-package test.xitikit.blue.gifnoc.sporp;
+package test.xitikit.blue.noitacitnehtua.api.v2dot0;
 
 import org.junit.jupiter.api.Test;
 
