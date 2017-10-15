@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.xitikit.blue.kit</groupId>
-    <artifactId>blue-kit-parent</artifactId>
+    <groupId>org.xitikit.blue.kit.b2c</groupId>
+    <artifactId>b2c-kit-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.kit</groupId>
-  <artifactId>spring-boot-starter-blue-kit</artifactId>
+  <artifactId>spring-boot-starter-blue-b2c</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <dependencyManagement>

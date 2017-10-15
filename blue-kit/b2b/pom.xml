@@ -11,14 +11,8 @@
   </parent>
 
   <groupId>org.xitikit.blue.kit</groupId>
-  <artifactId>blue-kit-parent</artifactId>
+  <artifactId>b2b-kit-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-
-  <modules>
-    <module>ad</module>
-    <module>ad-b2b</module>
-    <module>ad-b2c</module>
-  </modules>
 
 </project>

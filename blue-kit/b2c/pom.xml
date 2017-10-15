@@ -5,20 +5,23 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.xitikit.blue</groupId>
-    <artifactId>xitikit-blue-parent</artifactId>
+    <groupId>org.xitikit.blue.kit</groupId>
+    <artifactId>blue-kit-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.xitikit.blue.kit</groupId>
-  <artifactId>blue-kit-parent</artifactId>
+  <groupId>org.xitikit.blue.kit.b2c</groupId>
+  <artifactId>b2c-kit-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
-    <module>ad</module>
-    <module>ad-b2b</module>
-    <module>ad-b2c</module>
+    <module>b2c-authentication</module>
+    <module>b2c-common</module>
+    <module>b2c-configuration</module>
+    <module>b2c-policy</module>
+    <module>graph-api</module>
+    <module>spring-boot-starter-blue-kit</module>
   </modules>
 
 </project>
