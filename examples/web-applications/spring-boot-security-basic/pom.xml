@@ -6,7 +6,7 @@
 
   <parent>
     <groupId>org.xitikit.blue.examples.web</groupId>
-    <artifactId>web-applications-parent</artifactId>
+    <artifactId>web-applications-kit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
@@ -18,18 +18,18 @@
   <dependencies>
     <!--Module Dependencies-->
     <dependency>
-      <groupId>org.xitikit.blue.kit</groupId>
+      <groupId>org.xitikit.blue.b2c.kit</groupId>
       <artifactId>b2c-common</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>org.xitikit.blue.kit</groupId>
+      <groupId>org.xitikit.blue.b2c.kit</groupId>
       <artifactId>b2c-configuration</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>org.xitikit.blue.kit</groupId>
-      <artifactId>b2c-authentication</artifactId>
+      <groupId>org.xitikit.blue.b2c.kit</groupId>
+      <artifactId>authentication</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <!--Spring Boot-->

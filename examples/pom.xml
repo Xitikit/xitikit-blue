@@ -6,12 +6,12 @@
 
   <parent>
     <groupId>org.xitikit.blue</groupId>
-    <artifactId>xitikit-blue-parent</artifactId>
+    <artifactId>xitikit-blue</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.examples</groupId>
-  <artifactId>examples-parent</artifactId>
+  <artifactId>examples-kit</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
