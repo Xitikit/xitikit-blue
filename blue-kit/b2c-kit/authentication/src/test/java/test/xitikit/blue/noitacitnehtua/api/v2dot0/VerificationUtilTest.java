@@ -1,11 +1,10 @@
 package test.xitikit.blue.noitacitnehtua.api.v2dot0;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil.*;
 
 /**
@@ -13,85 +12,84 @@ import static org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil.*;
  *
  * @author J. Keith Hoopes
  */
-class VerificationUtilTest{
+public class VerificationUtilTest{
 
-  @Test
-  void typeSecuredObjectMapperShouldNotAllowMapDeserializtion() throws IOException{
+    @Test(expected = Exception.class)
+    public void typeSecuredObjectMapperShouldNotAllowMapDeserialization() throws IOException{
 
-    assertThrows(Exception.class, () ->
-      typeSecuredObjectMapper()
-        .readValue(
-          "{'one':'one'}",
-          Map.class));
-  }
+        typeSecuredObjectMapper()
+          .readValue(
+            "{'one':'one'}",
+            Map.class);
+    }
 
-  @Test
-  void validateIssuerTest(){
+    @Test
+    public void validateIssuerTest(){
 
-  }
+    }
 
-  @Test
-  void validateExpirationTest(){
+    @Test
+    public void validateExpirationTest(){
 
-  }
+    }
 
-  @Test
-  void getKeyIdTest(){
+    @Test
+    public void getKeyIdTest(){
 
-  }
+    }
 
-  @Test
-  void getKeyId1Test(){
+    @Test
+    public void getKeyId1Test(){
 
-  }
+    }
 
-  @Test
-  void modulusTest(){
+    @Test
+    public void modulusTest(){
 
-  }
+    }
 
-  @Test
-  void exponentTest(){
+    @Test
+    public void exponentTest(){
 
-  }
+    }
 
-  @Test
-  void encodedModulusTest(){
+    @Test
+    public void encodedModulusTest(){
 
-  }
+    }
 
-  @Test
-  void encodedExponentTest(){
+    @Test
+    public void encodedExponentTest(){
 
-  }
+    }
 
-  @Test
-  void safeDecodeBase64Test(){
+    @Test
+    public void safeDecodeBase64Test(){
 
-  }
+    }
 
-  @Test
-  void kidForKeyIdTest(){
+    @Test
+    public void kidForKeyIdTest(){
 
-  }
+    }
 
-  @Test
-  void safeNodeTest(){
+    @Test
+    public void safeNodeTest(){
 
-  }
+    }
 
-  @Test
-  void jwksUriTest(){
+    @Test
+    public void jwksUriTest(){
 
-  }
+    }
 
-  @Test
-  void parseKeyTest(){
+    @Test
+    public void parseKeyTest(){
 
-  }
+    }
 
-  @Test
-  void rsaPublicKeySpecTest(){
+    @Test
+    public void rsaPublicKeySpecTest(){
 
-  }
+    }
 }

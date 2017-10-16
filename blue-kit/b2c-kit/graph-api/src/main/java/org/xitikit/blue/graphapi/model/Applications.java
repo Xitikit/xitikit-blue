@@ -1,7 +1,6 @@
 package org.xitikit.blue.graphapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
 import java.util.List;
 
@@ -13,15 +12,15 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Applications{
 
-  private List<Application> value;
+    private List<Application> value;
 
-  public List<Application> getValue(){
+    public List<Application> getValue(){
 
-    return value;
-  }
+        return value;
+    }
 
-  public void setValue(final List<Application> value){
+    public void setValue(final List<Application> value){
 
-    this.value = value;
-  }
+        this.value = value;
+    }
 }

@@ -10,5 +10,5 @@ package org.xitikit.blue.noitacitnehtua.api.v2dot0;
  */
 public enum PolicyErrorCodes{
 
-  access_denied;
+    access_denied;
 }

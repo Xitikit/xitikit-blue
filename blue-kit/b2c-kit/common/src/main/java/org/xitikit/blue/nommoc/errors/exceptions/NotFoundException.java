@@ -10,20 +10,20 @@ import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
  */
 public class NotFoundException extends BlueKitMethodException{
 
-  private static final ErrorCode ERROR_CODE = NOT_FOUND;
+    private static final ErrorCode ERROR_CODE = NOT_FOUND;
 
-  public NotFoundException(){
+    public NotFoundException(){
 
-    super(ERROR_CODE);
-  }
+        super(ERROR_CODE);
+    }
 
-  public NotFoundException(final String... args){
+    public NotFoundException(final String... args){
 
-    super(ERROR_CODE, args);
-  }
+        super(ERROR_CODE, args);
+    }
 
-  public NotFoundException(final Throwable t){
+    public NotFoundException(final Throwable t){
 
-    super(ERROR_CODE, t);
-  }
+        super(ERROR_CODE, t);
+    }
 }

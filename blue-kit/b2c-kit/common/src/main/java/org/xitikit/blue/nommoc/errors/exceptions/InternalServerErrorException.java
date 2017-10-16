@@ -10,20 +10,20 @@ import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
  */
 public class InternalServerErrorException extends BlueKitMethodException{
 
-  private static final ErrorCode ERROR_CODE = UNAUTHORIZED;
+    private static final ErrorCode ERROR_CODE = UNAUTHORIZED;
 
-  public InternalServerErrorException(){
+    public InternalServerErrorException(){
 
-    super(ERROR_CODE);
-  }
+        super(ERROR_CODE);
+    }
 
-  public InternalServerErrorException(final String... args){
+    public InternalServerErrorException(final String... args){
 
-    super(ERROR_CODE, args);
-  }
+        super(ERROR_CODE, args);
+    }
 
-  public InternalServerErrorException(final Throwable t){
+    public InternalServerErrorException(final Throwable t){
 
-    super(ERROR_CODE, t);
-  }
+        super(ERROR_CODE, t);
+    }
 }

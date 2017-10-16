@@ -14,13 +14,13 @@ import javax.annotation.Nullable;
  */
 public interface B2CAuthenticationService{
 
-  /**
-   * Extracts user data from the JWT token and validates it.
-   *
-   * @param idToken the token
-   *
-   * @return the extracted user data or null if the token could not be read or is invalid
-   */
-  @Nullable
-  BlueWebToken decodeAndVerify(@Nonnull String idToken);
+    /**
+     * Extracts user data from the JWT token and validates it.
+     *
+     * @param idToken the token
+     *
+     * @return the extracted user data or null if the token could not be read or is invalid
+     */
+    @Nullable
+    BlueWebToken decodeAndVerify(@Nonnull String idToken);
 }

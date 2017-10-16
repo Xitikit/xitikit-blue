@@ -10,7 +10,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.xitikit.blue.b2c.kit</groupId>
+  <groupId>org.xitikit.blue.kit</groupId>
   <artifactId>blue-kit</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>

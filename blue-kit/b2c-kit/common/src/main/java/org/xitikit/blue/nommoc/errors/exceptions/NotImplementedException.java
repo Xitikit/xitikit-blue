@@ -10,20 +10,20 @@ import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
  */
 public class NotImplementedException extends BlueKitMethodException{
 
-  private static final ErrorCode ERROR_CODE = UNAUTHORIZED;
+    private static final ErrorCode ERROR_CODE = UNAUTHORIZED;
 
-  public NotImplementedException(){
+    public NotImplementedException(){
 
-    super(ERROR_CODE);
-  }
+        super(ERROR_CODE);
+    }
 
-  public NotImplementedException(final String... args){
+    public NotImplementedException(final String... args){
 
-    super(ERROR_CODE, args);
-  }
+        super(ERROR_CODE, args);
+    }
 
-  public NotImplementedException(final Throwable t){
+    public NotImplementedException(final Throwable t){
 
-    super(ERROR_CODE, t);
-  }
+        super(ERROR_CODE, t);
+    }
 }

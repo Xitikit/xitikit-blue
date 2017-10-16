@@ -16,9 +16,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperty{
 
-  private String name;
+    private String name;
 
-  private String dataType;
+    private String dataType;
 
-  private List<String> targetObjects;
+    private List<String> targetObjects;
 }

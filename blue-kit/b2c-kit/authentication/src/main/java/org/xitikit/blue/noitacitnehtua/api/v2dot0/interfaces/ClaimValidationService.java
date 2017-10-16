@@ -12,13 +12,13 @@ import javax.annotation.Nullable;
  */
 public interface ClaimValidationService{
 
-  boolean validateAudience(BlueWebToken token);
+    boolean validateAudience(BlueWebToken token);
 
-  boolean validateNotBefore(
-    @Nonnull BlueWebToken token,
-    @Nullable Long now);
+    boolean validateNotBefore(
+      @Nonnull BlueWebToken token,
+      @Nullable Long now);
 
-  boolean validateIssuer(BlueWebToken token);
+    boolean validateIssuer(BlueWebToken token);
 
-  boolean validateExpiration(BlueWebToken token, long now);
+    boolean validateExpiration(BlueWebToken token, long now);
 }

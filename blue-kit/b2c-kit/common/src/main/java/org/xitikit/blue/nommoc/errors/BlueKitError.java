@@ -18,85 +18,85 @@ import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
  */
 public class BlueKitError{
 
-  private int code;
+    private int code;
 
-  private String name;
+    private String name;
 
-  private String description;
+    private String description;
 
-  private List<String> arguments = new ArrayList<>(0);
+    private List<String> arguments = new ArrayList<>(0);
 
-  public BlueKitError(){
+    public BlueKitError(){
 
-    this(
-      INTERNAL_SERVER_ERROR.value(),
-      INTERNAL_SERVER_ERROR.name(),
-      INTERNAL_SERVER_ERROR.getDescription(),
-      new ArrayList<>(0));
-  }
+        this(
+          INTERNAL_SERVER_ERROR.value(),
+          INTERNAL_SERVER_ERROR.name(),
+          INTERNAL_SERVER_ERROR.getDescription(),
+          new ArrayList<>(0));
+    }
 
-  public BlueKitError(final BlueKitMethodException e){
+    public BlueKitError(
+      final int code,
+      final String name,
+      final String description,
+      final List<String> arguments){
 
-    this(
-      e.getErrorCode().value(),
-      e.getErrorCode().name(),
-      e.getErrorCode().getDescription(),
-      asList(e.getArguments()));
-  }
+        setCode(code);
+        setName(name);
+        setDescription(description);
+        setArguments(arguments);
+    }
 
-  public BlueKitError(
-    final int code,
-    final String name,
-    final String description,
-    final List<String> arguments){
+    public BlueKitError(final BlueKitMethodException e){
 
-    setCode(code);
-    setName(name);
-    setDescription(description);
-    setArguments(arguments);
-  }
+        this(
+          e.getErrorCode().value(),
+          e.getErrorCode().name(),
+          e.getErrorCode().getDescription(),
+          asList(e.getArguments()));
+    }
 
-  public void setCode(final int code){
+    public int getCode(){
 
-    Verify.state(code > 0, "'code' must be greater than 0.");
-    this.code = code;
-  }
+        return code;
+    }
 
-  public void setName(final String name){
+    public void setCode(final int code){
 
-    Verify.notNull(name, "'name' cannot be null.");
-    this.name = name;
-  }
+        Verify.state(code > 0, "'code' must be greater than 0.");
+        this.code = code;
+    }
 
-  public void setDescription(final String description){
+    public String getName(){
 
-    Verify.notNull(description, "'description' cannot be null.");
-    this.description = description;
-  }
+        return name;
+    }
 
-  public void setArguments(final List<String> arguments){
+    public void setName(final String name){
 
-    Verify.notNull(arguments, "'arguments' cannot be set to null.");
-    this.arguments = Collections.unmodifiableList(arguments);
-  }
+        Verify.notNull(name, "'name' cannot be null.");
+        this.name = name;
+    }
 
-  public int getCode(){
+    public String getDescription(){
 
-    return code;
-  }
+        return description;
+    }
 
-  public String getName(){
+    public void setDescription(final String description){
 
-    return name;
-  }
+        Verify.notNull(description, "'description' cannot be null.");
+        this.description = description;
+    }
 
-  public String getDescription(){
+    public List<String> getArguments(){
 
-    return description;
-  }
+        return arguments;
+    }
 
-  public List<String> getArguments(){
+    public void setArguments(final List<String> arguments){
 
-    return arguments;
-  }
+        Verify.notNull(arguments, "'arguments' cannot be set to null.");
+        this.arguments = Collections.unmodifiableList(arguments);
+    }
 }

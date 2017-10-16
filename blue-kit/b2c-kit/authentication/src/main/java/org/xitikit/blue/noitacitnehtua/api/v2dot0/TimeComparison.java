@@ -12,79 +12,79 @@ import java.time.ZonedDateTime;
  */
 public class TimeComparison{
 
-  private final Integer comparison;
+    private final Integer comparison;
 
-  private TimeComparison(
-    @Nullable final ZonedDateTime left,
-    @Nullable final ZonedDateTime right){
+    private TimeComparison(
+      @Nullable final ZonedDateTime left,
+      @Nullable final ZonedDateTime right){
 
-    comparison = left == null || right == null ?
-      null :
-      left.compareTo(right);
+        comparison = left == null || right == null ?
+          null :
+          left.compareTo(right);
 
-  }
+    }
 
-  public static TimeComparison comparisonOf(
-    @Nullable final ZonedDateTime left,
-    @Nullable final Long right){
+    public static TimeComparison comparisonOf(
+      @Nullable final ZonedDateTime left,
+      @Nullable final Long right){
 
-    return new TimeComparison(
-      left,
-      convertLong(right)
-    );
-  }
+        return new TimeComparison(
+          left,
+          convertLong(right)
+        );
+    }
 
-  public static TimeComparison comparisonOf(
-    @Nullable final Long left,
-    @Nullable final ZonedDateTime right){
+    private static ZonedDateTime convertLong(final Long epochMilli){
 
-    return new TimeComparison(
-      convertLong(left),
-      right
-    );
-  }
+        return epochMilli == null ? null :
+          ZonedDateTime.ofInstant(
+            Instant.ofEpochMilli(epochMilli),
+            ZoneId.systemDefault()
+          );
+    }
 
-  public static TimeComparison comparisonOf(
-    @Nullable final Long left,
-    @Nullable final Long right){
+    public static TimeComparison comparisonOf(
+      @Nullable final Long left,
+      @Nullable final ZonedDateTime right){
 
-    return new TimeComparison(
-      convertLong(left),
-      convertLong(right)
-    );
-  }
+        return new TimeComparison(
+          convertLong(left),
+          right
+        );
+    }
 
-  private static ZonedDateTime convertLong(final Long epochMilli){
+    public static TimeComparison comparisonOf(
+      @Nullable final Long left,
+      @Nullable final Long right){
 
-    return epochMilli == null ? null :
-      ZonedDateTime.ofInstant(
-        Instant.ofEpochMilli(epochMilli),
-        ZoneId.systemDefault()
-      );
-  }
+        return new TimeComparison(
+          convertLong(left),
+          convertLong(right)
+        );
+    }
 
-  public boolean isGreater(){
+    public boolean isGreater(){
 
-    return comparison != null && comparison > 0;
-  }
+        return comparison != null && comparison > 0;
+    }
 
-  public boolean isLess(){
+    public boolean isLess(){
 
-    return comparison != null && comparison < 0;
-  }
+        return comparison != null && comparison < 0;
+    }
 
-  public boolean isEqual(){
+    public boolean isEqual(){
 
-    return comparison != null && comparison == 0;
-  }
+        return comparison != null && comparison == 0;
+    }
 
-  public boolean isGreaterOrEqual(){
+    public boolean isGreaterOrEqual(){
 
-    return comparison != null && comparison >= 0;
-  }
+        return comparison != null && comparison >= 0;
+    }
 
-  public boolean isLessOrEqual(){
+    public boolean isLessOrEqual(){
 
-    return comparison != null && comparison <= 0;
-  }
+        return comparison != null && comparison <= 0;
+    }
 }

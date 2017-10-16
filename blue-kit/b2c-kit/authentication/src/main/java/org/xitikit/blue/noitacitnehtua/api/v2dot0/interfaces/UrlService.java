@@ -9,17 +9,23 @@ import javax.annotation.Nonnull;
  */
 public interface UrlService{
 
-  @Nonnull String getSignUpUrl();
+    @Nonnull
+    String getSignUpUrl();
 
-  @Nonnull String getSignInUrl();
+    @Nonnull
+    String getSignInUrl();
 
-  @Nonnull String getSignUpOrSignInUrl();
+    @Nonnull
+    String getSignUpOrSignInUrl();
 
-  @Nonnull String getProfileUrl();
+    @Nonnull
+    String getProfileUrl();
 
-  @Nonnull String getResetPasswordUrl();
+    @Nonnull
+    String getResetPasswordUrl();
 
-  @Nonnull String getSignOutUrl();
+    @Nonnull
+    String getSignOutUrl();
 
-  String wellKnownEndpoint(String policy);
+    String wellKnownEndpoint(String policy);
 }

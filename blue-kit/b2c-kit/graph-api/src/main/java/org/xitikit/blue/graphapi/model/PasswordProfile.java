@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PasswordProfile{
 
-  private String password;
+    private String password;
 
-  private Boolean forceChangePasswordNextLogin;
+    private Boolean forceChangePasswordNextLogin;
 }

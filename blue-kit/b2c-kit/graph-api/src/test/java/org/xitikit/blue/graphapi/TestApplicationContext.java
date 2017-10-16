@@ -12,8 +12,8 @@ import org.xitikit.blue.graphapi.gifnoc.EnableGraphApiClient;
 @EnableGraphApiClient
 public class TestApplicationContext{
 
-  public static void main(final String[] args){
+    public static void main(final String[] args){
 
-    SpringApplication.run(TestApplicationContext.class, args);
-  }
+        SpringApplication.run(TestApplicationContext.class, args);
+    }
 }

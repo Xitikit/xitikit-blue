@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SignInName{//userName or emailAddress
 
-  private String type, value;
+    private String type, value;
 }

@@ -1,8 +1,10 @@
 package test.xitikit.blue.nommoc.errors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
-import org.xitikit.blue.nommoc.errors.*;
+import org.junit.Test;
+import org.xitikit.blue.nommoc.errors.BlueKitError;
+import org.xitikit.blue.nommoc.errors.BlueKitMethodException;
+import org.xitikit.blue.nommoc.errors.ErrorCode;
 import org.xitikit.blue.nommoc.errors.exceptions.*;
 
 import java.io.IOException;
@@ -16,108 +18,111 @@ import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
  *
  * @author J. Keith Hoopes
  */
-class BlueKitErrorTest{
+public class BlueKitErrorTest{
 
-  private final static String[] ARGS = new String[]{"one", "[0,1]", "{\"value\":3}"};
+    private final static String[] ARGS = new String[]{"one", "[0,1]", "{\"value\":3}"};
 
-  private final static ObjectMapper objectMapper = new ObjectMapper();
+    private final static ObjectMapper objectMapper = new ObjectMapper();
 
-  @Test
-  void empty(){
+    @Test
+    public void empty(){
 
-    BlueKitError error = new BlueKitError();
-    assertEquals("500, error.getCode()", INTERNAL_SERVER_ERROR.value(), error.getCode());
-    assertEquals("INTERNAL_SERVER_ERROR.name(), error.getDescription()", INTERNAL_SERVER_ERROR.name(), error.getDescription());
-    assertNotNull("error.getArguments()", error.getArguments());
-    assertEquals("0, error.getArguments().size()", 0, error.getArguments().size());
-  }
+        BlueKitError error = new BlueKitError();
+        assertEquals("500, error.getCode()", INTERNAL_SERVER_ERROR.value(), error.getCode());
+        assertEquals("\"answer\", error.getName()", INTERNAL_SERVER_ERROR.name(), error.getName());
+        assertEquals("\"whatever\", error.getDescription()", INTERNAL_SERVER_ERROR.getDescription(), error.getDescription());
+        assertNotNull("error.getArguments()", error.getArguments());
+        assertEquals("0, error.getArguments().size()", 0, error.getArguments().size());
+    }
 
-  @Test
-  void customArgs(){
+    @Test
+    public void customArgs(){
 
-    BlueKitError error = new BlueKitError(42, "answer", "whatever", asList(ARGS));
-    assertEquals("42, error.getCode()", 42, error.getCode());
-    assertEquals("\"answer\", error.getDescription()", "answer", error.getDescription());
-    assertEquals("\"whatever\", error.getDescription()", "whatever", error.getDescription());
-    assertEquals("3, error.getArguments().size()", 3, error.getArguments().size());
-    assertNotNull("error.getArguments()", error.getArguments());
-    assertEquals("ARGS[0], error.getArguments().get(0)", ARGS[0], error.getArguments().get(0));
-    assertEquals("ARGS[1], error.getArguments().get(1)", ARGS[1], error.getArguments().get(1));
-    assertEquals("ARGS[2], error.getArguments().get(2)", ARGS[2], error.getArguments().get(2));
-  }
+        BlueKitError error = new BlueKitError(42, "answer", "whatever", asList(ARGS));
+        assertEquals("42, error.getCode()", 42, error.getCode());
+        assertEquals("\"answer\", error.getName()", "answer", error.getName());
+        assertEquals("\"whatever\", error.getDescription()", "whatever", error.getDescription());
+        assertEquals("3, error.getArguments().size()", 3, error.getArguments().size());
+        assertNotNull("error.getArguments()", error.getArguments());
+        assertEquals("ARGS[0], error.getArguments().get(0)", ARGS[0], error.getArguments().get(0));
+        assertEquals("ARGS[1], error.getArguments().get(1)", ARGS[1], error.getArguments().get(1));
+        assertEquals("ARGS[2], error.getArguments().get(2)", ARGS[2], error.getArguments().get(2));
+    }
 
-  @Test
-  void customArgsWithSetters(){
-    BlueKitError error = new BlueKitError();
-    error.setCode(42);
-    error.setName("answer");
-    error.setDescription("whatever");
-    error.setArguments(asList(ARGS));
-    assertEquals("42, error.getCode()", 42, error.getCode());
-    assertEquals("\"answer\", error.getDescription()", "answer", error.getDescription());
-    assertEquals("\"whatever\", error.getDescription()", "whatever", error.getDescription());
-    assertEquals("3, error.getArguments().size()", 3, error.getArguments().size());
-    assertNotNull("error.getArguments()", error.getArguments());
-    assertEquals("ARGS[0], error.getArguments().get(0)", ARGS[0], error.getArguments().get(0));
-    assertEquals("ARGS[1], error.getArguments().get(1)", ARGS[1], error.getArguments().get(1));
-    assertEquals("ARGS[2], error.getArguments().get(2)", ARGS[2], error.getArguments().get(2));
-  }
-  @Test
-  void simpleForbiddenException() throws IOException{
+    @Test
+    public void customArgsWithSetters(){
 
-    validate(ErrorCode.FORBIDDEN, new ForbiddenException(ARGS));
-  }
+        BlueKitError error = new BlueKitError();
+        error.setCode(42);
+        error.setName("answer");
+        error.setDescription("whatever");
+        error.setArguments(asList(ARGS));
+        assertEquals("42, error.getCode()", 42, error.getCode());
+        assertEquals("\"answer\", error.getName()", "answer", error.getName());
+        assertEquals("\"whatever\", error.getDescription()", "whatever", error.getDescription());
+        assertEquals("3, error.getArguments().size()", 3, error.getArguments().size());
+        assertNotNull("error.getArguments()", error.getArguments());
+        assertEquals("ARGS[0], error.getArguments().get(0)", ARGS[0], error.getArguments().get(0));
+        assertEquals("ARGS[1], error.getArguments().get(1)", ARGS[1], error.getArguments().get(1));
+        assertEquals("ARGS[2], error.getArguments().get(2)", ARGS[2], error.getArguments().get(2));
+    }
 
-  @Test
-  void simpleBadRequestException() throws IOException{
+    @Test
+    public void simpleForbiddenException() throws IOException{
 
-    validate(ErrorCode.BAD_REQUEST, new BadRequestException(ARGS));
-  }
+        validate(ErrorCode.FORBIDDEN, new ForbiddenException(ARGS));
+    }
 
-  @Test
-  void simpleMethodNotAllowedException() throws IOException{
+    private static void validate(final ErrorCode status, final BlueKitMethodException e) throws IOException{
 
-    validate(ErrorCode.METHOD_NOT_ALLOWED, new MethodNotAllowedException(ARGS));
-  }
+        BlueKitError error = new BlueKitError(e);
 
-  @Test
-  void simpleUnauthorizedException() throws IOException{
+        validateSimpleError(error, status);
+        validateSimpleErrorSerialization(error, status);
+    }
 
-    validate(ErrorCode.UNAUTHORIZED, new UnauthorizedException(ARGS));
-  }
+    private static void validateSimpleError(final BlueKitError error, final ErrorCode errorCode){
 
-  @Test
-  void simpleNotFoundException() throws IOException{
+        assertEquals("status.value(), error.getCode()", errorCode.value(), error.getCode());
+        assertEquals("status.name(), error.getName()", errorCode.name(), error.getName());
+        assertEquals("status.getDescription(), error.getDescription()", errorCode.getDescription(), error.getDescription());
+        assertNotNull("error.getArguments()", error.getArguments());
+        assertEquals("3, error.getArguments().size()", 3, error.getArguments().size());
+        assertEquals("ARGS[0], error.getArguments().get(0)", ARGS[0], error.getArguments().get(0));
+        assertEquals("ARGS[1], error.getArguments().get(1)", ARGS[1], error.getArguments().get(1));
+        assertEquals("ARGS[2], error.getArguments().get(2)", ARGS[2], error.getArguments().get(2));
+    }
 
-    validate(ErrorCode.NOT_FOUND, new NotFoundException(ARGS));
-  }
+    private static void validateSimpleErrorSerialization(final BlueKitError error, final ErrorCode errorCode) throws IOException{
 
-  private static void validate(final ErrorCode status, final BlueKitMethodException e) throws IOException{
+        validateSimpleError(
+          objectMapper.readValue(
+            objectMapper.writeValueAsString(error),
+            BlueKitError.class),
+          errorCode);
+    }
 
-    BlueKitError error = new BlueKitError(e);
+    @Test
+    public void simpleBadRequestException() throws IOException{
 
-    validateSimpleError(error, status);
-    validateSimpleErrorSerialization(error, status);
-  }
+        validate(ErrorCode.BAD_REQUEST, new BadRequestException(ARGS));
+    }
 
-  private static void validateSimpleError(final BlueKitError error, final ErrorCode errorCode){
+    @Test
+    public void simpleMethodNotAllowedException() throws IOException{
 
-    assertEquals("status.value(), error.getCode()", errorCode.value(), error.getCode());
-    assertEquals("status.name(), error.getName()", errorCode.name(), error.getName());
-    assertEquals("status.getDescription(), error.getDescription()", errorCode.getDescription(), error.getDescription());
-    assertNotNull("error.getArguments()", error.getArguments());
-    assertEquals("3, error.getArguments().size()", 3, error.getArguments().size());
-    assertEquals("ARGS[0], error.getArguments().get(0)", ARGS[0], error.getArguments().get(0));
-    assertEquals("ARGS[1], error.getArguments().get(1)", ARGS[1], error.getArguments().get(1));
-    assertEquals("ARGS[2], error.getArguments().get(2)", ARGS[2], error.getArguments().get(2));
-  }
+        validate(ErrorCode.METHOD_NOT_ALLOWED, new MethodNotAllowedException(ARGS));
+    }
 
-  private static void validateSimpleErrorSerialization(final BlueKitError error, final ErrorCode errorCode) throws IOException{
+    @Test
+    public void simpleUnauthorizedException() throws IOException{
 
-    validateSimpleError(
-      objectMapper.readValue(
-        objectMapper.writeValueAsString(error),
-        BlueKitError.class),
-      errorCode);
-  }
+        validate(ErrorCode.UNAUTHORIZED, new UnauthorizedException(ARGS));
+    }
+
+    @Test
+    public void simpleNotFoundException() throws IOException{
+
+        validate(ErrorCode.NOT_FOUND, new NotFoundException(ARGS));
+    }
 }

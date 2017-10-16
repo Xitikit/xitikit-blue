@@ -10,20 +10,20 @@ import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
  */
 public class MethodNotAllowedException extends BlueKitMethodException{
 
-  private static final ErrorCode ERROR_CODE = METHOD_NOT_ALLOWED;
+    private static final ErrorCode ERROR_CODE = METHOD_NOT_ALLOWED;
 
-  public MethodNotAllowedException(){
+    public MethodNotAllowedException(){
 
-    super(ERROR_CODE);
-  }
+        super(ERROR_CODE);
+    }
 
-  public MethodNotAllowedException(final String... args){
+    public MethodNotAllowedException(final String... args){
 
-    super(ERROR_CODE, args);
-  }
+        super(ERROR_CODE, args);
+    }
 
-  public MethodNotAllowedException(final Throwable t){
+    public MethodNotAllowedException(final Throwable t){
 
-    super(ERROR_CODE, t);
-  }
+        super(ERROR_CODE, t);
+    }
 }

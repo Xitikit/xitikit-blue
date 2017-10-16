@@ -19,27 +19,27 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccessToken{
 
-  @JsonProperty("token_type")
-  private String tokenType;
+    @JsonProperty("token_type")
+    private String tokenType;
 
-  @JsonProperty("scope")
-  private String scope;
+    @JsonProperty("scope")
+    private String scope;
 
-  @JsonProperty("expires_in")
-  private Long expiresIn;
+    @JsonProperty("expires_in")
+    private Long expiresIn;
 
-  @JsonProperty("ext_expires_in")
-  private Long extExpiresIn;
+    @JsonProperty("ext_expires_in")
+    private Long extExpiresIn;
 
-  @JsonProperty("expires_on")
-  private Long expiresOn;
+    @JsonProperty("expires_on")
+    private Long expiresOn;
 
-  @JsonProperty("not_before")
-  private Long notBefore;
+    @JsonProperty("not_before")
+    private Long notBefore;
 
-  @JsonProperty("access_token")
-  private String accessToken;
+    @JsonProperty("access_token")
+    private String accessToken;
 
-  @JsonProperty("resource")
-  private String resource;
+    @JsonProperty("resource")
+    private String resource;
 }

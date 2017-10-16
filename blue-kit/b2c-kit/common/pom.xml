@@ -5,15 +5,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.xitikit.blue.b2c.kit</groupId>
+    <groupId>org.xitikit.blue.kit.b2c</groupId>
     <artifactId>b2c-kit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.xitikit.blue.b2c.kit</groupId>
-  <artifactId>b2c-common</artifactId>
+  <groupId>org.xitikit.blue.kit.b2c</groupId>
+  <artifactId>common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>${project.groupId}:${project.artifactId}:${project.version}:${project.packaging}</description>
+  <url>${project.parent.url}</url>
 
   <dependencies>
     <dependency>

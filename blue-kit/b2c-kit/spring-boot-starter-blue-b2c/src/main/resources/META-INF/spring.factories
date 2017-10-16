@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration = \
-org.xitikit.blue.api.autoconfigure.GraphApi,\
-org.xitikit.blue.api.autoconfigure.B2CServicesAutoConfiguration

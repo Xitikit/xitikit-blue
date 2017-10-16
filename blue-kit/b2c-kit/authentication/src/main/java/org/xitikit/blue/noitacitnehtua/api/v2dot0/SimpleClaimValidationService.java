@@ -10,7 +10,7 @@ import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationServ
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static org.xitikit.blue.noitacitnehtua.api.v2dot0.TimeComparison.comparisonOf;
+import static org.xitikit.blue.noitacitnehtua.api.v2dot0.TimeComparison.*;
 
 /**
  * Copyright ${year}
@@ -21,57 +21,61 @@ import static org.xitikit.blue.noitacitnehtua.api.v2dot0.TimeComparison.comparis
 @Service
 public class SimpleClaimValidationService implements ClaimValidationService{
 
-  private final B2CProperties b2CProperties;
+    private final B2CProperties b2CProperties;
 
-  private final AuthenticationProperties authenticationProperties;
+    private final AuthenticationProperties authenticationProperties;
 
-  @Autowired
-  public SimpleClaimValidationService(
-    final B2CProperties b2CProperties,
-    final AuthenticationProperties authenticationProperties){
+    @Autowired
+    public SimpleClaimValidationService(
+      final B2CProperties b2CProperties,
+      final AuthenticationProperties authenticationProperties){
 
-    Assert.notNull(b2CProperties, "Missing required parameter 'b2CProperties' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::new)");
-    Assert.notNull(b2CProperties, "Missing required parameter 'authenticationProperties' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::new)");
+        Assert.notNull(b2CProperties, "Missing required parameter 'b2CProperties' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::new)");
+        Assert.notNull(b2CProperties, "Missing required parameter 'authenticationProperties' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::new)");
 
-    this.b2CProperties = b2CProperties;
-    this.authenticationProperties = authenticationProperties;
-  }
+        this.b2CProperties = b2CProperties;
+        this.authenticationProperties = authenticationProperties;
+    }
 
-  @Override public boolean validateAudience(final BlueWebToken token){
+    @Override
+    public boolean validateAudience(final BlueWebToken token){
 
-    return b2CProperties
-      .getAppId()
-      .equals(token.getAudience());
-  }
+        return b2CProperties
+          .getAppId()
+          .equals(token.getAudience());
+    }
 
-  @Override public boolean validateNotBefore(
-    @Nonnull final BlueWebToken token,
-    @Nullable final Long now){
+    @Override
+    public boolean validateNotBefore(
+      @Nonnull final BlueWebToken token,
+      @Nullable final Long now){
 
-    Assert.notNull(token, "Missing required parameter 'token' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::validateNotBefore)");
+        Assert.notNull(token, "Missing required parameter 'token' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::validateNotBefore)");
 
-    // While unlikely, it's ok to be equal.
-    return comparisonOf(
-      token.getNotBefore(),
-      paddedNow(now)
-      ).isLessOrEqual();
-  }
+        // While unlikely, it's ok to be equal.
+        return comparisonOf(
+          token.getNotBefore(),
+          paddedNow(now)
+        ).isLessOrEqual();
+    }
 
-  private Long paddedNow(final Long now){
+    private Long paddedNow(final Long now){
 
-    return now == null ? null :
-      now + authenticationProperties
-        .getNotBefore()
-        .getPaddingInMilliseconds();
-  }
+        return now == null ? null :
+          now + authenticationProperties
+            .getNotBefore()
+            .getPaddingInMilliseconds();
+    }
 
-  @Override public boolean validateIssuer(final BlueWebToken token){
+    @Override
+    public boolean validateIssuer(final BlueWebToken token){
 
-    return VerificationUtil.validateIssuer(token);
-  }
+        return VerificationUtil.validateIssuer(token);
+    }
 
-  @Override public boolean validateExpiration(final BlueWebToken token, final long now){
+    @Override
+    public boolean validateExpiration(final BlueWebToken token, final long now){
 
-    return VerificationUtil.validateExpiration(token, now);
-  }
+        return VerificationUtil.validateExpiration(token, now);
+    }
 }

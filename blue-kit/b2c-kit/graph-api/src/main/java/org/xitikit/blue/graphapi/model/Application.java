@@ -9,51 +9,51 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Application{
 
-  private String displayName;
+    private String displayName;
 
-  private String aapId;
+    private String aapId;
 
-  private String objectId;
+    private String objectId;
 
-  private String objectType;
+    private String objectType;
 
-  public String getDisplayName(){
+    public String getDisplayName(){
 
-    return displayName;
-  }
+        return displayName;
+    }
 
-  public void setDisplayName(final String displayName){
+    public void setDisplayName(final String displayName){
 
-    this.displayName = displayName;
-  }
+        this.displayName = displayName;
+    }
 
-  public String getAapId(){
+    public String getAapId(){
 
-    return aapId;
-  }
+        return aapId;
+    }
 
-  public void setAapId(final String aapId){
+    public void setAapId(final String aapId){
 
-    this.aapId = aapId;
-  }
+        this.aapId = aapId;
+    }
 
-  public String getObjectId(){
+    public String getObjectId(){
 
-    return objectId;
-  }
+        return objectId;
+    }
 
-  public void setObjectId(final String objectId){
+    public void setObjectId(final String objectId){
 
-    this.objectId = objectId;
-  }
+        this.objectId = objectId;
+    }
 
-  public String getObjectType(){
+    public String getObjectType(){
 
-    return objectType;
-  }
+        return objectType;
+    }
 
-  public void setObjectType(final String objectType){
+    public void setObjectType(final String objectType){
 
-    this.objectType = objectType;
-  }
+        this.objectType = objectType;
+    }
 }
