@@ -1,0 +1,13 @@
+xitikit:
+  blue:
+    kit:
+      b2c:
+        policy:
+          sign-in:
+            one-enabled:
+              name: one:
+              redirectUrl: http://test/
+              templateUrl: http://this.should.always.be.empty.for.sign-in/
+              disabled: false
+            two-disabled:
+              disabled: true
