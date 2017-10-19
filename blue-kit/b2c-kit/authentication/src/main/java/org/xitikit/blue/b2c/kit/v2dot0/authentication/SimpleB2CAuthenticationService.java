@@ -1,27 +1,25 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.b2c.kit.v2dot0.authentication;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.InvalidSignatureException;
 import org.springframework.security.jwt.crypto.sign.RsaVerifier;
-import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.B2CAuthenticationService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.UrlService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.B2CAuthenticationService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.ClaimValidationService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.NonceService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.UrlService;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.security.interfaces.RSAPublicKey;
 
-import static org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil.*;
+import static org.xitikit.blue.b2c.kit.v2dot0.authentication.VerificationUtil.*;
 
 /**
  * This class implements methods to interface with AzureB2C.
@@ -30,7 +28,6 @@ import static org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil.*;
  * @see B2CAuthenticationService
  */
 @Slf4j
-@Service("simpleB2CAuthenticationService")
 public final class SimpleB2CAuthenticationService implements B2CAuthenticationService{
 
     private final ClaimValidationService claimValidationService;
@@ -41,14 +38,16 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
 
     private final RestTemplate restTemplate;
 
-    @Autowired
     public SimpleB2CAuthenticationService(
       final ClaimValidationService claimValidationService,
       final NonceService nonceService,
       final UrlService urlService,
       final RestTemplate restTemplate){
 
-        Assert.notNull(claimValidationService, "Missing required parameter 'claimValidationService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
+        Assert.notNull(
+          claimValidationService,
+          "Missing required parameter 'claimValidationService' " +
+            "(org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
         Assert.notNull(nonceService, "Missing required parameter 'nonceService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
         Assert.notNull(urlService, "Missing required parameter 'blueUrlService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
         Assert.notNull(restTemplate, "Missing required parameter 'restTemplate' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");

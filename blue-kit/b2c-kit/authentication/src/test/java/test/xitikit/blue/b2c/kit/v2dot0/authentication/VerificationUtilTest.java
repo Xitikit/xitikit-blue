@@ -1,11 +1,11 @@
-package test.xitikit.blue.noitacitnehtua.api.v2dot0;
+package test.xitikit.blue.b2c.kit.v2dot0.authentication;
 
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Map;
 
-import static org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil.*;
+import static org.xitikit.blue.b2c.kit.v2dot0.authentication.VerificationUtil.*;
 
 /**
  * Copyright ${year}
@@ -26,6 +26,7 @@ public class VerificationUtilTest{
     @Test
     public void validateIssuerTest(){
 
+        // validateIssuer();
     }
 
     @Test

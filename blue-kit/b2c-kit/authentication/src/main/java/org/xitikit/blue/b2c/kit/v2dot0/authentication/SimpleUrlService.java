@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.b2c.kit.v2dot0.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,8 +6,8 @@ import org.xitikit.blue.api.b2c.v2dot0.configuration.B2CProperties;
 import org.xitikit.blue.b2c.kit.v2dot0.policy.PolicyForB2C;
 import org.xitikit.blue.b2c.kit.v2dot0.policy.SignOutPolicy;
 import org.xitikit.blue.boot.b2c.SimplePolicyConfiguration;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.UrlService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.NonceService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.UrlService;
 import org.xitikit.blue.nommoc.errors.exceptions.InternalServerErrorException;
 
 import javax.annotation.Nonnull;

@@ -1,11 +1,11 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.b2c.kit.v2dot0.authentication;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.NonceProperties;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceStore;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.NonceService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.NonceStore;
 
 import javax.annotation.Nonnull;
 

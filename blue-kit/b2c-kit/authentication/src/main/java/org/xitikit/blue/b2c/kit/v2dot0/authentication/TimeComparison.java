@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.b2c.kit.v2dot0.authentication;
 
 import javax.annotation.Nullable;
 import java.time.Instant;

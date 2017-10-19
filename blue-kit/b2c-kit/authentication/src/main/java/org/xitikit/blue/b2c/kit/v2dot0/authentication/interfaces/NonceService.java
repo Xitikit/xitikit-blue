@@ -1,6 +1,6 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces;
+package org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces;
 
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.Nonce;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.Nonce;
 
 /**
  * Useful service for generating and validating nonces.

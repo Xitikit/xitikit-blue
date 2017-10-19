@@ -1,6 +1,6 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces;
+package org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces;
 
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.BlueWebToken;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.BlueWebToken;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -22,5 +22,5 @@ public interface B2CAuthenticationService{
      * @return the extracted user data or null if the token could not be read or is invalid
      */
     @Nullable
-    BlueWebToken decodeAndVerify(@Nonnull String idToken);
+    BlueWebToken decodeAndVerify(@Nonnull final String idToken);
 }
