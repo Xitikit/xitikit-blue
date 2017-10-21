@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.kit.authentication.v2dot0;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
@@ -11,17 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.B2CAuthenticationService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.UrlService;
+import org.xitikit.blue.kit.authentication.v2dot0.interfaces.NonceService;
+import org.xitikit.blue.kit.authentication.v2dot0.interfaces.B2CAuthenticationService;
+import org.xitikit.blue.kit.authentication.v2dot0.interfaces.ClaimValidationService;
+import org.xitikit.blue.kit.authentication.v2dot0.interfaces.UrlService;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.security.interfaces.RSAPublicKey;
-
-import static org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil.*;
 
 /**
  * This class implements methods to interface with AzureB2C.
@@ -48,10 +46,10 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
       final UrlService urlService,
       final RestTemplate restTemplate){
 
-        Assert.notNull(claimValidationService, "Missing required parameter 'claimValidationService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
-        Assert.notNull(nonceService, "Missing required parameter 'nonceService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
-        Assert.notNull(urlService, "Missing required parameter 'blueUrlService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
-        Assert.notNull(restTemplate, "Missing required parameter 'restTemplate' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
+        Assert.notNull(claimValidationService, "Missing required parameter 'claimValidationService' (SimpleB2CAuthenticationService::new)");
+        Assert.notNull(nonceService, "Missing required parameter 'nonceService' (SimpleB2CAuthenticationService::new)");
+        Assert.notNull(urlService, "Missing required parameter 'blueUrlService' (SimpleB2CAuthenticationService::new)");
+        Assert.notNull(restTemplate, "Missing required parameter 'restTemplate' (SimpleB2CAuthenticationService::new)");
 
         this.claimValidationService = claimValidationService;
         this.nonceService = nonceService;
@@ -71,12 +69,12 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
 
             Jwt jwt = JwtHelper.decode(idToken);
             // Get the key ID we need to use to verify the token
-            String keyId = getKeyId(idToken);
+            String keyId = VerificationUtil.getKeyId(idToken);
             if("".equals(keyId.trim())){
                 log.warn("Failed to retrieve key ID for token");
                 return null;
             }
-            BlueWebToken token = typeSecuredObjectMapper().readValue(
+            BlueWebToken token = VerificationUtil.typeSecuredObjectMapper().readValue(
               jwt.getClaims(),
               BlueWebToken.class);
             // Get the key and verify the JWT signature
@@ -134,13 +132,13 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
       @Nonnull final String policy){
 
         try{
-            JsonNode kidNode = kidForKeyId(
+            JsonNode kidNode = VerificationUtil.kidForKeyId(
               keysForPolicy(policy),
               keyId
             );
-            return parseKey(
-              modulus(kidNode),
-              exponent(kidNode)
+            return VerificationUtil.parseKey(
+              VerificationUtil.modulus(kidNode),
+              VerificationUtil.exponent(kidNode)
             );
 
         }catch(RestClientException | NullPointerException x){
@@ -152,7 +150,7 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     @Nonnull
     private JsonNode keysForPolicy(@Nonnull final String policy){
 
-        return safeNode(
+        return VerificationUtil.safeNode(
           jwksForPolicy(policy).get("keys")
         );
     }
@@ -160,9 +158,9 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     @Nonnull
     private JsonNode jwksForPolicy(@Nonnull final String policy){
 
-        return safeNode(
+        return VerificationUtil.safeNode(
           restTemplate.getForObject(
-            jwksUri(
+            VerificationUtil.jwksUri(
               policyMetaData(policy)
             ),
             JsonNode.class
@@ -172,7 +170,7 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
     @Nonnull
     private JsonNode policyMetaData(@Nonnull final String policy){
 
-        return safeNode(
+        return VerificationUtil.safeNode(
           restTemplate.getForObject(
             urlService.wellKnownEndpoint(policy),
             JsonNode.class

@@ -1,6 +1,6 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.kit.authentication.v2dot0;
 
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.NonceStore;
+import org.xitikit.blue.kit.authentication.v2dot0.interfaces.NonceStore;
 
 import javax.annotation.Nonnull;
 import java.util.Map;

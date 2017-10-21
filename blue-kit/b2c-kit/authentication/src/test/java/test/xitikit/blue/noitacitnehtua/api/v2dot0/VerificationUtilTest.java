@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.Map;
 
-import static org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil.*;
+import static org.xitikit.blue.kit.authentication.v2dot0.VerificationUtil.*;
 
 /**
  * Copyright ${year}

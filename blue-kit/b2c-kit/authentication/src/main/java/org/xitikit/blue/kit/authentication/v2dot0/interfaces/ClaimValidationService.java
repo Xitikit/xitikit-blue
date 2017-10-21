@@ -1,6 +1,6 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces;
+package org.xitikit.blue.kit.authentication.v2dot0.interfaces;
 
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.BlueWebToken;
+import org.xitikit.blue.kit.authentication.v2dot0.BlueWebToken;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

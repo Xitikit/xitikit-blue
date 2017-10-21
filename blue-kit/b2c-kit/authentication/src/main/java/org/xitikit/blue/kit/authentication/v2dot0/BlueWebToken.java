@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.kit.authentication.v2dot0;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -183,4 +183,6 @@ public class BlueWebToken{
 
         return emails != null && !emails.isEmpty() ? emails.get(0) : null;
     }
+
+
 }

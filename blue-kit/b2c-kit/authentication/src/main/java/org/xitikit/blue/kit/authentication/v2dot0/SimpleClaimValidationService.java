@@ -1,16 +1,16 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.kit.authentication.v2dot0;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.AuthenticationProperties;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.B2CProperties;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService;
+import org.xitikit.blue.kit.authentication.v2dot0.interfaces.ClaimValidationService;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static org.xitikit.blue.noitacitnehtua.api.v2dot0.TimeComparison.*;
+import static org.xitikit.blue.kit.authentication.v2dot0.TimeComparison.*;
 
 /**
  * Copyright ${year}
@@ -30,8 +30,8 @@ public class SimpleClaimValidationService implements ClaimValidationService{
       final B2CProperties b2CProperties,
       final AuthenticationProperties authenticationProperties){
 
-        Assert.notNull(b2CProperties, "Missing required parameter 'b2CProperties' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::new)");
-        Assert.notNull(b2CProperties, "Missing required parameter 'authenticationProperties' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::new)");
+        Assert.notNull(b2CProperties, "Missing required parameter 'b2CProperties' (ClaimValidationService::new)");
+        Assert.notNull(b2CProperties, "Missing required parameter 'authenticationProperties' (ClaimValidationService::new)");
 
         this.b2CProperties = b2CProperties;
         this.authenticationProperties = authenticationProperties;
@@ -50,7 +50,7 @@ public class SimpleClaimValidationService implements ClaimValidationService{
       @Nonnull final BlueWebToken token,
       @Nullable final Long now){
 
-        Assert.notNull(token, "Missing required parameter 'token' (org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.ClaimValidationService::validateNotBefore)");
+        Assert.notNull(token, "Missing required parameter 'token' (ClaimValidationService::validateNotBefore)");
 
         // While unlikely, it's ok to be equal.
         return comparisonOf(

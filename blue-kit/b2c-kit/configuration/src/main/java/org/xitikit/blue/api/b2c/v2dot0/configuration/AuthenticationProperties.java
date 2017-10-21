@@ -1,17 +1,10 @@
 package org.xitikit.blue.api.b2c.v2dot0.configuration;
 
-import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
  */
-@Data
-@Component
-@ConfigurationProperties
 public class AuthenticationProperties{
 
     private NotBefore notBefore;
@@ -49,5 +42,15 @@ public class AuthenticationProperties{
 
             this.enabled = enabled;
         }
+    }
+
+    public NotBefore getNotBefore(){
+
+        return notBefore;
+    }
+
+    public void setNotBefore(final NotBefore notBefore){
+
+        this.notBefore = notBefore;
     }
 }

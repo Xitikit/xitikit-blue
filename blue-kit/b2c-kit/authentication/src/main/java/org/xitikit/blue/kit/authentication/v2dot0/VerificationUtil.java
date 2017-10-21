@@ -1,4 +1,4 @@
-package org.xitikit.blue.noitacitnehtua.api.v2dot0;
+package org.xitikit.blue.kit.authentication.v2dot0;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +19,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
 
-import static org.xitikit.blue.noitacitnehtua.api.v2dot0.TimeComparison.*;
+import static org.xitikit.blue.kit.authentication.v2dot0.TimeComparison.*;
 
 /**
  * Copyright ${year}
@@ -67,7 +67,7 @@ public final class VerificationUtil{
      */
     public static boolean validateIssuer(final BlueWebToken token){
 
-        Assert.notNull(token, "Missing required parameter 'token' (org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil::validateIssuer)");
+        Assert.notNull(token, "Missing required parameter 'token' (VerificationUtil::validateIssuer)");
 
         final String issuer = token.getIssuer();
 
@@ -86,7 +86,7 @@ public final class VerificationUtil{
      */
     public static boolean validateExpiration(final BlueWebToken token, @Nullable final Long now){
 
-        Assert.notNull(token, "Missing required parameter 'token' (org.xitikit.blue.noitacitnehtua.api.v2dot0.VerificationUtil::validateExpiration)");
+        Assert.notNull(token, "Missing required parameter 'token' (VerificationUtil::validateExpiration)");
 
         return comparisonOf(
           token.getExpiration(),
