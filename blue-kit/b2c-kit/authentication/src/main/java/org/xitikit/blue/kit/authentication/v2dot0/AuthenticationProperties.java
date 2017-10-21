@@ -9,7 +9,7 @@ public class AuthenticationProperties{
 
     private NotBefore notBefore;
 
-    public class NotBefore{
+    public static class NotBefore{
 
         /**
          * The "not before" token sometimes comes back from microsoft in the future. In milliseconds, this lets us pad the "now"
