@@ -31,13 +31,13 @@ public class GraphApiUserService implements IGraphApiUserService{
     }
 
     @Override
-    public void deleteUser(String uuid){
+    public void deleteUser(final String uuid){
 
         azureGraphApiClient.deleteUser(uuid);
     }
 
     @Override
-    public void updateUser(org.xitikit.blue.graphapi.model.GraphApiUser user){
+    public void updateUser(final org.xitikit.blue.graphapi.model.GraphApiUser user){
 
         azureGraphApiClient.updateUser(user);
     }
@@ -49,7 +49,7 @@ public class GraphApiUserService implements IGraphApiUserService{
      *   selecting an email address that already belongs to someone else.
      */
     @Override
-    public org.xitikit.blue.graphapi.model.GraphApiUser updateProfile(String uuid, String firstName, String lastName, String email, String emailConfirmation){
+    public org.xitikit.blue.graphapi.model.GraphApiUser updateProfile(final String uuid, final String firstName, final String lastName, String email, final String emailConfirmation){
 
         org.xitikit.blue.graphapi.model.GraphApiUser updatedAzureUser = new org.xitikit.blue.graphapi.model.GraphApiUser();
         updatedAzureUser.setId(uuid);
@@ -89,13 +89,13 @@ public class GraphApiUserService implements IGraphApiUserService{
     }
 
     @Override
-    public PaginatedUsers getPaginatedUsers(int pageSize, String skipToken){
+    public PaginatedUsers getPaginatedUsers(final int pageSize, final String skipToken){
 
         return azureGraphApiClient.getUsers(null, pageSize, skipToken);
     }
 
     @Override
-    public org.xitikit.blue.graphapi.model.GraphApiUser getUser(String uuid){
+    public org.xitikit.blue.graphapi.model.GraphApiUser getUser(final String uuid){
 
         return azureGraphApiClient.getUser(uuid);
     }

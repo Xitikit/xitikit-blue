@@ -1,10 +1,10 @@
 package org.xitikit.blue.kit.authentication.v2dot0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
 
 import javax.annotation.Nullable;
 import java.time.ZonedDateTime;
@@ -37,7 +37,6 @@ import java.util.List;
  *
  * @author J. Keith Hoopes
  */
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BlueWebToken{
 
@@ -179,10 +178,190 @@ public class BlueWebToken{
      * @return the first email listed or null
      */
     @Nullable
+    @JsonIgnore
     public String getFirstEmail(){
 
         return emails != null && !emails.isEmpty() ? emails.get(0) : null;
     }
 
+    public ZonedDateTime getExpiration(){
 
+        return expiration;
+    }
+
+    public void setExpiration(final ZonedDateTime expiration){
+
+        this.expiration = expiration;
+    }
+
+    public ZonedDateTime getNotBefore(){
+
+        return notBefore;
+    }
+
+    public void setNotBefore(final ZonedDateTime notBefore){
+
+        this.notBefore = notBefore;
+    }
+
+    public String getVersion(){
+
+        return version;
+    }
+
+    public void setVersion(final String version){
+
+        this.version = version;
+    }
+
+    public String getIssuer(){
+
+        return issuer;
+    }
+
+    public void setIssuer(final String issuer){
+
+        this.issuer = issuer;
+    }
+
+    public String getAuthContextReference(){
+
+        return authContextReference;
+    }
+
+    public void setAuthContextReference(final String authContextReference){
+
+        this.authContextReference = authContextReference;
+    }
+
+    public String getSubject(){
+
+        return subject;
+    }
+
+    public void setSubject(final String subject){
+
+        this.subject = subject;
+    }
+
+    public String getAudience(){
+
+        return audience;
+    }
+
+    public void setAudience(final String audience){
+
+        this.audience = audience;
+    }
+
+    public String getNonce(){
+
+        return nonce;
+    }
+
+    public void setNonce(final String nonce){
+
+        this.nonce = nonce;
+    }
+
+    public ZonedDateTime getIssuedAt(){
+
+        return issuedAt;
+    }
+
+    public void setIssuedAt(final ZonedDateTime issuedAt){
+
+        this.issuedAt = issuedAt;
+    }
+
+    public ZonedDateTime getAuthTime(){
+
+        return authTime;
+    }
+
+    public void setAuthTime(final ZonedDateTime authTime){
+
+        this.authTime = authTime;
+    }
+
+    public String getObjectId(){
+
+        return objectId;
+    }
+
+    public void setObjectId(final String objectId){
+
+        this.objectId = objectId;
+    }
+
+    public String getCodeHash(){
+
+        return codeHash;
+    }
+
+    public void setCodeHash(final String codeHash){
+
+        this.codeHash = codeHash;
+    }
+
+    public String getAccessTokenHash(){
+
+        return accessTokenHash;
+    }
+
+    public void setAccessTokenHash(final String accessTokenHash){
+
+        this.accessTokenHash = accessTokenHash;
+    }
+
+    public String getIdentityProvider(){
+
+        return identityProvider;
+    }
+
+    public void setIdentityProvider(final String identityProvider){
+
+        this.identityProvider = identityProvider;
+    }
+
+    public String getFirstName(){
+
+        return firstName;
+    }
+
+    public void setFirstName(final String firstName){
+
+        this.firstName = firstName;
+    }
+
+    public String getLastName(){
+
+        return lastName;
+    }
+
+    public void setLastName(final String lastName){
+
+        this.lastName = lastName;
+    }
+
+    @Nullable
+    public List<String> getEmails(){
+
+        return emails;
+    }
+
+    public void setEmails(@Nullable final List<String> emails){
+
+        this.emails = emails;
+    }
+
+    public boolean isNewUser(){
+
+        return newUser;
+    }
+
+    public void setNewUser(final boolean newUser){
+
+        this.newUser = newUser;
+    }
 }

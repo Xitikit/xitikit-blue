@@ -1,7 +1,5 @@
 package org.xitikit.blue.kit.authentication.v2dot0;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.B2CProperties;
 import org.xitikit.blue.b2c.kit.v2dot0.policy.PolicyForB2C;
 import org.xitikit.blue.b2c.kit.v2dot0.policy.SignOutPolicy;
@@ -20,7 +18,6 @@ import static java.net.URLEncoder.*;
  *
  * @author J. Keith Hoopes
  */
-@Service
 public class SimpleUrlService implements UrlService{
 
     private static final String STANDARD_CONFIGURATION_QUERY = "&response_mode=form_post&scope=openid&response_type=id_token&prompt=login";
@@ -31,7 +28,6 @@ public class SimpleUrlService implements UrlService{
 
     private final NonceService nonceService;
 
-    @Autowired
     public SimpleUrlService(
       final SimplePolicyConfiguration simplePolicyConfiguration,
       final B2CProperties b2CProperties,

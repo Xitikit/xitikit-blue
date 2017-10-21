@@ -1,8 +1,7 @@
 package org.xitikit.blue.kit.authentication.v2dot0;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.NonceProperties;
 import org.xitikit.blue.kit.authentication.v2dot0.interfaces.NonceService;
 import org.xitikit.blue.kit.authentication.v2dot0.interfaces.NonceStore;
@@ -22,15 +21,14 @@ import javax.annotation.Nonnull;
  * @author J. Keith Hoopes
  * @see NonceService
  */
-@Slf4j
-@Service
 public final class SimpleNonceService implements NonceService{
+
+    private static final Logger log = LoggerFactory.getLogger(SimpleNonceService.class);
 
     private final NonceStore nonceStore;
 
     private final NonceProperties nonceProperties;
 
-    @Autowired
     public SimpleNonceService(
       @Nonnull final NonceStore nonceStore,
       @Nonnull final NonceProperties nonceProperties){

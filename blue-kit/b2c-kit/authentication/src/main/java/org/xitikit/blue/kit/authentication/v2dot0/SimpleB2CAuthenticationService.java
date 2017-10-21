@@ -1,19 +1,18 @@
 package org.xitikit.blue.kit.authentication.v2dot0;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.InvalidSignatureException;
 import org.springframework.security.jwt.crypto.sign.RsaVerifier;
-import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.xitikit.blue.kit.authentication.v2dot0.interfaces.NonceService;
 import org.xitikit.blue.kit.authentication.v2dot0.interfaces.B2CAuthenticationService;
 import org.xitikit.blue.kit.authentication.v2dot0.interfaces.ClaimValidationService;
+import org.xitikit.blue.kit.authentication.v2dot0.interfaces.NonceService;
 import org.xitikit.blue.kit.authentication.v2dot0.interfaces.UrlService;
 
 import javax.annotation.Nonnull;
@@ -27,9 +26,9 @@ import java.security.interfaces.RSAPublicKey;
  * @author J. Keith Hoopes
  * @see B2CAuthenticationService
  */
-@Slf4j
-@Service("simpleB2CAuthenticationService")
 public final class SimpleB2CAuthenticationService implements B2CAuthenticationService{
+
+    private static final Logger log = LoggerFactory.getLogger(SimpleB2CAuthenticationService.class);
 
     private final ClaimValidationService claimValidationService;
 
@@ -39,7 +38,6 @@ public final class SimpleB2CAuthenticationService implements B2CAuthenticationSe
 
     private final RestTemplate restTemplate;
 
-    @Autowired
     public SimpleB2CAuthenticationService(
       final ClaimValidationService claimValidationService,
       final NonceService nonceService,

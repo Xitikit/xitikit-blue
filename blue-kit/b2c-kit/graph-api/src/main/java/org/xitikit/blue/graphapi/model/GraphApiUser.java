@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +16,6 @@ import java.util.List;
  *
  *   Models the request to update an Azure B2C user.
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GraphApiUser{
@@ -94,5 +90,85 @@ public class GraphApiUser{
                 break;
             }
         }
+    }
+
+    public String getId(){
+
+        return id;
+    }
+
+    public void setId(final String id){
+
+        this.id = id;
+    }
+
+    public Boolean getAccountEnabled(){
+
+        return accountEnabled;
+    }
+
+    public void setAccountEnabled(final Boolean accountEnabled){
+
+        this.accountEnabled = accountEnabled;
+    }
+
+    public org.xitikit.blue.graphapi.model.PasswordProfile getPasswordProfile(){
+
+        return PasswordProfile;
+    }
+
+    public void setPasswordProfile(final org.xitikit.blue.graphapi.model.PasswordProfile passwordProfile){
+
+        PasswordProfile = passwordProfile;
+    }
+
+    public List<SignInName> getSignInNames(){
+
+        return signInNames;
+    }
+
+    public void setSignInNames(final List<SignInName> signInNames){
+
+        this.signInNames = signInNames;
+    }
+
+    public String getSurname(){
+
+        return surname;
+    }
+
+    public void setSurname(final String surname){
+
+        this.surname = surname;
+    }
+
+    public String getDisplayName(){
+
+        return displayName;
+    }
+
+    public void setDisplayName(final String displayName){
+
+        this.displayName = displayName;
+    }
+
+    public String getGivenName(){
+
+        return givenName;
+    }
+
+    public void setGivenName(final String givenName){
+
+        this.givenName = givenName;
+    }
+
+    public String getUserPrincipalName(){
+
+        return userPrincipalName;
+    }
+
+    public void setUserPrincipalName(final String userPrincipalName){
+
+        this.userPrincipalName = userPrincipalName;
     }
 }

@@ -22,24 +22,24 @@ public class GreedyNonceStore implements NonceStore{
 
     private final Map<String, Nonce> nonceStore = new ConcurrentHashMap<>();
 
-    private int timeout;
+    private final int timeout;
 
     /**
      * @param timeout Time in seconds for which a nonce is valid.
      */
-    public GreedyNonceStore(int timeout){
+    public GreedyNonceStore(final int timeout){
 
         this.timeout = timeout > 0 ? timeout : 0;
     }
 
     @Override
-    public void put(@Nonnull Nonce nonce){
+    public void put(@Nonnull final Nonce nonce){
 
         nonceStore.put(nonce.getValue(), nonce);
     }
 
     @Override
-    public Nonce get(@Nonnull String nonceValue){
+    public Nonce get(@Nonnull final String nonceValue){
 
         return nonceStore.get(nonceValue);
     }

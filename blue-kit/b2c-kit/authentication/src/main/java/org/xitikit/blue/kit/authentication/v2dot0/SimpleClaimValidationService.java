@@ -3,7 +3,6 @@ package org.xitikit.blue.kit.authentication.v2dot0;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import org.xitikit.blue.api.b2c.v2dot0.configuration.AuthenticationProperties;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.B2CProperties;
 import org.xitikit.blue.kit.authentication.v2dot0.interfaces.ClaimValidationService;
 

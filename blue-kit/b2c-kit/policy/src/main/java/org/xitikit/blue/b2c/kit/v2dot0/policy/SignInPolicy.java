@@ -1,14 +1,16 @@
 package org.xitikit.blue.b2c.kit.v2dot0.policy;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
  */
-@Slf4j
 public class SignInPolicy implements PolicyForB2C{
+
+    private static final Logger log = LoggerFactory.getLogger(SignInPolicy.class);
 
     /**
      * Required when not disabled.

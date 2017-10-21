@@ -3,8 +3,9 @@ package org.xitikit.blue.kit.authentication.v2dot0;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.NullNode;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.util.Assert;
 
@@ -26,10 +27,11 @@ import static org.xitikit.blue.kit.authentication.v2dot0.TimeComparison.*;
  *
  * @author J. Keith Hoopes
  */
-@Slf4j
 public final class VerificationUtil{
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
+
+    private static final Logger log = LoggerFactory.getLogger(VerificationUtil.class);
 
     /**
      * A type secure object mapper.

@@ -1,4 +1,4 @@
-package org.xitikit.blue.api.b2c.v2dot0.configuration;
+package org.xitikit.blue.kit.authentication.v2dot0;
 
 /**
  * Copyright Xitikit.org 2017
