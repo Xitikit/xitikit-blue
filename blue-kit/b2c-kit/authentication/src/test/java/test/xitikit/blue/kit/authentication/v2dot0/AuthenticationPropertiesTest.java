@@ -2,7 +2,6 @@ package test.xitikit.blue.kit.authentication.v2dot0;
 
 import org.junit.Test;
 import org.xitikit.blue.kit.authentication.v2dot0.AuthenticationProperties;
-import org.xitikit.blue.kit.authentication.v2dot0.AuthenticationProperties.NotBefore;
 
 import static junit.framework.TestCase.*;
 
@@ -15,22 +14,17 @@ public class AuthenticationPropertiesTest{
     public void notBeforeValues() throws Exception{
 
         AuthenticationProperties p = new AuthenticationProperties();
-        assertNull(p.getNotBefore());
 
-        NotBefore notBefore = new NotBefore();
-        p.setNotBefore(notBefore);
         assertNotNull(p.getNotBefore());
-        assertEquals(notBefore, p.getNotBefore());
+        assertTrue(p.getNotBefore().isEnabled());//Enabled by default
+        p.getNotBefore().setEnabled(false);
+        assertFalse(p.getNotBefore().isEnabled());
 
-        assertTrue(notBefore.isEnabled());//Enabled by default
-        notBefore.setEnabled(false);
-        assertFalse(notBefore.isEnabled());
+        assertTrue(p.getNotBefore().getPaddingInMilliseconds() == 0);
+        p.getNotBefore().setPaddingInMilliseconds(1000);
+        assertTrue(p.getNotBefore().getPaddingInMilliseconds() == 0);
 
-        assertTrue(notBefore.getPaddingInMilliseconds() == 0);
-        notBefore.setPaddingInMilliseconds(1000);
-        assertTrue(notBefore.getPaddingInMilliseconds() == 0);
-
-        notBefore.setEnabled(true);
-        assertTrue(notBefore.getPaddingInMilliseconds() == 1000);
+        p.getNotBefore().setEnabled(true);
+        assertTrue(p.getNotBefore().getPaddingInMilliseconds() == 1000);
     }
 }

@@ -1,14 +1,14 @@
 package org.xitikit.blue.kit.authentication.v2dot0;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.annotation.Nullable;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Hold claim data parsed from an Azure token.
@@ -155,13 +155,13 @@ public class BlueWebToken{
      * The user's first name.
      */
     @JsonProperty("given_name")
-    private String firstName;
+    private String givenName;
 
     /**
      * The user's last name.
      */
     @JsonProperty("family_name")
-    private String lastName;
+    private String familyName;
 
     /**
      * The user's email addresses.
@@ -171,6 +171,20 @@ public class BlueWebToken{
 
     @JsonProperty("newUser")
     private boolean newUser;
+
+    private final Map<String, String> other = new HashMap<>();
+
+    @JsonAnyGetter
+    public Map<String, String> getOther(){
+
+        return other;
+    }
+
+    @JsonAnySetter
+    public void add(final String key, final String value){
+
+        other.put(key, value);
+    }
 
     /**
      * Returns the first email in the list of emails for the user if there is one.
@@ -324,24 +338,24 @@ public class BlueWebToken{
         this.identityProvider = identityProvider;
     }
 
-    public String getFirstName(){
+    public String getGivenName(){
 
-        return firstName;
+        return givenName;
     }
 
-    public void setFirstName(final String firstName){
+    public void setGivenName(final String givenName){
 
-        this.firstName = firstName;
+        this.givenName = givenName;
     }
 
-    public String getLastName(){
+    public String getFamilyName(){
 
-        return lastName;
+        return familyName;
     }
 
-    public void setLastName(final String lastName){
+    public void setFamilyName(final String familyName){
 
-        this.lastName = lastName;
+        this.familyName = familyName;
     }
 
     @Nullable

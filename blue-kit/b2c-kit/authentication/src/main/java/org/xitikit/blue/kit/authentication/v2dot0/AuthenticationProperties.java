@@ -7,21 +7,30 @@ package org.xitikit.blue.kit.authentication.v2dot0;
  */
 public class AuthenticationProperties{
 
-    private NotBefore notBefore;
+    private final NotBefore notBefore = new NotBefore();
 
-    public static class NotBefore{
+    public class NotBefore{
 
         /**
          * The "not before" token sometimes comes back from microsoft in the future. In milliseconds, this lets us pad the "now"
          * time, in effect saying "as long as it's not TOO far in the future, we're okay with it."
+         *
+         * This will return {@code 0L) if not-before.enabled is {@code true}.
+         *
+         * Default: {@code 0L}
          */
         private long paddingInMilliseconds = 0;
 
         /**
          * Indicates that the 'not before' claim should be validated.     *
-         * Default: true.
+         *
+         * Default: {@code true)
          */
         private boolean enabled = true;
+
+        private NotBefore(){
+
+        }
 
         public long getPaddingInMilliseconds(){
 
@@ -47,10 +56,5 @@ public class AuthenticationProperties{
     public NotBefore getNotBefore(){
 
         return notBefore;
-    }
-
-    public void setNotBefore(final NotBefore notBefore){
-
-        this.notBefore = notBefore;
     }
 }

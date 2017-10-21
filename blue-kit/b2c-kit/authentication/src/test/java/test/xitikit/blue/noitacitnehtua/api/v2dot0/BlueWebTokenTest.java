@@ -43,8 +43,8 @@ public class BlueWebTokenTest{
         assertEquals(token.getIssuedAt(), iat);
         assertEquals(token.getAuthTime(), auth_time);
         assertEquals(token.getObjectId(), "11111111-1111-1111-1111-111111111111");
-        assertEquals(token.getFirstName(), "One Punch");
-        assertEquals(token.getLastName(), "Saitama");
+        assertEquals(token.getGivenName(), "One Punch");
+        assertEquals(token.getFamilyName(), "Saitama");
         assertEquals(token.getFirstEmail(), "caped.baldy@heroassociation.org");
     }
 }
