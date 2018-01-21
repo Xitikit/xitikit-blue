@@ -1,0 +1,22 @@
+spring:
+    application:
+        name: admin-kit
+    hateoas:
+        use-hal-as-default-json-media-type: true
+    jpa:
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+azure:
+    # All values needed by the graphApi to manage users and custom attributes
+    graphApi:
+        # This is the id of the B2C directory.
+        tenantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+        # The AppPrincipalId that was generated inside powershell registration
+        clientId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+        # The Secret that was generated inside powershell registration
+        clientSecret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        # The base url for the Graph API. This will be the same in all environments.
+        baseUrl: https://graph.windows.net/
+        # The current version of the graph api. This will be the same in all environments.
+        apiVersion: 1.6

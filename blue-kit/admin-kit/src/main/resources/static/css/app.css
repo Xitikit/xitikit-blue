@@ -1,0 +1,83 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover{
+    color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus{
+    color: #333;
+    text-shadow: none; /* Prevent inheritance from `body` */
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body{
+    height: 100%;
+    background-color: #333;
+}
+
+body{
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+input[type = 'text']{
+    background-color: #666;
+    width: 15%;
+}
+
+.well{
+    background-color: #444;
+}
+
+.search-area{
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.right-button{
+    margin-left: 20px;
+}
+
+.search-result-row{
+    text-align: left;
+    cursor: pointer;
+}
+
+tr.search-result-row td, th, label, input, a, .btn{
+    font-size: large;
+}
+
+label{
+    padding-right: 2px;
+    padding-left: 8px;
+}
+
+.search-result-row:hover{
+    background-color: #444;
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper{
+    display: table;
+    width: 100%;
+    height: 100%; /* For at least Firefox */
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+}

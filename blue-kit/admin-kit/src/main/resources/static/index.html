@@ -1,0 +1,112 @@
+<!DOCTYPE html><!--suppress HtmlUnknownTarget -->
+<html lang="en" ng-app="testToolApp">
+<head>
+  <title>Vlue Admin Tool</title>
+  <link href="/admin-kit/webjars/bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/admin-kit/css/app.css" rel="stylesheet"/>
+  <script src="/admin-kit/webjars/angularjs/1.6.6/angular.js" type="text/javascript"></script>
+</head>
+<body>
+<div ng-controller="TestingController" class="site-wrapper" ng-cloak>
+
+  <span us-spinner="{radius:32, width:10, length: 32, color:'#fff'}" spinner-key="loading-spinner"></span>
+  <h1>Blue Admin Tool</h1>
+
+  <form ng-submit="onClientLookup()">
+    <label for="emailAddress">Email Address:</label>
+    <input id="emailAddress" type="text" ng-model="emailAddress">
+    <a href="#" class="btn btn-default right-button" ng-click="onClientLookup()">Lookup</a>
+  </form>
+
+  <br>
+  <p>
+    <span style="font-size: large;" ng-show="currentUserName != ''">Current User: {{currentUserName}}, Current Azure ID: {{currentWebAccountId}}, </span>
+    <span style="color: rgb(129,193,96);font-size: large;">{{goodMessage}}</span>
+    <span style="color: rgb(188,63,60);font-size: large;">{{badMessage}}</span>
+  </p>
+
+  <div ng-show="foundWebAccount">
+
+    <p>
+      <a href="#" class="btn btn-default" ng-click="onClientDelete()">Delete</a>
+      <a href="#" class="btn btn-default right-button" ng-click="onClientDisconnect()">Disconnect</a>
+    </p>
+
+    <br>
+    <br>
+
+    <div class="search-area">
+      <div class="well">
+        <form id="searchSubmissionForm" ng-submit="onSearch()">
+          <label for="firstName">First Name:</label>
+          <input id="firstName" type="text" ng-model="searchInput.firstName">
+          <label for="lastName">Last Name:</label>
+          <input id="lastName" type="text" ng-model="searchInput.lastName">
+          <a href="#" class="btn btn-default right-button" ng-click="onSearch()">Search</a>
+          <input type="submit"
+                 style="position: absolute; left: -9999px; width: 1px; height: 1px"
+                 tabindex="-1">
+        </form>
+      </div>
+
+      <div ng-show="searchResults.length > 0">
+        <table class="table">
+          <thead>
+          <tr>
+            <th></th>
+            <th ng-click="orderByField = 'firstName'; reverseSort = !reverseSort">
+              First Name <span ng-show="orderByField == 'firstName'"><span ng-show="!reverseSort">^</span><span
+              ng-show="reverseSort">v</span></span>
+            </th>
+            <th ng-click="orderByField = 'lastName'; reverseSort = !reverseSort">
+              Last Name
+              <span ng-show="orderByField == 'lastName'"><span ng-show="!reverseSort">^</span><span
+                ng-show="reverseSort">v</span></span>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="search-result-row"
+              ng-repeat="searchResult in searchResults|orderBy:orderByField:reverseSort"
+              ng-click="onSearchRowSelect(searchResult)">
+            <td><!--suppress HtmlFormInputWithoutLabel -->
+              <input type="radio" ng-checked="searchResult.checked" name="search-person"></td>
+            <td>{{searchResult.firstName}}</td>
+            <td>{{searchResult.lastName}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div style="position: fixed; bottom: 10px; margin:0 auto;">
+          <p style="margin:0 auto;">
+            <a ng-show="selectedSearchResult" href="#" class="btn btn-default" ng-click="onReassign()">
+              Reassign to Current User
+            </a>
+            <a ng-show="!selectedSearchResult"
+               href="#"
+               class="btn btn-default disabled"
+               ng-click="onReassign()">
+              Reassign to Current User
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="/admin-kit/webjars/angularjs/1.6.6/angular-cookies.js" type="text/javascript"></script>
+<script src="/admin-kit/webjars/angularjs/1.6.6/angular-route.js" type="text/javascript"></script>
+<script src="/admin-kit/webjars/ngstorage/0.3.11/ngStorage.js" type="text/javascript"></script>
+<script src="/admin-kit/webjars/angular-ui-bootstrap/1.3.3/ui-bootstrap.js" type="text/javascript"></script>
+<script src="/admin-kit/webjars/spin.js/2.3.2/spin.js" type="text/javascript"></script>
+<script src="/admin-kit/webjars/angular-spinner/0.8.1/angular-spinner.js" type="text/javascript"></script>
+<script src="/admin-kit/js/app.js" type="text/javascript"></script>
+<script src="/admin-kit/js/controller.js" type="text/javascript"></script>
+<script src="/admin-kit/js/service.js" type="text/javascript"></script>
+<script src="/admin-kit/js/config.js" type="text/javascript"></script>
+<script>
+    document.getElementById("emailAddress").focus();
+</script>
+</body>
+</html>

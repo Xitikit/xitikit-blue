@@ -19,6 +19,7 @@
     <module>ad-kit</module>
     <module>b2b-kit</module>
     <module>b2c-kit</module>
+    <module>admin-kit</module>
   </modules>
 
 </project>
