@@ -3,7 +3,7 @@ package test.xitikit.blue.nommoc.errors;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
-import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
+import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
 
 /**
  * Copyright ${year}

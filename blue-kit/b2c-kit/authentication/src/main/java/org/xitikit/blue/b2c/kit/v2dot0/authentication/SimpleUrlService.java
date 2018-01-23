@@ -8,7 +8,7 @@ import org.xitikit.blue.b2c.kit.v2dot0.policy.SignOutPolicy;
 import org.xitikit.blue.boot.b2c.SimplePolicyConfiguration;
 import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.NonceService;
 import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.UrlService;
-import org.xitikit.blue.nommoc.errors.exceptions.InternalServerErrorException;
+import org.xitikit.blue.nommoc.errors.http.exceptions.InternalServerErrorException;
 
 import javax.annotation.Nonnull;
 import java.io.UnsupportedEncodingException;

@@ -1,0 +1,13 @@
+azure:
+    graphApi:
+        tenantId: 11111111-1111-1111-1111-111111111111
+        clientId: 11111111-1111-1111-1111-111111111111
+        clientSecret: 11111111111111111111111111111111111111111111
+        baseUrl: https://graph.windows.net/
+        apiVersion: 1.6
+        # timeout in milliseconds
+        timeout: 30000
+    user:
+        attribute:
+            customAttributeTwoName: extension_11111111111111111111111111111111_CustomAttributeTwo
+            customAttributeOnePropertyName: extension_11111111111111111111111111111111_customAttributeOne

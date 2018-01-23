@@ -38,10 +38,10 @@
     <div class="search-area">
       <div class="well">
         <form id="searchSubmissionForm" ng-submit="onSearch()">
-          <label for="firstName">First Name:</label>
-          <input id="firstName" type="text" ng-model="searchInput.firstName">
-          <label for="lastName">Last Name:</label>
-          <input id="lastName" type="text" ng-model="searchInput.lastName">
+          <label for="givenName">First Name:</label>
+          <input id="givenName" type="text" ng-model="searchInput.givenName">
+          <label for="surname">Last Name:</label>
+          <input id="surname" type="text" ng-model="searchInput.surname">
           <a href="#" class="btn btn-default right-button" ng-click="onSearch()">Search</a>
           <input type="submit"
                  style="position: absolute; left: -9999px; width: 1px; height: 1px"
@@ -54,13 +54,13 @@
           <thead>
           <tr>
             <th></th>
-            <th ng-click="orderByField = 'firstName'; reverseSort = !reverseSort">
-              First Name <span ng-show="orderByField == 'firstName'"><span ng-show="!reverseSort">^</span><span
+            <th ng-click="orderByField = 'givenName'; reverseSort = !reverseSort">
+              First Name <span ng-show="orderByField == 'givenName'"><span ng-show="!reverseSort">^</span><span
               ng-show="reverseSort">v</span></span>
             </th>
-            <th ng-click="orderByField = 'lastName'; reverseSort = !reverseSort">
+            <th ng-click="orderByField = 'surname'; reverseSort = !reverseSort">
               Last Name
-              <span ng-show="orderByField == 'lastName'"><span ng-show="!reverseSort">^</span><span
+              <span ng-show="orderByField == 'surname'"><span ng-show="!reverseSort">^</span><span
                 ng-show="reverseSort">v</span></span>
             </th>
           </tr>
@@ -71,8 +71,8 @@
               ng-click="onSearchRowSelect(searchResult)">
             <td><!--suppress HtmlFormInputWithoutLabel -->
               <input type="radio" ng-checked="searchResult.checked" name="search-person"></td>
-            <td>{{searchResult.firstName}}</td>
-            <td>{{searchResult.lastName}}</td>
+            <td>{{searchResult.givenName}}</td>
+            <td>{{searchResult.surname}}</td>
           </tr>
           </tbody>
         </table>

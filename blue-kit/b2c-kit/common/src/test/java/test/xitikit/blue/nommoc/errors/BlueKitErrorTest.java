@@ -2,16 +2,16 @@ package test.xitikit.blue.nommoc.errors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import org.xitikit.blue.nommoc.errors.BlueKitError;
-import org.xitikit.blue.nommoc.errors.BlueKitMethodException;
-import org.xitikit.blue.nommoc.errors.ErrorCode;
-import org.xitikit.blue.nommoc.errors.exceptions.*;
+import org.xitikit.blue.nommoc.errors.http.BlueKitError;
+import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
+import org.xitikit.blue.nommoc.errors.http.ErrorCode;
+import org.xitikit.blue.nommoc.errors.http.exceptions.*;
 
 import java.io.IOException;
 
 import static java.util.Arrays.*;
 import static junit.framework.TestCase.*;
-import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
+import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
 
 /**
  * Copyright ${year}
@@ -73,7 +73,7 @@ public class BlueKitErrorTest{
         validate(ErrorCode.FORBIDDEN, new ForbiddenException(ARGS));
     }
 
-    private static void validate(final ErrorCode status, final BlueKitMethodException e) throws IOException{
+    private static void validate(final ErrorCode status, final BlueKitHttpException e) throws IOException{
 
         BlueKitError error = new BlueKitError(e);
 

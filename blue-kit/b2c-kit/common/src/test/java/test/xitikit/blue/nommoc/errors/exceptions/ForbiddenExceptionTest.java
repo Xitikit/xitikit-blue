@@ -1,9 +1,9 @@
 package test.xitikit.blue.nommoc.errors.exceptions;
 
 import org.junit.Test;
-import org.xitikit.blue.nommoc.errors.BlueKitMethodException;
-import org.xitikit.blue.nommoc.errors.ErrorCode;
-import org.xitikit.blue.nommoc.errors.exceptions.ForbiddenException;
+import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
+import org.xitikit.blue.nommoc.errors.http.ErrorCode;
+import org.xitikit.blue.nommoc.errors.http.exceptions.ForbiddenException;
 
 import static junit.framework.TestCase.*;
 
@@ -48,7 +48,7 @@ public class ForbiddenExceptionTest{
     @Test
     public void addArgument() throws Exception{
 
-        BlueKitMethodException e = new ForbiddenException("test", "one", "two");
+        BlueKitHttpException e = new ForbiddenException("test", "one", "two");
         e.withArguments("test").withArguments("test2");
 
         boolean found = false;
@@ -70,7 +70,7 @@ public class ForbiddenExceptionTest{
     @Test
     public void addArguments() throws Exception{
 
-        BlueKitMethodException e = new ForbiddenException();
+        BlueKitHttpException e = new ForbiddenException();
         String[] arguments = new String[2];
         arguments[0] = "zero";
         arguments[1] = "one";

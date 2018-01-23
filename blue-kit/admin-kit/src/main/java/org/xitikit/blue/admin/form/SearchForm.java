@@ -2,29 +2,32 @@ package org.xitikit.blue.admin.form;
 
 import java.io.Serializable;
 
+/**
+ * Make sure that accessors do not modify data when setting or getting values.
+ */
 public class SearchForm implements Serializable{
 
-    private String firstName;
+    private String givenName;
 
-    private String lastName;
+    private String surname;
 
-    public String getFirstName(){
+    public String getGivenName(){
 
-        return firstName;
+        return givenName;
     }
 
-    public void setFirstName(final String firstName){
+    public void setGivenName(final String givenName){
 
-        this.firstName = firstName;
+        this.givenName = givenName;
     }
 
-    public String getLastName(){
+    public String getSurname(){
 
-        return lastName;
+        return surname;
     }
 
-    public void setLastName(final String lastName){
+    public void setSurname(final String surname){
 
-        this.lastName = lastName;
+        this.surname = surname;
     }
 }

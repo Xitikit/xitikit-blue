@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api")
-public class MainController implements IMainController{
+public class MainController{
 
     @Autowired
     @Qualifier("azureGraphApiClient")

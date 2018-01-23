@@ -1,11 +1,11 @@
 package test.xitikit.blue.nommoc.errors.exceptions;
 
 import org.junit.Test;
-import org.xitikit.blue.nommoc.errors.BlueKitMethodException;
-import org.xitikit.blue.nommoc.errors.exceptions.MethodNotAllowedException;
+import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
+import org.xitikit.blue.nommoc.errors.http.exceptions.MethodNotAllowedException;
 
 import static junit.framework.TestCase.*;
-import static org.xitikit.blue.nommoc.errors.ErrorCode.*;
+import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
 
 /**
  * Copyright Xitikit.org 2017
@@ -48,7 +48,7 @@ public class MethodNotAllowedExceptionTest{
     @Test
     public void addArgument() throws Exception{
 
-        BlueKitMethodException e = new MethodNotAllowedException("test", "one", "two");
+        BlueKitHttpException e = new MethodNotAllowedException("test", "one", "two");
         e.withArguments("test").withArguments("test2");
 
         boolean found = false;
@@ -70,7 +70,7 @@ public class MethodNotAllowedExceptionTest{
     @Test
     public void addArguments() throws Exception{
 
-        BlueKitMethodException e = new MethodNotAllowedException();
+        BlueKitHttpException e = new MethodNotAllowedException();
         String[] arguments = new String[2];
         arguments[0] = "a";
         arguments[1] = "b";
