@@ -16,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 public class UserProperties{
 
-    /**
-     * These are the custom attributes you have manually created inside of Azure B2CProperties
-     * for users of the target tenant.
-     */
-    private List<String> customAttributes;
+  /**
+   * These are the custom attributes you have manually created inside of Azure B2CProperties
+   * for users of the target tenant.
+   */
+  private List<String> customAttributes;
 }

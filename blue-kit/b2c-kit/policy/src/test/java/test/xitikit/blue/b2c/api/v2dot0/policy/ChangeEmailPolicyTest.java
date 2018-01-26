@@ -11,35 +11,35 @@ import static junit.framework.TestCase.*;
  */
 public class ChangeEmailPolicyTest{
 
-    private final ChangeEmailPolicy a = new ChangeEmailPolicy();
+  private final ChangeEmailPolicy a = new ChangeEmailPolicy();
 
-    private final PolicyForB2C b = a;
+  private final PolicyForB2C b = a;
 
-    @Test
-    public void Name(){
+  @Test
+  public void Name(){
 
-        b.setName("test");
-        assertEquals("", b.getName());
-    }
+    b.setName("test");
+    assertEquals("", b.getName());
+  }
 
-    @Test
-    public void RedirectUrl(){
+  @Test
+  public void RedirectUrl(){
 
-        b.setRedirectUrl("test");
-        assertEquals("", b.getRedirectUrl());
-    }
+    b.setRedirectUrl("test");
+    assertEquals("", b.getRedirectUrl());
+  }
 
-    @Test
-    public void TemplateUrl(){
+  @Test
+  public void TemplateUrl(){
 
-        b.setTemplateUrl("test");
-        assertEquals("", b.getTemplateUrl());
-    }
+    b.setTemplateUrl("test");
+    assertEquals("", b.getTemplateUrl());
+  }
 
-    @Test
-    public void Disabled(){
+  @Test
+  public void Disabled(){
 
-        b.setDisabled(false);
-        assertTrue(b.isDisabled());
-    }
+    b.setDisabled(false);
+    assertTrue(b.isDisabled());
+  }
 }

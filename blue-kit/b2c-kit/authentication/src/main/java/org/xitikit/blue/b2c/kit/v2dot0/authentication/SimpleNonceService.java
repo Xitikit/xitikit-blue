@@ -26,50 +26,50 @@ import javax.annotation.Nonnull;
 @Service
 public final class SimpleNonceService implements NonceService{
 
-    private final NonceStore nonceStore;
+  private final NonceStore nonceStore;
 
-    private final NonceProperties nonceProperties;
+  private final NonceProperties nonceProperties;
 
-    @Autowired
-    public SimpleNonceService(
-      @Nonnull final NonceStore nonceStore,
-      @Nonnull final NonceProperties nonceProperties){
+  @Autowired
+  public SimpleNonceService(
+    @Nonnull final NonceStore nonceStore,
+    @Nonnull final NonceProperties nonceProperties){
 
-        this.nonceStore = nonceStore;
-        this.nonceProperties = nonceProperties;
+    this.nonceStore = nonceStore;
+    this.nonceProperties = nonceProperties;
+  }
+
+  @Override
+  public Nonce generate(){
+
+    Nonce nonce = new Nonce();
+    nonceStore.put(nonce);
+
+    return nonce;
+  }
+
+  @Override
+  public boolean isValid(@Nonnull final String nonceValue){
+
+    Integer timeout = nonceProperties.getTimeout();
+    if(nonceProperties.isDisabled() || nonceProperties.getTimeout() == null || nonceProperties.getTimeout() < 1){
+      // Nonce services are considered to be disabled if the user explicitly disables them
+      // or they have not set a positive timeout value. If the nonce services are disabled,
+      // then we do not care what the value is; all values are considered valid.
+      return true;
     }
-
-    @Override
-    public Nonce generate(){
-
-        Nonce nonce = new Nonce();
-        nonceStore.put(nonce);
-
-        return nonce;
+    Nonce nonce = nonceStore.get(nonceValue);
+    if(nonce == null){
+      return false;
     }
+    long now = System.currentTimeMillis();
+    long diff = now - nonce.getSystemTimeAtCreation();
+    return diff > timeout * 1000;
+  }
 
-    @Override
-    public boolean isValid(@Nonnull final String nonceValue){
+  @Override
+  public boolean isDisabled(){
 
-        Integer timeout = nonceProperties.getTimeout();
-        if(nonceProperties.isDisabled() || nonceProperties.getTimeout() == null || nonceProperties.getTimeout() < 1){
-            // Nonce services are considered to be disabled if the user explicitly disables them
-            // or they have not set a positive timeout value. If the nonce services are disabled,
-            // then we do not care what the value is; all values are considered valid.
-            return true;
-        }
-        Nonce nonce = nonceStore.get(nonceValue);
-        if(nonce == null){
-            return false;
-        }
-        long now = System.currentTimeMillis();
-        long diff = now - nonce.getSystemTimeAtCreation();
-        return diff > timeout * 1000;
-    }
-
-    @Override
-    public boolean isDisabled(){
-
-        return nonceProperties.isDisabled();
-    }
+    return nonceProperties.isDisabled();
+  }
 }

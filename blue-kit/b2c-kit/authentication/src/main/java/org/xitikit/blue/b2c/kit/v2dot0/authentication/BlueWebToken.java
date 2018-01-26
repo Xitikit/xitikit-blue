@@ -43,390 +43,390 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BlueWebToken{
 
-    /**
-     * This is the version of the ID token, as defined by Azure AD.
-     */
-    @Nullable
-    @JsonProperty("ver")
-    private String version;
-
-    /**
-     * This claim identifies the security token service (STS) that constructs and returns the token. It also
-     * identifies the Azure AD directory in which the user was authenticated. Your app should validate the
-     * issuer claim to ensure that the token came from the v2.0 endpoint.
-     */
-    @Nullable
-    @JsonProperty("iss")
-    private String issuer;
-
-    /**
-     * This is the name of the policy that was used to acquire the ID token if acr is set.
-     */
-    @Nullable
-    @JsonProperty("acr")
-    private String authContextReference;
-
-    /**
-     * This is the name of the policy that was used to acquire the ID token if acr is set.
-     */
-    @Nullable
-    @JsonProperty("tfp")
-    private String trustedFrameworkPolicy;
-
-    /**
-     * This is a principal about which the token asserts information, such as the user of an app. This value
-     * is immutable and cannot be reassigned or reused. It can be used to perform authorization checks safely,
-     * such as when the token is used to access a resource. However, the subject claim is not yet implemented
-     * in the Azure AD B2CProperties preview. You should configure your policies to include the object ID oid claim and
-     * use its value to identify users, rather than use the subject claim for authorization.
-     */
-    @Nullable
-    @JsonProperty("sub")
-    private String subject;
-
-    /**
-     * An audience claim identifies the intended recipient of the token. For ID tokens, the audience is your
-     * app's Application ID, as assigned to your app in the app registration portal. Your app should validate
-     * this value and reject the token if it does not match.
-     */
-    @Nullable
-    @JsonProperty("aud")
-    private String audience;
-
-    /**
-     * A nonce is a strategy used to mitigate token replay attacks. Your app can specify a nonce in an
-     * authorization request by using the nonce query parameter. The value you provide in the request will be
-     * emitted unmodified in the nonce claim of the ID token. This allows your app to verify the value against
-     * the value it specified on the request, which associates the app's session with a given ID token. Your
-     * app should perform this validation during the ID token validation process.
-     */
-    @Nullable
-    @JsonProperty("nonce")
-    private String nonce;
-
-    /**
-     * The object ID.
-     */
-    @Nullable
-    @JsonProperty("oid")
-    private String objectId;
-
-    /**
-     * A code hash is included in an ID token only when the token is issued together with an OAuth
-     * 2.0 authorization code. A code hash can be used to validate the authenticity of an authorization
-     * code. See the OpenID Connect specification for more details on how to perform this validation.
-     */
-    @Nullable
-    @JsonProperty("c_hash")
-    private String codeHash;
-
-    /**
-     * An access token hash is included in an ID token only when the token is issued together with an
-     * OAuth 2.0 access token. An access token hash can be used to validate the authenticity of an access
-     * token. See the OpenID Connect specification for more details on how to perform this validation.
-     */
-    @Nullable
-    @JsonProperty("at_hash")
-    private String accessTokenHash;
-
-    /**
-     * The identity provider used to authenticate the user.
-     */
-    @Nullable
-    @JsonProperty("idp")
-    private String identityProvider;
-
-    /**
-     * The user's first name.
-     */
-    @Nullable
-    @JsonProperty("given_name")
-    private String firstName;
-
-    /**
-     * The user's last name.
-     */
-    @Nullable
-    @JsonProperty("family_name")
-    private String lastName;
-
-    /**
-     * The expiration time claim is the time at which the token becomes invalid, represented in epoch time.
-     * Your app should use this claim to verify the validity of the token lifetime.
-     */
-    @Nullable
-    @JsonProperty("exp")
-    @JsonDeserialize(using = UtcUnixDateDeserializer.class)
-    @JsonSerialize(using = UtcUnixDateSerializer.class)
-    private ZonedDateTime expiration;
-
-    /**
-     * This claim is the time at which the token becomes valid, represented in epoch time. This is usually
-     * the same as the time the token was issued. Your app should use this claim to verify the validity of
-     * the token lifetime.
-     */
-    @Nullable
-    @JsonProperty("nbf")
-    @JsonDeserialize(using = UtcUnixDateDeserializer.class)
-    @JsonSerialize(using = UtcUnixDateSerializer.class)
-    private ZonedDateTime notBefore;
-
-    /**
-     * This claim is the time at which the token was issued, represented in epoch time.
-     */
-    @Nullable
-    @JsonProperty("iat")
-    @JsonDeserialize(using = UtcUnixDateDeserializer.class)
-    @JsonSerialize(using = UtcUnixDateSerializer.class)
-    private ZonedDateTime issuedAt;
+  private final Map<String, Object> additionalProperties = new HashMap<>();
+
+  /**
+   * This is the version of the ID token, as defined by Azure AD.
+   */
+  @Nullable
+  @JsonProperty("ver")
+  private String version;
+
+  /**
+   * This claim identifies the security token service (STS) that constructs and returns the token. It also
+   * identifies the Azure AD directory in which the user was authenticated. Your app should validate the
+   * issuer claim to ensure that the token came from the v2.0 endpoint.
+   */
+  @Nullable
+  @JsonProperty("iss")
+  private String issuer;
+
+  /**
+   * This is the name of the policy that was used to acquire the ID token if acr is set.
+   */
+  @Nullable
+  @JsonProperty("acr")
+  private String authContextReference;
+
+  /**
+   * This is the name of the policy that was used to acquire the ID token if acr is set.
+   */
+  @Nullable
+  @JsonProperty("tfp")
+  private String trustedFrameworkPolicy;
+
+  /**
+   * This is a principal about which the token asserts information, such as the user of an app. This value
+   * is immutable and cannot be reassigned or reused. It can be used to perform authorization checks safely,
+   * such as when the token is used to access a resource. However, the subject claim is not yet implemented
+   * in the Azure AD B2CProperties preview. You should configure your policies to include the object ID oid claim and
+   * use its value to identify users, rather than use the subject claim for authorization.
+   */
+  @Nullable
+  @JsonProperty("sub")
+  private String subject;
+
+  /**
+   * An audience claim identifies the intended recipient of the token. For ID tokens, the audience is your
+   * app's Application ID, as assigned to your app in the app registration portal. Your app should validate
+   * this value and reject the token if it does not match.
+   */
+  @Nullable
+  @JsonProperty("aud")
+  private String audience;
+
+  /**
+   * A nonce is a strategy used to mitigate token replay attacks. Your app can specify a nonce in an
+   * authorization request by using the nonce query parameter. The value you provide in the request will be
+   * emitted unmodified in the nonce claim of the ID token. This allows your app to verify the value against
+   * the value it specified on the request, which associates the app's session with a given ID token. Your
+   * app should perform this validation during the ID token validation process.
+   */
+  @Nullable
+  @JsonProperty("nonce")
+  private String nonce;
+
+  /**
+   * The object ID.
+   */
+  @Nullable
+  @JsonProperty("oid")
+  private String objectId;
+
+  /**
+   * A code hash is included in an ID token only when the token is issued together with an OAuth
+   * 2.0 authorization code. A code hash can be used to validate the authenticity of an authorization
+   * code. See the OpenID Connect specification for more details on how to perform this validation.
+   */
+  @Nullable
+  @JsonProperty("c_hash")
+  private String codeHash;
+
+  /**
+   * An access token hash is included in an ID token only when the token is issued together with an
+   * OAuth 2.0 access token. An access token hash can be used to validate the authenticity of an access
+   * token. See the OpenID Connect specification for more details on how to perform this validation.
+   */
+  @Nullable
+  @JsonProperty("at_hash")
+  private String accessTokenHash;
+
+  /**
+   * The identity provider used to authenticate the user.
+   */
+  @Nullable
+  @JsonProperty("idp")
+  private String identityProvider;
+
+  /**
+   * The user's first name.
+   */
+  @Nullable
+  @JsonProperty("given_name")
+  private String firstName;
+
+  /**
+   * The user's last name.
+   */
+  @Nullable
+  @JsonProperty("family_name")
+  private String lastName;
+
+  /**
+   * The expiration time claim is the time at which the token becomes invalid, represented in epoch time.
+   * Your app should use this claim to verify the validity of the token lifetime.
+   */
+  @Nullable
+  @JsonProperty("exp")
+  @JsonDeserialize(using = UtcUnixDateDeserializer.class)
+  @JsonSerialize(using = UtcUnixDateSerializer.class)
+  private ZonedDateTime expiration;
+
+  /**
+   * This claim is the time at which the token becomes valid, represented in epoch time. This is usually
+   * the same as the time the token was issued. Your app should use this claim to verify the validity of
+   * the token lifetime.
+   */
+  @Nullable
+  @JsonProperty("nbf")
+  @JsonDeserialize(using = UtcUnixDateDeserializer.class)
+  @JsonSerialize(using = UtcUnixDateSerializer.class)
+  private ZonedDateTime notBefore;
+
+  /**
+   * This claim is the time at which the token was issued, represented in epoch time.
+   */
+  @Nullable
+  @JsonProperty("iat")
+  @JsonDeserialize(using = UtcUnixDateDeserializer.class)
+  @JsonSerialize(using = UtcUnixDateSerializer.class)
+  private ZonedDateTime issuedAt;
 
-    /**
-     * This claim is the time at which a user last entered credentials, represented in epoch time.
-     */
-    @Nullable
-    @JsonProperty("auth_time")
-    @JsonDeserialize(using = UtcUnixDateDeserializer.class)
-    @JsonSerialize(using = UtcUnixDateSerializer.class)
-    private ZonedDateTime authTime;
+  /**
+   * This claim is the time at which a user last entered credentials, represented in epoch time.
+   */
+  @Nullable
+  @JsonProperty("auth_time")
+  @JsonDeserialize(using = UtcUnixDateDeserializer.class)
+  @JsonSerialize(using = UtcUnixDateSerializer.class)
+  private ZonedDateTime authTime;
 
-    /**
-     * The user's email addresses.
-     */
-    private List<String> emails;
+  /**
+   * The user's email addresses.
+   */
+  private List<String> emails;
 
-    @JsonProperty("newUser")
-    private boolean newUser;
+  @JsonProperty("newUser")
+  private boolean newUser;
 
-    /**
-     * Returns the first email in the list of emails for the user if there is one.
-     *
-     * @return the first email listed or null
-     */
-    @Nullable
-    public String getFirstEmail(){
+  /**
+   * Returns the first email in the list of emails for the user if there is one.
+   *
+   * @return the first email listed or null
+   */
+  @Nullable
+  public String getFirstEmail(){
 
-        return emails != null && !emails.isEmpty() ? emails.get(0) : null;
-    }
+    return emails != null && !emails.isEmpty() ? emails.get(0) : null;
+  }
 
-    @Nullable
-    public ZonedDateTime getExpiration(){
+  @Nullable
+  public ZonedDateTime getExpiration(){
 
-        return expiration;
-    }
+    return expiration;
+  }
 
-    public void setExpiration(@Nullable final ZonedDateTime expiration){
+  public void setExpiration(@Nullable final ZonedDateTime expiration){
 
-        this.expiration = expiration;
-    }
+    this.expiration = expiration;
+  }
 
-    @Nullable
-    public ZonedDateTime getNotBefore(){
+  @Nullable
+  public ZonedDateTime getNotBefore(){
 
-        return notBefore;
-    }
+    return notBefore;
+  }
 
-    public void setNotBefore(@Nullable final ZonedDateTime notBefore){
+  public void setNotBefore(@Nullable final ZonedDateTime notBefore){
 
-        this.notBefore = notBefore;
-    }
+    this.notBefore = notBefore;
+  }
 
-    @Nullable
-    public String getVersion(){
+  @Nullable
+  public String getVersion(){
 
-        return version;
-    }
+    return version;
+  }
 
-    public void setVersion(@Nullable final String version){
+  public void setVersion(@Nullable final String version){
 
-        this.version = version;
-    }
+    this.version = version;
+  }
 
-    @Nullable
-    public String getIssuer(){
+  @Nullable
+  public String getIssuer(){
 
-        return issuer;
-    }
+    return issuer;
+  }
 
-    public void setIssuer(@Nullable final String issuer){
+  public void setIssuer(@Nullable final String issuer){
 
-        this.issuer = issuer;
-    }
+    this.issuer = issuer;
+  }
 
-    @Nullable
-    public String getAuthContextReference(){
+  @Nullable
+  public String getAuthContextReference(){
 
-        return authContextReference;
-    }
+    return authContextReference;
+  }
 
-    public void setAuthContextReference(@Nullable final String authContextReference){
+  public void setAuthContextReference(@Nullable final String authContextReference){
 
-        this.authContextReference = authContextReference;
-    }
+    this.authContextReference = authContextReference;
+  }
 
-    @Nullable
-    public String getSubject(){
+  @Nullable
+  public String getSubject(){
 
-        return subject;
-    }
+    return subject;
+  }
 
-    public void setSubject(@Nullable final String subject){
+  public void setSubject(@Nullable final String subject){
 
-        this.subject = subject;
-    }
+    this.subject = subject;
+  }
 
-    @Nullable
-    public String getAudience(){
+  @Nullable
+  public String getAudience(){
 
-        return audience;
-    }
+    return audience;
+  }
 
-    public void setAudience(@Nullable final String audience){
+  public void setAudience(@Nullable final String audience){
 
-        this.audience = audience;
-    }
+    this.audience = audience;
+  }
 
-    @Nullable
-    public String getNonce(){
+  @Nullable
+  public String getNonce(){
 
-        return nonce;
-    }
+    return nonce;
+  }
 
-    public void setNonce(@Nullable final String nonce){
+  public void setNonce(@Nullable final String nonce){
 
-        this.nonce = nonce;
-    }
+    this.nonce = nonce;
+  }
 
-    @Nullable
-    public ZonedDateTime getIssuedAt(){
+  @Nullable
+  public ZonedDateTime getIssuedAt(){
 
-        return issuedAt;
-    }
+    return issuedAt;
+  }
 
-    public void setIssuedAt(@Nullable final ZonedDateTime issuedAt){
+  public void setIssuedAt(@Nullable final ZonedDateTime issuedAt){
 
-        this.issuedAt = issuedAt;
-    }
+    this.issuedAt = issuedAt;
+  }
 
-    @Nullable
-    public ZonedDateTime getAuthTime(){
+  @Nullable
+  public ZonedDateTime getAuthTime(){
 
-        return authTime;
-    }
+    return authTime;
+  }
 
-    public void setAuthTime(@Nullable final ZonedDateTime authTime){
+  public void setAuthTime(@Nullable final ZonedDateTime authTime){
 
-        this.authTime = authTime;
-    }
+    this.authTime = authTime;
+  }
 
-    @Nullable
-    public String getObjectId(){
+  @Nullable
+  public String getObjectId(){
 
-        return objectId;
-    }
+    return objectId;
+  }
 
-    public void setObjectId(@Nullable final String objectId){
+  public void setObjectId(@Nullable final String objectId){
 
-        this.objectId = objectId;
-    }
+    this.objectId = objectId;
+  }
 
-    @Nullable
-    public String getCodeHash(){
+  @Nullable
+  public String getCodeHash(){
 
-        return codeHash;
-    }
+    return codeHash;
+  }
 
-    public void setCodeHash(@Nullable final String codeHash){
+  public void setCodeHash(@Nullable final String codeHash){
 
-        this.codeHash = codeHash;
-    }
+    this.codeHash = codeHash;
+  }
 
-    @Nullable
-    public String getAccessTokenHash(){
+  @Nullable
+  public String getAccessTokenHash(){
 
-        return accessTokenHash;
-    }
+    return accessTokenHash;
+  }
 
-    public void setAccessTokenHash(@Nullable final String accessTokenHash){
+  public void setAccessTokenHash(@Nullable final String accessTokenHash){
 
-        this.accessTokenHash = accessTokenHash;
-    }
+    this.accessTokenHash = accessTokenHash;
+  }
 
-    @Nullable
-    public String getIdentityProvider(){
+  @Nullable
+  public String getIdentityProvider(){
 
-        return identityProvider;
-    }
+    return identityProvider;
+  }
 
-    public void setIdentityProvider(@Nullable final String identityProvider){
+  public void setIdentityProvider(@Nullable final String identityProvider){
 
-        this.identityProvider = identityProvider;
-    }
+    this.identityProvider = identityProvider;
+  }
 
-    @Nullable
-    public String getFirstName(){
+  @Nullable
+  public String getFirstName(){
 
-        return firstName;
-    }
+    return firstName;
+  }
 
-    public void setFirstName(@Nullable final String firstName){
+  public void setFirstName(@Nullable final String firstName){
 
-        this.firstName = firstName;
-    }
+    this.firstName = firstName;
+  }
 
-    @Nullable
-    public String getLastName(){
+  @Nullable
+  public String getLastName(){
 
-        return lastName;
-    }
+    return lastName;
+  }
 
-    public void setLastName(@Nullable final String lastName){
+  public void setLastName(@Nullable final String lastName){
 
-        this.lastName = lastName;
-    }
+    this.lastName = lastName;
+  }
 
-    @Nullable
-    public List<String> getEmails(){
+  @Nullable
+  public List<String> getEmails(){
 
-        return emails;
-    }
+    return emails;
+  }
 
-    public void setEmails(@Nullable final List<String> emails){
+  public void setEmails(@Nullable final List<String> emails){
 
-        this.emails = emails;
-    }
+    this.emails = emails;
+  }
 
-    public boolean isNewUser(){
+  public boolean isNewUser(){
 
-        return newUser;
-    }
+    return newUser;
+  }
 
-    public void setNewUser(final boolean newUser){
+  public void setNewUser(final boolean newUser){
 
-        this.newUser = newUser;
-    }
+    this.newUser = newUser;
+  }
 
-    @Nullable
-    public String getTrustedFrameworkPolicy(){
+  @Nullable
+  public String getTrustedFrameworkPolicy(){
 
-        return trustedFrameworkPolicy;
-    }
+    return trustedFrameworkPolicy;
+  }
 
-    public void setTrustedFrameworkPolicy(@Nullable final String trustedFrameworkPolicy){
+  public void setTrustedFrameworkPolicy(@Nullable final String trustedFrameworkPolicy){
 
-        this.trustedFrameworkPolicy = trustedFrameworkPolicy;
-    }
+    this.trustedFrameworkPolicy = trustedFrameworkPolicy;
+  }
 
-    private final Map<String, Object> additionalProperties = new HashMap<>();
+  @JsonAnyGetter
+  public Object get(final String key){
 
-    @JsonAnyGetter
-    public Object get(final String key){
+    return additionalProperties.get(key);
+  }
 
-        return additionalProperties.get(key);
-    }
+  @JsonAnySetter
+  public void set(final String key, final Object value){
 
-    @JsonAnySetter
-    public void set(final String key, final Object value){
-
-        additionalProperties.put(key, value);
-    }
+    additionalProperties.put(key, value);
+  }
 }

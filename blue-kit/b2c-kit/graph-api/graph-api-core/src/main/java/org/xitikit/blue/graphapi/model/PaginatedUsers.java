@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * @author J. Keith Hoopes
- * Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @Data
 @NoArgsConstructor
@@ -20,54 +20,54 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaginatedUsers{
 
-    private List<GraphApiUser> users = new ArrayList<>();
+  private List<GraphApiUser> users = new ArrayList<>();
 
-    @JsonProperty("odata.nextLink")
-    private String nextLink;
+  @JsonProperty("odata.nextLink")
+  private String nextLink;
 
-    @JsonProperty("odata.metadata")
-    private String metaData;
+  @JsonProperty("odata.metadata")
+  private String metaData;
 
-    @JsonIgnore
-    private Map<String,Object> additionalProperties = new HashMap<>();
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    // CONSTRUCTORS
+  // CONSTRUCTORS
 
-    public PaginatedUsers(){
+  public PaginatedUsers(){
 
+  }
+
+  public PaginatedUsers(final List<GraphApiUser> users, final String nextLink, final String metaData){
+
+    this.users = users;
+    this.nextLink = nextLink;
+    this.metaData = metaData;
+  }
+
+  // GETTERS AND SETTERS
+
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties(){
+
+    return this.additionalProperties;
+  }
+
+  @JsonAnySetter
+  public void setAdditionalProperty(final String name, final Object value){
+
+    this.additionalProperties.put(name, value);
+  }
+
+  @JsonIgnore
+  public String getNextLinkToken(){
+
+    if(nextLink != null && !"".equals(nextLink.trim())){
+      int index = nextLink.indexOf("$skiptoken=");
+      if(index != -1){
+        return nextLink.substring(index + "$skiptoken=".length());
+      }
+      return null;
     }
-
-    public PaginatedUsers(final List<GraphApiUser> users, final String nextLink, final String metaData){
-
-        this.users = users;
-        this.nextLink = nextLink;
-        this.metaData = metaData;
-    }
-
-    // GETTERS AND SETTERS
-
-    @JsonAnyGetter
-    public Map<String,Object> getAdditionalProperties(){
-
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(final String name, final Object value){
-
-        this.additionalProperties.put(name, value);
-    }
-
-    @JsonIgnore
-    public String getNextLinkToken(){
-
-        if(nextLink != null && !"".equals(nextLink.trim())){
-            int index = nextLink.indexOf("$skiptoken=");
-            if(index != -1){
-                return nextLink.substring(index + "$skiptoken=".length());
-            }
-            return null;
-        }
-        return null;
-    }
+    return null;
+  }
 }

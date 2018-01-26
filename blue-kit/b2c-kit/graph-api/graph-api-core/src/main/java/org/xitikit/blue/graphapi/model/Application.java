@@ -10,75 +10,75 @@ import java.util.Map;
 
 /**
  * @author J. Keith Hoopes
- * Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Application{
 
-    private String displayName;
+  private String displayName;
 
-    private String aapId;
+  private String aapId;
 
-    private String objectId;
+  private String objectId;
 
-    private String objectType;
+  private String objectType;
 
-    @JsonIgnore
-    private Map<String,Object> additionalProperties = new HashMap<>();
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    // CONSTRUCTORS
+  // CONSTRUCTORS
 
-    // GETTERS AND SETTERS
+  // GETTERS AND SETTERS
 
-    public String getDisplayName(){
+  public String getDisplayName(){
 
-        return displayName;
-    }
+    return displayName;
+  }
 
-    public void setDisplayName(final String displayName){
+  public void setDisplayName(final String displayName){
 
-        this.displayName = displayName;
-    }
+    this.displayName = displayName;
+  }
 
-    public String getAapId(){
+  public String getAapId(){
 
-        return aapId;
-    }
+    return aapId;
+  }
 
-    public void setAapId(final String aapId){
+  public void setAapId(final String aapId){
 
-        this.aapId = aapId;
-    }
+    this.aapId = aapId;
+  }
 
-    public String getObjectId(){
+  public String getObjectId(){
 
-        return objectId;
-    }
+    return objectId;
+  }
 
-    public void setObjectId(final String objectId){
+  public void setObjectId(final String objectId){
 
-        this.objectId = objectId;
-    }
+    this.objectId = objectId;
+  }
 
-    public String getObjectType(){
+  public String getObjectType(){
 
-        return objectType;
-    }
+    return objectType;
+  }
 
-    public void setObjectType(final String objectType){
+  public void setObjectType(final String objectType){
 
-        this.objectType = objectType;
-    }
+    this.objectType = objectType;
+  }
 
-    @JsonAnyGetter
-    public Map<String,Object> getAdditionalProperties(){
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties(){
 
-        return this.additionalProperties;
-    }
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(final String name, final Object value){
+  @JsonAnySetter
+  public void setAdditionalProperty(final String name, final Object value){
 
-        this.additionalProperties.put(name, value);
-    }
+    this.additionalProperties.put(name, value);
+  }
 }

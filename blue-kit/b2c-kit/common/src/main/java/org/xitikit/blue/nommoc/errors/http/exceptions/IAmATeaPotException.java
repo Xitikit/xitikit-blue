@@ -8,20 +8,20 @@ import org.xitikit.blue.nommoc.errors.http.ErrorCode;
  */
 public class IAmATeaPotException extends BlueKitHttpException{
 
-    private static final ErrorCode ERROR_CODE = ErrorCode.UNAUTHORIZED;
+  private static final ErrorCode ERROR_CODE = ErrorCode.UNAUTHORIZED;
 
-    public IAmATeaPotException(){
+  public IAmATeaPotException(){
 
-        super(ERROR_CODE);
-    }
+    super(ERROR_CODE);
+  }
 
-    public IAmATeaPotException(final String... args){
+  public IAmATeaPotException(final String... args){
 
-        super(ERROR_CODE, args);
-    }
+    super(ERROR_CODE, args);
+  }
 
-    public IAmATeaPotException(final Throwable t){
+  public IAmATeaPotException(final Throwable t){
 
-        super(ERROR_CODE, t);
-    }
+    super(ERROR_CODE, t);
+  }
 }

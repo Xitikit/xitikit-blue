@@ -8,20 +8,20 @@ import org.xitikit.blue.nommoc.errors.http.ErrorCode;
  */
 public class BadRequestException extends BlueKitHttpException{
 
-    private static final ErrorCode ERROR_CODE = ErrorCode.BAD_REQUEST;
+  private static final ErrorCode ERROR_CODE = ErrorCode.BAD_REQUEST;
 
-    public BadRequestException(){
+  public BadRequestException(){
 
-        super(ERROR_CODE);
-    }
+    super(ERROR_CODE);
+  }
 
-    public BadRequestException(final String... arguments){
+  public BadRequestException(final String... arguments){
 
-        super(ERROR_CODE, arguments);
-    }
+    super(ERROR_CODE, arguments);
+  }
 
-    public BadRequestException(final Throwable t){
+  public BadRequestException(final Throwable t){
 
-        super(ERROR_CODE, t);
-    }
+    super(ERROR_CODE, t);
+  }
 }

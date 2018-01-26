@@ -11,40 +11,40 @@ import static junit.framework.TestCase.*;
  */
 public class SignOutPolicyTest{
 
-    private final SignOutPolicy b = new SignOutPolicy();
+  private final SignOutPolicy b = new SignOutPolicy();
 
-    @Test
-    public void Inheritance(){
-        //Make sure it aways implements
-        //noinspection ConstantConditions
-        assertTrue(b instanceof PolicyForB2C);
-    }
+  @Test
+  public void Inheritance(){
+    //Make sure it aways implements
+    //noinspection ConstantConditions
+    assertTrue(b instanceof PolicyForB2C);
+  }
 
-    @Test
-    public void Name(){
+  @Test
+  public void Name(){
 
-        b.setName("test");
-        assertEquals("test", b.getName());
-    }
+    b.setName("test");
+    assertEquals("test", b.getName());
+  }
 
-    @Test
-    public void RedirectUrl(){
+  @Test
+  public void RedirectUrl(){
 
-        b.setRedirectUrl("test");
-        assertEquals("test", b.getRedirectUrl());
-    }
+    b.setRedirectUrl("test");
+    assertEquals("test", b.getRedirectUrl());
+  }
 
-    @Test
-    public void TemplateUrl(){
+  @Test
+  public void TemplateUrl(){
 
-        b.setTemplateUrl("test");
-        assertEquals("SignOut should never have a template","", b.getTemplateUrl());
-    }
+    b.setTemplateUrl("test");
+    assertEquals("SignOut should never have a template", "", b.getTemplateUrl());
+  }
 
-    @Test
-    public void Disabled(){
+  @Test
+  public void Disabled(){
 
-        b.setDisabled(false);
-        assertFalse(b.isDisabled());
-    }
+    b.setDisabled(false);
+    assertFalse(b.isDisabled());
+  }
 }

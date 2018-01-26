@@ -13,18 +13,18 @@ import java.util.UUID;
  */
 public final class Nonce{
 
-    private final long systemTimeAtCreation = System.currentTimeMillis();
+  private final long systemTimeAtCreation = System.currentTimeMillis();
 
-    private final String value = UUID.randomUUID().toString();
+  private final String value = UUID.randomUUID().toString();
 
-    @Nonnull
-    public String getValue(){
+  @Nonnull
+  public String getValue(){
 
-        return value;
-    }
+    return value;
+  }
 
-    public long getSystemTimeAtCreation(){
+  public long getSystemTimeAtCreation(){
 
-        return systemTimeAtCreation;
-    }
+    return systemTimeAtCreation;
+  }
 }

@@ -10,20 +10,20 @@ import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
  */
 public class UnauthorizedException extends BlueKitHttpException{
 
-    private static final ErrorCode ERROR_CODE = UNAUTHORIZED;
+  private static final ErrorCode ERROR_CODE = UNAUTHORIZED;
 
-    public UnauthorizedException(){
+  public UnauthorizedException(){
 
-        super(ERROR_CODE);
-    }
+    super(ERROR_CODE);
+  }
 
-    public UnauthorizedException(final String... args){
+  public UnauthorizedException(final String... args){
 
-        super(ERROR_CODE, args);
-    }
+    super(ERROR_CODE, args);
+  }
 
-    public UnauthorizedException(final Throwable t){
+  public UnauthorizedException(final Throwable t){
 
-        super(ERROR_CODE, t);
-    }
+    super(ERROR_CODE, t);
+  }
 }

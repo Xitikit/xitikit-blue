@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="log.folder" value="./target/logs"/>
-    <if condition='isDefined("catalina.home")'>
-        <then>
-            <property name="log.folder" value="${catalina.home}/logs"/>
-        </then>
-    </if>
-    <!--CONSOLE LOGGER-->
-    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-        <Target>System.out</Target>
-        <encoder>
-            <pattern>%date %thread %level : %logger : %contextName - %message%n</pattern>
-        </encoder>
-    </appender>
-    <!--STANDARD LOGGER (everything but downloads)-->
-    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
-        <File>${log.folder}/admin-kit.log</File>
-        <encoder>
-            <pattern>%date %thread %level : %logger : %contextName - %message%n</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${log.folder}/admin-kit.log.%d.%i</fileNamePattern>
-            <maxHistory>100</maxHistory>
-            <totalSizeCap>5GB</totalSizeCap>
-            <MaxFileSize>50MB</MaxFileSize>
-        </rollingPolicy>
-    </appender>
-    <root level="INFO">
-        <appender-ref ref="stdout"/>
-        <appender-ref ref="file"/>
-    </root>
+  <property name="log.folder" value="./target/logs"/>
+  <if condition='isDefined("catalina.home")'>
+    <then>
+      <property name="log.folder" value="${catalina.home}/logs"/>
+    </then>
+  </if>
+  <!--CONSOLE LOGGER-->
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <Target>System.out</Target>
+    <encoder>
+      <pattern>%date %thread %level : %logger : %contextName - %message%n</pattern>
+    </encoder>
+  </appender>
+  <!--STANDARD LOGGER (everything but downloads)-->
+  <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <File>${log.folder}/admin-kit.log</File>
+    <encoder>
+      <pattern>%date %thread %level : %logger : %contextName - %message%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${log.folder}/admin-kit.log.%d.%i</fileNamePattern>
+      <maxHistory>100</maxHistory>
+      <totalSizeCap>5GB</totalSizeCap>
+      <MaxFileSize>50MB</MaxFileSize>
+    </rollingPolicy>
+  </appender>
+  <root level="INFO">
+    <appender-ref ref="stdout"/>
+    <appender-ref ref="file"/>
+  </root>
 </configuration>

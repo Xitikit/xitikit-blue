@@ -30,151 +30,151 @@ import static org.xitikit.blue.b2c.kit.v2dot0.authentication.VerificationUtil.*;
 @Slf4j
 public final class SimpleB2CAuthenticationService implements B2CAuthenticationService{
 
-    private final ClaimValidationService claimValidationService;
+  private final ClaimValidationService claimValidationService;
 
-    private final NonceService nonceService;
+  private final NonceService nonceService;
 
-    private final UrlService urlService;
+  private final UrlService urlService;
 
-    private final RestTemplate restTemplate;
+  private final RestTemplate restTemplate;
 
-    public SimpleB2CAuthenticationService(
-      final ClaimValidationService claimValidationService,
-      final NonceService nonceService,
-      final UrlService urlService,
-      final RestTemplate restTemplate){
+  public SimpleB2CAuthenticationService(
+    final ClaimValidationService claimValidationService,
+    final NonceService nonceService,
+    final UrlService urlService,
+    final RestTemplate restTemplate){
 
-        Assert.notNull(
-          claimValidationService,
-          "Missing required parameter 'claimValidationService' " +
-            "(org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
-        Assert.notNull(nonceService, "Missing required parameter 'nonceService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
-        Assert.notNull(urlService, "Missing required parameter 'blueUrlService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
-        Assert.notNull(restTemplate, "Missing required parameter 'restTemplate' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
+    Assert.notNull(
+      claimValidationService,
+      "Missing required parameter 'claimValidationService' " +
+        "(org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
+    Assert.notNull(nonceService, "Missing required parameter 'nonceService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
+    Assert.notNull(urlService, "Missing required parameter 'blueUrlService' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
+    Assert.notNull(restTemplate, "Missing required parameter 'restTemplate' (org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService::new)");
 
-        this.claimValidationService = claimValidationService;
-        this.nonceService = nonceService;
-        this.urlService = urlService;
-        this.restTemplate = restTemplate;
+    this.claimValidationService = claimValidationService;
+    this.nonceService = nonceService;
+    this.urlService = urlService;
+    this.restTemplate = restTemplate;
+  }
+
+  @Nullable
+  @Override
+  public BlueWebToken decodeAndVerify(@Nonnull final String idToken){
+
+    final long now = System.currentTimeMillis();
+    if(log.isTraceEnabled()){
+      log.trace("Decoding token [" + idToken + "]");
     }
+    try{
 
-    @Nullable
-    @Override
-    public BlueWebToken decodeAndVerify(@Nonnull final String idToken){
-
-        final long now = System.currentTimeMillis();
-        if(log.isTraceEnabled()){
-            log.trace("Decoding token [" + idToken + "]");
-        }
-        try{
-
-            Jwt jwt = JwtHelper.decode(idToken);
-            // Get the key ID we need to use to verify the token
-            String keyId = getKeyId(idToken);
-            if("".equals(keyId.trim())){
-                log.warn("Failed to retrieve key ID for token");
-                return null;
-            }
-            BlueWebToken token = typeSecuredObjectMapper().readValue(
-              jwt.getClaims(),
-              BlueWebToken.class);
-            // Get the key and verify the JWT signature
-            RSAPublicKey key = rsaPublicKey(keyId, token.getAuthContextReference());
-            jwt.verifySignature(new RsaVerifier(key));
-
-            // Validate the nonce
-
-            if(!nonceService.isValid(token.getNonce())){
-                log.warn("Failed to validate nonce in token. This could be a replay attack.");
-                return null;
-            }
-            if(!claimValidationService.validateAudience(token)){
-                log.warn("Failed to validate audience in token. This could be a replay attack.");
-                return null;
-            }
-            if(!claimValidationService.validateIssuer(token)){
-                log.warn("Failed to validate issuer of token. This could be a replay attack.");
-                return null;
-            }
-            if(!claimValidationService.validateNotBefore(token, now)){
-                log.warn("Failed to validate notBefore time in token. This could be a replay attack. 'Now' milliseconds: " + now + "; 'NotBefore' milliseconds: " + token
-                  .getNotBefore()
-                  .toInstant()
-                  .toEpochMilli());
-                return null;
-            }
-            if(!claimValidationService.validateExpiration(token, now)){
-                log.warn("Failed to validate expiration time in token. This could be a replay attack. 'Now' milliseconds: " + now + "; 'Expiration' milliseconds: " + token
-                  .getExpiration()
-                  .toInstant()
-                  .toEpochMilli());
-                return null;
-            }
-
-            return token;
-
-        }catch(IOException | IllegalArgumentException | InvalidSignatureException x){
-            log.warn("Failed to extract data from JWT token: " + x.getMessage(), x);
-        }
+      Jwt jwt = JwtHelper.decode(idToken);
+      // Get the key ID we need to use to verify the token
+      String keyId = getKeyId(idToken);
+      if("".equals(keyId.trim())){
+        log.warn("Failed to retrieve key ID for token");
         return null;
-    }
+      }
+      BlueWebToken token = typeSecuredObjectMapper().readValue(
+        jwt.getClaims(),
+        BlueWebToken.class);
+      // Get the key and verify the JWT signature
+      RSAPublicKey key = rsaPublicKey(keyId, token.getAuthContextReference());
+      jwt.verifySignature(new RsaVerifier(key));
 
-    /**
-     * Attempts to get an RSAPublicKey for the given policy.
-     *
-     * @param keyId the key ID to fetch
-     * @param policy the policy the key belongs to
-     *
-     * @return the key or null if it could not be fetched
-     */
-    @Nullable
-    private RSAPublicKey rsaPublicKey(
-      @Nonnull final String keyId,
-      @Nonnull final String policy){
+      // Validate the nonce
 
-        try{
-            JsonNode kidNode = kidForKeyId(
-              keysForPolicy(policy),
-              keyId
-            );
-            return parseKey(
-              modulus(kidNode),
-              exponent(kidNode)
-            );
-
-        }catch(RestClientException | NullPointerException x){
-            log.error("Error retrieving RSA keys for policy [" + policy + "]: " + x.getMessage(), x);
-        }
+      if(!nonceService.isValid(token.getNonce())){
+        log.warn("Failed to validate nonce in token. This could be a replay attack.");
         return null;
+      }
+      if(!claimValidationService.validateAudience(token)){
+        log.warn("Failed to validate audience in token. This could be a replay attack.");
+        return null;
+      }
+      if(!claimValidationService.validateIssuer(token)){
+        log.warn("Failed to validate issuer of token. This could be a replay attack.");
+        return null;
+      }
+      if(!claimValidationService.validateNotBefore(token, now)){
+        log.warn("Failed to validate notBefore time in token. This could be a replay attack. 'Now' milliseconds: " + now + "; 'NotBefore' milliseconds: " + token
+                                                                                                                                                              .getNotBefore()
+                                                                                                                                                              .toInstant()
+                                                                                                                                                              .toEpochMilli());
+        return null;
+      }
+      if(!claimValidationService.validateExpiration(token, now)){
+        log.warn("Failed to validate expiration time in token. This could be a replay attack. 'Now' milliseconds: " + now + "; 'Expiration' milliseconds: " + token
+                                                                                                                                                                .getExpiration()
+                                                                                                                                                                .toInstant()
+                                                                                                                                                                .toEpochMilli());
+        return null;
+      }
+
+      return token;
+
+    }catch(IOException | IllegalArgumentException | InvalidSignatureException x){
+      log.warn("Failed to extract data from JWT token: " + x.getMessage(), x);
     }
+    return null;
+  }
 
-    @Nonnull
-    private JsonNode keysForPolicy(@Nonnull final String policy){
+  /**
+   * Attempts to get an RSAPublicKey for the given policy.
+   *
+   * @param keyId the key ID to fetch
+   * @param policy the policy the key belongs to
+   *
+   * @return the key or null if it could not be fetched
+   */
+  @Nullable
+  private RSAPublicKey rsaPublicKey(
+    @Nonnull final String keyId,
+    @Nonnull final String policy){
 
-        return safeNode(
-          jwksForPolicy(policy).get("keys")
-        );
+    try{
+      JsonNode kidNode = kidForKeyId(
+        keysForPolicy(policy),
+        keyId
+      );
+      return parseKey(
+        modulus(kidNode),
+        exponent(kidNode)
+      );
+
+    }catch(RestClientException | NullPointerException x){
+      log.error("Error retrieving RSA keys for policy [" + policy + "]: " + x.getMessage(), x);
     }
+    return null;
+  }
 
-    @Nonnull
-    private JsonNode jwksForPolicy(@Nonnull final String policy){
+  @Nonnull
+  private JsonNode keysForPolicy(@Nonnull final String policy){
 
-        return safeNode(
-          restTemplate.getForObject(
-            jwksUri(
-              policyMetaData(policy)
-            ),
-            JsonNode.class
-          ));
-    }
+    return safeNode(
+      jwksForPolicy(policy).get("keys")
+    );
+  }
 
-    @Nonnull
-    private JsonNode policyMetaData(@Nonnull final String policy){
+  @Nonnull
+  private JsonNode jwksForPolicy(@Nonnull final String policy){
 
-        return safeNode(
-          restTemplate.getForObject(
-            urlService.wellKnownEndpoint(policy),
-            JsonNode.class
-          ));
-    }
+    return safeNode(
+      restTemplate.getForObject(
+        jwksUri(
+          policyMetaData(policy)
+        ),
+        JsonNode.class
+      ));
+  }
+
+  @Nonnull
+  private JsonNode policyMetaData(@Nonnull final String policy){
+
+    return safeNode(
+      restTemplate.getForObject(
+        urlService.wellKnownEndpoint(policy),
+        JsonNode.class
+      ));
+  }
 }

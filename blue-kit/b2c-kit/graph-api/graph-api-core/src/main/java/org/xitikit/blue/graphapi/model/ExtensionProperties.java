@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,43 +17,43 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperties{
 
-    private List<ExtensionProperty> value;
+  private List<ExtensionProperty> value;
 
-    @JsonIgnore
-    private Map<String,Object> additionalProperties = new HashMap<>();
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    // CONSTRUCTORS
+  // CONSTRUCTORS
 
-    public ExtensionProperties(){
+  public ExtensionProperties(){
 
-    }
+  }
 
-    public ExtensionProperties(final List<ExtensionProperty> value){
+  public ExtensionProperties(final List<ExtensionProperty> value){
 
-        this.value = value;
-    }
+    this.value = value;
+  }
 
-    // GETTERS AND SETTERS
+  // GETTERS AND SETTERS
 
-    public List<ExtensionProperty> getValue(){
+  public List<ExtensionProperty> getValue(){
 
-        return value;
-    }
+    return value;
+  }
 
-    public void setValue(final List<ExtensionProperty> value){
+  public void setValue(final List<ExtensionProperty> value){
 
-        this.value = value;
-    }
+    this.value = value;
+  }
 
-    @JsonAnyGetter
-    public Map<String,Object> getAdditionalProperties(){
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties(){
 
-        return this.additionalProperties;
-    }
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(final String name, final Object value){
+  @JsonAnySetter
+  public void setAdditionalProperty(final String name, final Object value){
 
-        this.additionalProperties.put(name, value);
-    }
+    this.additionalProperties.put(name, value);
+  }
 }

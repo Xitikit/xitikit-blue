@@ -4,39 +4,39 @@ import java.io.Serializable;
 
 public class AccountView implements Serializable{
 
-    private String givenName;
+  private String givenName;
 
-    private String accountId;
+  private String accountId;
 
-    private String surname;
+  private String surname;
 
-    public String getGivenName(){
+  public String getGivenName(){
 
-        return givenName;
-    }
+    return givenName;
+  }
 
-    public void setGivenName(final String givenName){
+  public void setGivenName(final String givenName){
 
-        this.givenName = givenName;
-    }
+    this.givenName = givenName;
+  }
 
-    public String getAccountId(){
+  public String getAccountId(){
 
-        return accountId;
-    }
+    return accountId;
+  }
 
-    public void setAccountId(final String accountId){
+  public void setAccountId(final String accountId){
 
-        this.accountId = accountId;
-    }
+    this.accountId = accountId;
+  }
 
-    public String getSurname(){
+  public String getSurname(){
 
-        return surname;
-    }
+    return surname;
+  }
 
-    public void setSurname(final String surname){
+  public void setSurname(final String surname){
 
-        this.surname = surname;
-    }
+    this.surname = surname;
+  }
 }

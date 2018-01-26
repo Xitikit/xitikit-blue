@@ -15,71 +15,71 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ChangeEmailPolicy implements PolicyForB2C{
 
-    @Override
-    public String getName(){
+  @Override
+  public String getName(){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::getName was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
-        return "";
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::getName was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+    return "";
+  }
 
-    @Override
-    public void setName(final String name){
+  @Override
+  public void setName(final String name){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::setName was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::setName was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+  }
 
-    @Override
-    public String getRedirectUrl(){
+  @Override
+  public String getRedirectUrl(){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::getRedirectUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
-        return "";
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::getRedirectUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+    return "";
+  }
 
-    @Override
-    public void setRedirectUrl(final String ignored){
+  @Override
+  public void setRedirectUrl(final String ignored){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::setRedirectUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::setRedirectUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+  }
 
-    @Override
-    public String getTemplateUrl(){
+  @Override
+  public String getTemplateUrl(){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::getTemplateUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
-        return "";
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::getTemplateUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+    return "";
+  }
 
-    @Override
-    public void setTemplateUrl(final String ignored){
+  @Override
+  public void setTemplateUrl(final String ignored){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::setTemplateUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::setTemplateUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+  }
 
-    @Override
-    public boolean isDisabled(){
+  @Override
+  public boolean isDisabled(){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::isDisabled was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
-        return true;
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::isDisabled was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+    return true;
+  }
 
-    @Override
-    public void setDisabled(final boolean ignored){
+  @Override
+  public void setDisabled(final boolean ignored){
 
-        if(log.isInfoEnabled()){
-            log.info("Policy Not Supported -> ChangeEmailPolicy::setDisabled was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
-        }
+    if(log.isInfoEnabled()){
+      log.info("Policy Not Supported -> ChangeEmailPolicy::setDisabled was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
     }
+  }
 }

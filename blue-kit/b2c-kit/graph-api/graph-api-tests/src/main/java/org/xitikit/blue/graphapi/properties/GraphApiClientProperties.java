@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GraphApiClientProperties{
 
-    private String tenantId, clientId, clientSecret, baseUrl, apiVersion;
+  private String tenantId, clientId, clientSecret, baseUrl, apiVersion;
 
-    private int timeout;
+  private int timeout;
 }

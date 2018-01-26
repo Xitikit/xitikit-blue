@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * @author J. Keith Hoopes
- * Copyright Xitikit.org 2017
+ *   Copyright Xitikit.org 2017
  */
 @Data
 @NoArgsConstructor
@@ -21,22 +21,22 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PasswordProfile{
 
-    private String password;
+  private String password;
 
-    private Boolean forceChangePasswordNextLogin;
+  private Boolean forceChangePasswordNextLogin;
 
-    @JsonIgnore
-    private Map<String,Object> additionalProperties = new HashMap<>();
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    @JsonAnyGetter
-    public Map<String,Object> getAdditionalProperties(){
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties(){
 
-        return this.additionalProperties;
-    }
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(final String name, final Object value){
+  @JsonAnySetter
+  public void setAdditionalProperty(final String name, final Object value){
 
-        this.additionalProperties.put(name, value);
-    }
+    this.additionalProperties.put(name, value);
+  }
 }

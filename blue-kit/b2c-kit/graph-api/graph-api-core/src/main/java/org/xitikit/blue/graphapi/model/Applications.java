@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,43 +17,43 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Applications{
 
-    private List<Application> value;
+  private List<Application> value;
 
-    @JsonIgnore
-    private Map<String,Object> additionalProperties = new HashMap<>();
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    // CONSTRUCTORS
+  // CONSTRUCTORS
 
-    public Applications(){
+  public Applications(){
 
-    }
+  }
 
-    public Applications(final List<Application> value){
+  public Applications(final List<Application> value){
 
-        this.value = value;
-    }
+    this.value = value;
+  }
 
-    // GETTERS AND SETTERS
+  // GETTERS AND SETTERS
 
-    public List<Application> getValue(){
+  public List<Application> getValue(){
 
-        return value;
-    }
+    return value;
+  }
 
-    public void setValue(final List<Application> value){
+  public void setValue(final List<Application> value){
 
-        this.value = value;
-    }
+    this.value = value;
+  }
 
-    @JsonAnyGetter
-    public Map<String,Object> getAdditionalProperties(){
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties(){
 
-        return this.additionalProperties;
-    }
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(final String name, final Object value){
+  @JsonAnySetter
+  public void setAdditionalProperty(final String name, final Object value){
 
-        this.additionalProperties.put(name, value);
-    }
+    this.additionalProperties.put(name, value);
+  }
 }

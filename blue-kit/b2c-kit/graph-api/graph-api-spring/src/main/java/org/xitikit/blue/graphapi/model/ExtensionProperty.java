@@ -23,24 +23,24 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperty{
 
-    private String name;
+  private String name;
 
-    private String dataType;
+  private String dataType;
 
-    private List<String> targetObjects;
+  private List<String> targetObjects;
 
-    @JsonIgnore
-    private Map<String,Object> additionalProperties = new HashMap<>();
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    @JsonAnyGetter
-    public Map<String,Object> getAdditionalProperties(){
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties(){
 
-        return this.additionalProperties;
-    }
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(final String name, final Object value){
+  @JsonAnySetter
+  public void setAdditionalProperty(final String name, final Object value){
 
-        this.additionalProperties.put(name, value);
-    }
+    this.additionalProperties.put(name, value);
+  }
 }

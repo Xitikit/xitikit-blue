@@ -7,85 +7,85 @@ package org.xitikit.blue.graphapi.properties;
  */
 public class GraphApiClientProperties{
 
-    private String tenantId, clientId, clientSecret, baseUrl, apiVersion;
+  private String tenantId, clientId, clientSecret, baseUrl, apiVersion;
 
-    private int timeout;
+  private int timeout;
 
-    // CONSTRUCTORS
+  // CONSTRUCTORS
 
-    public GraphApiClientProperties(){
+  public GraphApiClientProperties(){
 
-    }
+  }
 
-    public GraphApiClientProperties(final String tenantId, final String clientId, final String clientSecret, final String baseUrl, final String apiVersion, final int timeout){
+  public GraphApiClientProperties(final String tenantId, final String clientId, final String clientSecret, final String baseUrl, final String apiVersion, final int timeout){
 
-        this.tenantId = tenantId;
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
-        this.baseUrl = baseUrl;
-        this.apiVersion = apiVersion;
-        this.timeout = timeout;
-    }
+    this.tenantId = tenantId;
+    this.clientId = clientId;
+    this.clientSecret = clientSecret;
+    this.baseUrl = baseUrl;
+    this.apiVersion = apiVersion;
+    this.timeout = timeout;
+  }
 
-    // GETTERS AND SETTERS
+  // GETTERS AND SETTERS
 
-    public String getTenantId(){
+  public String getTenantId(){
 
-        return tenantId;
-    }
+    return tenantId;
+  }
 
-    public void setTenantId(final String tenantId){
+  public void setTenantId(final String tenantId){
 
-        this.tenantId = tenantId;
-    }
+    this.tenantId = tenantId;
+  }
 
-    public String getClientId(){
+  public String getClientId(){
 
-        return clientId;
-    }
+    return clientId;
+  }
 
-    public void setClientId(final String clientId){
+  public void setClientId(final String clientId){
 
-        this.clientId = clientId;
-    }
+    this.clientId = clientId;
+  }
 
-    public String getClientSecret(){
+  public String getClientSecret(){
 
-        return clientSecret;
-    }
+    return clientSecret;
+  }
 
-    public void setClientSecret(final String clientSecret){
+  public void setClientSecret(final String clientSecret){
 
-        this.clientSecret = clientSecret;
-    }
+    this.clientSecret = clientSecret;
+  }
 
-    public String getBaseUrl(){
+  public String getBaseUrl(){
 
-        return baseUrl;
-    }
+    return baseUrl;
+  }
 
-    public void setBaseUrl(final String baseUrl){
+  public void setBaseUrl(final String baseUrl){
 
-        this.baseUrl = baseUrl;
-    }
+    this.baseUrl = baseUrl;
+  }
 
-    public String getApiVersion(){
+  public String getApiVersion(){
 
-        return apiVersion;
-    }
+    return apiVersion;
+  }
 
-    public void setApiVersion(final String apiVersion){
+  public void setApiVersion(final String apiVersion){
 
-        this.apiVersion = apiVersion;
-    }
+    this.apiVersion = apiVersion;
+  }
 
-    public int getTimeout(){
+  public int getTimeout(){
 
-        return timeout;
-    }
+    return timeout;
+  }
 
-    public void setTimeout(final int timeout){
+  public void setTimeout(final int timeout){
 
-        this.timeout = timeout;
-    }
+    this.timeout = timeout;
+  }
 }

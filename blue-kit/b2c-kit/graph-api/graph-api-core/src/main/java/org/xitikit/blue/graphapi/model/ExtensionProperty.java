@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,74 +17,74 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperty{
 
-    private String name;
+  private String name;
 
-    private String dataType;
+  private String dataType;
 
-    private List<String> targetObjects;
+  private List<String> targetObjects;
 
-    @JsonIgnore
-    private Map<String,Object> additionalProperties = new HashMap<>();
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    // CONSTRUCTORS
+  // CONSTRUCTORS
 
-    public ExtensionProperty(){
+  public ExtensionProperty(){
 
-    }
+  }
 
-    public ExtensionProperty(final String name, final String dataType, final List<String> targetObjects){
+  public ExtensionProperty(final String name, final String dataType, final List<String> targetObjects){
 
-        this.name = name;
-        this.dataType = dataType;
-        this.targetObjects = targetObjects;
-    }
+    this.name = name;
+    this.dataType = dataType;
+    this.targetObjects = targetObjects;
+  }
 
-    // GETTERS AND SETTERS
+  // GETTERS AND SETTERS
 
-    public String getName(){
+  public String getName(){
 
-        return name;
-    }
+    return name;
+  }
 
-    public void setName(final String name){
+  public void setName(final String name){
 
-        this.name = name;
-    }
+    this.name = name;
+  }
 
-    public String getDataType(){
+  public String getDataType(){
 
-        return dataType;
-    }
+    return dataType;
+  }
 
-    public void setDataType(final String dataType){
+  public void setDataType(final String dataType){
 
-        this.dataType = dataType;
-    }
+    this.dataType = dataType;
+  }
 
-    public List<String> getTargetObjects(){
+  public List<String> getTargetObjects(){
 
-        return targetObjects;
-    }
+    return targetObjects;
+  }
 
-    public void setTargetObjects(final List<String> targetObjects){
+  public void setTargetObjects(final List<String> targetObjects){
 
-        this.targetObjects = targetObjects;
-    }
+    this.targetObjects = targetObjects;
+  }
 
-    public void setAdditionalProperties(final Map<String,Object> additionalProperties){
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties(){
 
-        this.additionalProperties = additionalProperties;
-    }
+    return this.additionalProperties;
+  }
 
-    @JsonAnyGetter
-    public Map<String,Object> getAdditionalProperties(){
+  public void setAdditionalProperties(final Map<String, Object> additionalProperties){
 
-        return this.additionalProperties;
-    }
+    this.additionalProperties = additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(final String name, final Object value){
+  @JsonAnySetter
+  public void setAdditionalProperty(final String name, final Object value){
 
-        this.additionalProperties.put(name, value);
-    }
+    this.additionalProperties.put(name, value);
+  }
 }

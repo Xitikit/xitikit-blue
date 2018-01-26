@@ -14,40 +14,40 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties
 public class AuthenticationProperties{
 
-    private NotBefore notBefore;
+  private NotBefore notBefore;
 
-    public class NotBefore{
+  public class NotBefore{
 
-        /**
-         * The "not before" token sometimes comes back from microsoft in the future. In milliseconds, this lets us pad the "now"
-         * time, in effect saying "as long as it's not TOO far in the future, we're okay with it."
-         */
-        private long paddingInMilliseconds = 0;
+    /**
+     * The "not before" token sometimes comes back from microsoft in the future. In milliseconds, this lets us pad the "now"
+     * time, in effect saying "as long as it's not TOO far in the future, we're okay with it."
+     */
+    private long paddingInMilliseconds = 0;
 
-        /**
-         * Indicates that the 'not before' claim should be validated.     *
-         * Default: true.
-         */
-        private boolean enabled = true;
+    /**
+     * Indicates that the 'not before' claim should be validated.     *
+     * Default: true.
+     */
+    private boolean enabled = true;
 
-        public long getPaddingInMilliseconds(){
+    public long getPaddingInMilliseconds(){
 
-            return enabled ? paddingInMilliseconds : 0;
-        }
-
-        public void setPaddingInMilliseconds(final long paddingInMilliseconds){
-
-            this.paddingInMilliseconds = paddingInMilliseconds;
-        }
-
-        public boolean isEnabled(){
-
-            return enabled;
-        }
-
-        public void setEnabled(final boolean enabled){
-
-            this.enabled = enabled;
-        }
+      return enabled ? paddingInMilliseconds : 0;
     }
+
+    public void setPaddingInMilliseconds(final long paddingInMilliseconds){
+
+      this.paddingInMilliseconds = paddingInMilliseconds;
+    }
+
+    public boolean isEnabled(){
+
+      return enabled;
+    }
+
+    public void setEnabled(final boolean enabled){
+
+      this.enabled = enabled;
+    }
+  }
 }
