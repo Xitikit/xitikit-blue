@@ -1,6 +1,7 @@
 package org.xitikit.blue.graphapi.service;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xitikit.blue.graphapi.AzureGraphApiClient;
 import org.xitikit.blue.graphapi.model.Application;
 import org.xitikit.blue.graphapi.model.ExtensionProperties;
@@ -16,8 +17,9 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author J. Keith Hoopes
  */
-@Slf4j
 public class AzureCustomAttributeCacheService implements IAzureCustomAttributeCacheService{
+
+  private static final Logger log = LoggerFactory.getLogger(AzureCustomAttributeCacheService.class);
 
   private static ConcurrentHashMap<String, String> customAttributes = new ConcurrentHashMap<>();
 

@@ -4,7 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,6 +14,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.xitikit.blue.graphapi.model.*;
 import org.xitikit.blue.graphapi.properties.GraphApiClientProperties;
+import org.xitikit.blue.graphapi.service.AzureCustomAttributeCacheService;
 import org.xitikit.blue.graphapi.service.IAzureCustomAttributeCacheService;
 
 import java.util.ArrayList;
@@ -27,8 +29,9 @@ import static org.springframework.util.StringUtils.*;
  *
  * @author J. Keith Hoopes
  */
-@Slf4j
 public class AzureGraphApiClient{
+
+  private static final Logger log = LoggerFactory.getLogger(AzureCustomAttributeCacheService.class);
 
   private static final String USERS_PATH = "/users/";
 
@@ -87,7 +90,7 @@ public class AzureGraphApiClient{
     return "https://login.microsoftonline.com/" + graphApiClientProperties.getTenantId() + "/oauth2/token";
   }
 
-  private String getFullUrl(String urlPart){
+  private String getFullUrl(final String urlPart){
 
     String apiVersion = graphApiClientProperties.getApiVersion();
     if(urlPart.startsWith("/")){
@@ -111,7 +114,7 @@ public class AzureGraphApiClient{
    *
    * @return The combined url.
    */
-  private String combineUrlParts(String first, String second){
+  private static String combineUrlParts(String first, String second){
 
     assert first != null : "'first' parameter to combineUrlParts cannot be null.";
     assert second != null : "'second' parameter to combineUrlParts cannot be null.";
@@ -129,7 +132,7 @@ public class AzureGraphApiClient{
   }
 
   @SuppressWarnings("Duplicates")
-  private HttpHeaders createHeaders(final AccessToken accessToken){
+  private static HttpHeaders createHeaders(final AccessToken accessToken){
 
     final HttpHeaders headers = new HttpHeaders();
     if(accessToken != null){
@@ -140,7 +143,7 @@ public class AzureGraphApiClient{
     return headers;
   }
 
-  public void updateUser(GraphApiUser userRequest){
+  public void updateUser(final GraphApiUser userRequest){
 
     AccessToken accessToken = getAccessToken();
     JsonNode j = mapper.convertValue(userRequest, JsonNode.class);
@@ -173,7 +176,7 @@ public class AzureGraphApiClient{
     restTemplate.exchange(getFullUrl(USERS_PATH + userRequest.getId()), HttpMethod.PATCH, new HttpEntity<>(j, createHeaders(accessToken)), String.class);
   }
 
-  public GraphApiUser getUser(String userId){
+  public GraphApiUser getUser(final String userId){
 
     AccessToken accessToken = getAccessToken();
     JsonNode response = restTemplate
@@ -188,7 +191,7 @@ public class AzureGraphApiClient{
     }
   }
 
-  private GraphApiUser populateCustomProperty(JsonNode jsonUser) throws JsonProcessingException{
+  private GraphApiUser populateCustomProperty(final JsonNode jsonUser) throws JsonProcessingException{
 
     GraphApiUser azureUser = mapper.treeToValue(jsonUser, GraphApiUser.class);
     try{
@@ -212,12 +215,12 @@ public class AzureGraphApiClient{
     return azureUser;
   }
 
-  public PaginatedUsers getUsers(String filterExpression){
+  public PaginatedUsers getUsers(final String filterExpression){
 
     return getUsers(filterExpression, null, null);
   }
 
-  public PaginatedUsers getUsers(String filterExpression, Integer pageSize, String nextToken){
+  public PaginatedUsers getUsers(final String filterExpression, final Integer pageSize, final String nextToken){
 
     AccessToken accessToken = getAccessToken();
     List<GraphApiUser> users = new ArrayList<>();
@@ -271,7 +274,7 @@ public class AzureGraphApiClient{
              .getBody();
   }
 
-  public ExtensionProperties getExtensionProperties(String extensionAppId){
+  public ExtensionProperties getExtensionProperties(final String extensionAppId){
 
     AccessToken accessToken = getAccessToken();
     return restTemplate

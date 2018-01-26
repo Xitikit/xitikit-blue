@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +14,6 @@ import java.util.Map;
  *
  * @author J. Keith Hoopes
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperties{
 
@@ -27,6 +21,17 @@ public class ExtensionProperties{
 
   @JsonIgnore
   private Map<String, Object> additionalProperties = new HashMap<>();
+
+  // STANDARD CONSTRUCTORS
+
+  public ExtensionProperties(){
+
+  }
+
+  public ExtensionProperties(final List<ExtensionProperty> value){
+
+    this.value = value;
+  }
 
   @JsonAnyGetter
   public Map<String, Object> getAdditionalProperties(){
@@ -38,5 +43,17 @@ public class ExtensionProperties{
   public void setAdditionalProperty(final String name, final Object value){
 
     this.additionalProperties.put(name, value);
+  }
+
+  // GETTERS AND SETTERS
+
+  public List<ExtensionProperty> getValue(){
+
+    return value;
+  }
+
+  public void setValue(final List<ExtensionProperty> value){
+
+    this.value = value;
   }
 }

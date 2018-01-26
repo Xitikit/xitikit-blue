@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +14,6 @@ import java.util.Map;
  *
  * @author J. Keith Hoopes
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtensionProperty{
 
@@ -32,6 +26,19 @@ public class ExtensionProperty{
   @JsonIgnore
   private Map<String, Object> additionalProperties = new HashMap<>();
 
+  // STANDARD CONSTRUCTORS
+
+  public ExtensionProperty(){
+
+  }
+
+  public ExtensionProperty(final String name, final String dataType, final List<String> targetObjects){
+
+    this.name = name;
+    this.dataType = dataType;
+    this.targetObjects = targetObjects;
+  }
+
   @JsonAnyGetter
   public Map<String, Object> getAdditionalProperties(){
 
@@ -42,5 +49,37 @@ public class ExtensionProperty{
   public void setAdditionalProperty(final String name, final Object value){
 
     this.additionalProperties.put(name, value);
+  }
+
+  // GETTERS AND SETTERS
+
+  public String getName(){
+
+    return name;
+  }
+
+  public void setName(final String name){
+
+    this.name = name;
+  }
+
+  public String getDataType(){
+
+    return dataType;
+  }
+
+  public void setDataType(final String dataType){
+
+    this.dataType = dataType;
+  }
+
+  public List<String> getTargetObjects(){
+
+    return targetObjects;
+  }
+
+  public void setTargetObjects(final List<String> targetObjects){
+
+    this.targetObjects = targetObjects;
   }
 }

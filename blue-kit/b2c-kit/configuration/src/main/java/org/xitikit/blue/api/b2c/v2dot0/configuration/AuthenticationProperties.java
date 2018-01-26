@@ -1,6 +1,5 @@
 package org.xitikit.blue.api.b2c.v2dot0.configuration;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Component;
  *
  * @author J. Keith Hoopes
  */
-@Data
 @Component
 @ConfigurationProperties
 public class AuthenticationProperties{

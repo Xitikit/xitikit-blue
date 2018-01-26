@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +12,6 @@ import java.util.Map;
  * @author J. Keith Hoopes
  *   Copyright Xitikit.org 2017
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Application{
 
@@ -42,5 +36,45 @@ public class Application{
   public void setAdditionalProperty(final String name, final Object value){
 
     this.additionalProperties.put(name, value);
+  }
+
+  public String getDisplayName(){
+
+    return displayName;
+  }
+
+  public void setDisplayName(final String displayName){
+
+    this.displayName = displayName;
+  }
+
+  public String getAapId(){
+
+    return aapId;
+  }
+
+  public void setAapId(final String aapId){
+
+    this.aapId = aapId;
+  }
+
+  public String getObjectId(){
+
+    return objectId;
+  }
+
+  public void setObjectId(final String objectId){
+
+    this.objectId = objectId;
+  }
+
+  public String getObjectType(){
+
+    return objectType;
+  }
+
+  public void setObjectType(final String objectType){
+
+    this.objectType = objectType;
   }
 }

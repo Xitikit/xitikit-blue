@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +12,6 @@ import java.util.Map;
  * @author J. Keith Hoopes
  *   Copyright Xitikit.org 2017
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SignInName{
 
@@ -27,6 +21,16 @@ public class SignInName{
 
   @JsonIgnore
   private Map<String, Object> additionalProperties = new HashMap<>();
+
+  public SignInName(){
+
+  }
+
+  public SignInName(final String type, final String value){
+
+    this.type = type;
+    this.value = value;
+  }
 
   @JsonAnyGetter
   public Map<String, Object> getAdditionalProperties(){
@@ -38,5 +42,27 @@ public class SignInName{
   public void setAdditionalProperty(final String name, final Object value){
 
     this.additionalProperties.put(name, value);
+  }
+
+  // GETTERS AND SETTERS
+
+  public String getType(){
+
+    return type;
+  }
+
+  public void setType(final String type){
+
+    this.type = type;
+  }
+
+  public String getValue(){
+
+    return value;
+  }
+
+  public void setValue(final String value){
+
+    this.value = value;
   }
 }
