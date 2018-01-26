@@ -67,7 +67,7 @@
     </dependency>
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
-      <artifactId>graph-boot</artifactId>
+      <artifactId>graph-api-boot</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>

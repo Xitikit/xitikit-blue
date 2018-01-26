@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
-    <artifactId>blue-boot</artifactId>
+    <groupId>org.xitikit.blue.kit.b2c</groupId>
+    <artifactId>graph-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
-  <artifactId>graph-boot</artifactId>
+  <artifactId>graph-api-boot</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -39,9 +39,15 @@
     </dependency>
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c</groupId>
-      <artifactId>graph-api</artifactId>
+      <artifactId>graph-api-core</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>org.xitikit.blue.kit.b2c</groupId>
+      <artifactId>graph-api-spring</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
   </dependencies>
 
 </project>

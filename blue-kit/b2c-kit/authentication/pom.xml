@@ -28,7 +28,7 @@
     </dependency>
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c</groupId>
-      <artifactId>policy</artifactId>
+      <artifactId>policy-core</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
@@ -74,9 +74,15 @@
     </dependency>
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
-      <artifactId>blue-boot</artifactId>
+      <artifactId>policy-boot</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
+      <artifactId>graph-api-boot</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
   </dependencies>
 
 </project>

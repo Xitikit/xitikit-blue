@@ -25,7 +25,7 @@
     <module>configuration</module>
     <module>graph-api</module>
     <module>integration-tests</module>
-    <module>policy</module>
+    <module>policy-api</module>
     <module>spring-kit</module>
   </modules>
 

@@ -6,12 +6,12 @@
 
   <parent>
     <groupId>org.xitikit.blue.kit.b2c</groupId>
-    <artifactId>b2c-kit</artifactId>
+    <artifactId>policy-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.kit.b2c</groupId>
-  <artifactId>policy</artifactId>
+  <artifactId>policy-core</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
