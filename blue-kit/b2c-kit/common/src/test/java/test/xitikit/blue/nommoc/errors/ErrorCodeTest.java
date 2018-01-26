@@ -1,6 +1,7 @@
 package test.xitikit.blue.nommoc.errors;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import static junit.framework.TestCase.*;
 import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
@@ -10,10 +11,10 @@ import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
  *
  * @author J. Keith Hoopes
  */
-public class ErrorCodeTest{
+class ErrorCodeTest{
 
   @Test
-  public void test(){
+  void test(){
 
     assertEquals("Bad Request", BAD_REQUEST.getDescription());
     assertEquals(400, BAD_REQUEST.value());

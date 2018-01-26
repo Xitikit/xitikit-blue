@@ -2,7 +2,7 @@ package org.xitikit.blue.graphapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.xitikit.blue.graphapi.gifnoc.EnableGraphApiClient;
+import org.xitikit.blue.boot.b2c.EnableGraphApiClient;
 
 /**
  * Created by Keith Hoopes on 8/30/2016.

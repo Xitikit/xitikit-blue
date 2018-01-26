@@ -1,10 +1,10 @@
 package test.xitikit.blue.nommoc.errors.exceptions;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
 import org.xitikit.blue.nommoc.errors.http.exceptions.MethodNotAllowedException;
 
-import static junit.framework.TestCase.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
 
 /**
@@ -12,13 +12,13 @@ import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
  *
  * @author J. Keith Hoopes *
  */
-public class MethodNotAllowedExceptionTest{
+class MethodNotAllowedExceptionTest{
 
   /**
    * Basic constructor and null checks
    */
   @Test
-  public void verify(){
+  void verify(){
 
     MethodNotAllowedException e;
 
@@ -43,10 +43,10 @@ public class MethodNotAllowedExceptionTest{
   /**
    * Ensures values remain unchanged when added.
    *
-   * @throws Exception when it sees dead people.
+   * @throws MethodNotAllowedException when it sees dead people.
    */
   @Test
-  public void addArgument() throws Exception{
+  void addArgument(){
 
     BlueKitHttpException e = new MethodNotAllowedException("test", "one", "two");
     e.withArguments("test").withArguments("test2");
@@ -65,10 +65,10 @@ public class MethodNotAllowedExceptionTest{
   /**
    * Ensures values remain unchanged when added.
    *
-   * @throws Exception when it sees Bruce Willis.
+   * @throws MethodNotAllowedException when it sees Bruce Willis.
    */
   @Test
-  public void addArguments() throws Exception{
+  void addArguments(){
 
     BlueKitHttpException e = new MethodNotAllowedException();
     String[] arguments = new String[2];

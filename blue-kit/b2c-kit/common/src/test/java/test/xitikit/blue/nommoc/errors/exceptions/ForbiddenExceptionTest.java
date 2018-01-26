@@ -1,6 +1,6 @@
 package test.xitikit.blue.nommoc.errors.exceptions;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
 import org.xitikit.blue.nommoc.errors.http.ErrorCode;
 import org.xitikit.blue.nommoc.errors.http.exceptions.ForbiddenException;
@@ -12,13 +12,13 @@ import static junit.framework.TestCase.*;
  *
  * @author J. Keith Hoopes *
  */
-public class ForbiddenExceptionTest{
+class ForbiddenExceptionTest{
 
   /**
    * Basic constructor and null checks
    */
   @Test
-  public void verify(){
+  void verify(){
 
     ForbiddenException e;
 
@@ -43,10 +43,10 @@ public class ForbiddenExceptionTest{
   /**
    * Ensures values remain unchanged when added.
    *
-   * @throws Exception when it sees dead people.
+   * @throws ForbiddenException when it sees dead people.
    */
   @Test
-  public void addArgument() throws Exception{
+  void addArgument(){
 
     BlueKitHttpException e = new ForbiddenException("test", "one", "two");
     e.withArguments("test").withArguments("test2");
@@ -65,10 +65,10 @@ public class ForbiddenExceptionTest{
   /**
    * Ensures values remain unchanged when added.
    *
-   * @throws Exception when it sees Bruce Willis.
+   * @throws ForbiddenException when it sees Bruce Willis.
    */
   @Test
-  public void addArguments() throws Exception{
+  void addArguments(){
 
     BlueKitHttpException e = new ForbiddenException();
     String[] arguments = new String[2];

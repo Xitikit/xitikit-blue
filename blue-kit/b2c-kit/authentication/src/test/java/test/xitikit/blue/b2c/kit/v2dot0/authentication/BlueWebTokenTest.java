@@ -1,7 +1,7 @@
 package test.xitikit.blue.b2c.kit.v2dot0.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.xitikit.blue.b2c.kit.v2dot0.authentication.BlueWebToken;
 import org.xitikit.blue.b2c.kit.v2dot0.authentication.BlueWebTokenBuilder;
 
@@ -12,17 +12,17 @@ import java.time.ZonedDateTime;
 import java.util.HashMap;
 
 import static java.util.Arrays.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes on 5/4/2017
  */
-public class BlueWebTokenTest{
+class BlueWebTokenTest{
 
   @Test
-  public void parseTest() throws IOException{
+  void parseTest() throws IOException{
 
     ObjectMapper mapper = new ObjectMapper();
     Instant now = Instant.ofEpochSecond(System.currentTimeMillis() / 1000);
@@ -52,7 +52,7 @@ public class BlueWebTokenTest{
   }
 
   @Test
-  public void builder(){
+  void builder(){
 
     ZonedDateTime now = ZonedDateTime.now();
     BlueWebTokenBuilder builder = BlueWebTokenBuilder.instance();

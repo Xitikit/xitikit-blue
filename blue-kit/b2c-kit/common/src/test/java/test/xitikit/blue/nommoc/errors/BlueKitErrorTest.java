@@ -1,7 +1,7 @@
 package test.xitikit.blue.nommoc.errors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.xitikit.blue.nommoc.errors.http.BlueKitError;
 import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
 import org.xitikit.blue.nommoc.errors.http.ErrorCode;
@@ -18,14 +18,14 @@ import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
  *
  * @author J. Keith Hoopes
  */
-public class BlueKitErrorTest{
+class BlueKitErrorTest{
 
   private final static String[] ARGS = new String[]{"one", "[0,1]", "{\"value\":3}"};
 
   private final static ObjectMapper objectMapper = new ObjectMapper();
 
   @Test
-  public void empty(){
+  void empty(){
 
     BlueKitError error = new BlueKitError();
     assertEquals("500, error.getCode()", INTERNAL_SERVER_ERROR.value(), error.getCode());
@@ -36,7 +36,7 @@ public class BlueKitErrorTest{
   }
 
   @Test
-  public void customArgs(){
+  void customArgs(){
 
     BlueKitError error = new BlueKitError(42, "answer", "whatever", asList(ARGS));
     assertEquals("42, error.getCode()", 42, error.getCode());
@@ -50,7 +50,7 @@ public class BlueKitErrorTest{
   }
 
   @Test
-  public void customArgsWithSetters(){
+  void customArgsWithSetters(){
 
     BlueKitError error = new BlueKitError();
     error.setCode(42);
@@ -68,7 +68,7 @@ public class BlueKitErrorTest{
   }
 
   @Test
-  public void simpleForbiddenException() throws IOException{
+  void simpleForbiddenException() throws IOException{
 
     validate(ErrorCode.FORBIDDEN, new ForbiddenException(ARGS));
   }
@@ -103,25 +103,25 @@ public class BlueKitErrorTest{
   }
 
   @Test
-  public void simpleBadRequestException() throws IOException{
+  void simpleBadRequestException() throws IOException{
 
     validate(ErrorCode.BAD_REQUEST, new BadRequestException(ARGS));
   }
 
   @Test
-  public void simpleMethodNotAllowedException() throws IOException{
+  void simpleMethodNotAllowedException() throws IOException{
 
     validate(ErrorCode.METHOD_NOT_ALLOWED, new MethodNotAllowedException(ARGS));
   }
 
   @Test
-  public void simpleUnauthorizedException() throws IOException{
+  void simpleUnauthorizedException() throws IOException{
 
     validate(ErrorCode.UNAUTHORIZED, new UnauthorizedException(ARGS));
   }
 
   @Test
-  public void simpleNotFoundException() throws IOException{
+  void simpleNotFoundException() throws IOException{
 
     validate(ErrorCode.NOT_FOUND, new NotFoundException(ARGS));
   }

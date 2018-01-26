@@ -1,27 +1,30 @@
 package org.xitikit.blue.graphapi;
 
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.xitikit.blue.graphapi.properties.GraphApiClientProperties;
 import org.xitikit.blue.graphapi.properties.UserProperties;
 import org.xitikit.blue.graphapi.service.GraphApiUserService;
 
-import static junit.framework.TestCase.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by Keith Hoopes on 8/30/2016.
  * Copyright Xitikit.org 2017
  */
-@Ignore
-@SuppressWarnings("SpringJavaAutowiringInspection")
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestApplicationContext.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EnableGraphApiTest{
+
+@SuppressWarnings({"SpringJavaAutowiringInspection", "SpringJavaInjectionPointsAutowiringInspection"})
+@Component
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(
+  classes = TestApplicationContext.class,
+  webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class EnableGraphApiTest{
 
   @Autowired
   @Qualifier("graphApiClientProperties")
@@ -38,25 +41,26 @@ public class EnableGraphApiTest{
   private GraphApiUserService graphApiUserService;
 
   @Test
-  public void verifyUserService(){
+  void verifyUserService(){
 
     assertNotNull(graphApiUserService);
   }
 
   @Test
-  public void verifyClient(){
+  void verifyClient(){
 
     assertNotNull(azureGraphApiClient);
   }
 
   @Test
-  public void verifyUserProperties(){
+  void verifyUserProperties(){
 
     assertNotNull(userProperties);
   }
 
+  @SuppressWarnings("Duplicates")
   @Test
-  public void verifyClientProperties(){
+  void verifyClientProperties(){
 
     assertNotNull(graphApiClientProperties);
     assertNotNull(graphApiClientProperties.getApiVersion());

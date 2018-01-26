@@ -1,10 +1,10 @@
 package test.xitikit.blue.b2c.kit.v2dot0.authentication;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.xitikit.blue.b2c.kit.v2dot0.authentication.VerificationUtil.*;
 
 /**
@@ -12,85 +12,86 @@ import static org.xitikit.blue.b2c.kit.v2dot0.authentication.VerificationUtil.*;
  *
  * @author J. Keith Hoopes
  */
-public class VerificationUtilTest{
+class VerificationUtilTest{
 
-  @Test(expected = Exception.class)
-  public void typeSecuredObjectMapperShouldNotAllowMapDeserialization() throws IOException{
+  @Test
+  void typeSecuredObjectMapperShouldNotAllowMapDeserialization(){
 
-    typeSecuredObjectMapper()
-      .readValue(
-        "{'one':'one'}",
-        Map.class);
+    assertThrows(Exception.class,
+      () -> typeSecuredObjectMapper()
+              .readValue(
+                "{'one':'one'}",
+                Map.class));
   }
 
   @Test
-  public void validateIssuerTest(){
+  void validateIssuerTest(){
 
     // validateIssuer();
   }
 
   @Test
-  public void validateExpirationTest(){
+  void validateExpirationTest(){
 
   }
 
   @Test
-  public void getKeyIdTest(){
+  void getKeyIdTest(){
 
   }
 
   @Test
-  public void getKeyId1Test(){
+  void getKeyId1Test(){
 
   }
 
   @Test
-  public void modulusTest(){
+  void modulusTest(){
 
   }
 
   @Test
-  public void exponentTest(){
+  void exponentTest(){
 
   }
 
   @Test
-  public void encodedModulusTest(){
+  void encodedModulusTest(){
 
   }
 
   @Test
-  public void encodedExponentTest(){
+  void encodedExponentTest(){
 
   }
 
   @Test
-  public void safeDecodeBase64Test(){
+  void safeDecodeBase64Test(){
 
   }
 
   @Test
-  public void kidForKeyIdTest(){
+  void kidForKeyIdTest(){
 
   }
 
   @Test
-  public void safeNodeTest(){
+  void safeNodeTest(){
 
   }
 
   @Test
-  public void jwksUriTest(){
+  void jwksUriTest(){
 
   }
 
   @Test
-  public void parseKeyTest(){
+  void parseKeyTest(){
 
   }
 
   @Test
-  public void rsaPublicKeySpecTest(){
+  void rsaPublicKeySpecTest(){
 
   }
 }

@@ -1,18 +1,18 @@
 package org.xitikit.blue.admin.view;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Make sure that accessors do not modify data when setting or getting values.
  */
-public class AccountViewTest{
+class AccountViewTest{
 
   @Test
-  public void givenName(){
+  void givenName(){
 
     AccountView view = new AccountView();
     assertNull(view.getGivenName());
@@ -27,7 +27,7 @@ public class AccountViewTest{
   }
 
   @Test
-  public void surName(){
+  void surName(){
 
     AccountView view = new AccountView();
     assertNull(view.getSurname());
@@ -42,7 +42,7 @@ public class AccountViewTest{
   }
 
   @Test
-  public void webAccountId(){
+  void webAccountId(){
 
     String uuid = UUID.randomUUID().toString();
     AccountView view = new AccountView();

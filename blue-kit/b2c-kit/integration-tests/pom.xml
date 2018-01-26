@@ -39,6 +39,11 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
+      <artifactId>policy-boot</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
 
   </dependencies>
 

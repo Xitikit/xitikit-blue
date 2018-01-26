@@ -1,18 +1,18 @@
 package org.xitikit.blue.admin.form;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Copyright ${year}
  *
  * @author J. Keith Hoopes
  */
-public class SearchFormTest{
+class SearchFormTest{
 
   @Test
-  public void givenName(){
+  void givenName(){
 
     SearchForm form = new SearchForm();
     assertNull(form.getGivenName());
@@ -27,7 +27,7 @@ public class SearchFormTest{
   }
 
   @Test
-  public void surName(){
+  void surName(){
 
     SearchForm form = new SearchForm();
     assertNull(form.getSurname());
