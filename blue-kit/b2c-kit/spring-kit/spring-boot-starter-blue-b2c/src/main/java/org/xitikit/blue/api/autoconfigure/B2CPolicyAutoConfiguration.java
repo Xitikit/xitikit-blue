@@ -17,74 +17,74 @@ import org.xitikit.blue.nommoc.errors.http.exceptions.NotFoundException;
 @Configuration
 public class B2CPolicyAutoConfiguration{
 
-  @Bean("blueKitB2CPolicy")
-  @ConditionalOnBean(B2CProperties.class)
-  @ConfigurationProperties("blue-kit.b2c")
-  public B2CProperties blueKitB2CProperties(){
+    @Bean("blueKitB2CPolicy")
+    @ConditionalOnBean(B2CProperties.class)
+    @ConfigurationProperties("blue-kit.b2c")
+    public B2CProperties blueKitB2CProperties(){
 
-    return new B2CProperties();
-  }
+        return new B2CProperties();
+    }
 
-  @Bean("blueKitSignUpPolicy")
-  @ConditionalOnBean(SignUpPolicy.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-up", value = {"name", "redirect-url"})
-  @ConfigurationProperties("blue-kit.b2c.policy.sign-up")
-  public SignUpPolicy blueKitSignUpPolicy(){
+    @Bean("blueKitSignUpPolicy")
+    @ConditionalOnBean(SignUpPolicy.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-up", value = {"name", "redirect-url"})
+    @ConfigurationProperties("blue-kit.b2c.policy.sign-up")
+    public SignUpPolicy blueKitSignUpPolicy(){
 
-    return new SignUpPolicy();
-  }
+        return new SignUpPolicy();
+    }
 
-  @Bean("blueKitSignInPolicy")
-  @ConditionalOnBean(SignInPolicy.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-in", value = {"name", "redirect-url"})
-  @ConfigurationProperties("blue-kit.b2c.policy.sign-in")
-  public SignInPolicy blueKitSignInPolicy(){
+    @Bean("blueKitSignInPolicy")
+    @ConditionalOnBean(SignInPolicy.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-in", value = {"name", "redirect-url"})
+    @ConfigurationProperties("blue-kit.b2c.policy.sign-in")
+    public SignInPolicy blueKitSignInPolicy(){
 
-    return new SignInPolicy();
-  }
+        return new SignInPolicy();
+    }
 
-  @Bean("blueKitSignUpOrSignInPolicy")
-  @ConditionalOnBean(SignUpOrSignInPolicy.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-up-or-sign-in", value = {"name", "redirect-url"})
-  @ConfigurationProperties("blue-kit.b2c.policy.sign-up-or-sign-in")
-  public SignUpOrSignInPolicy blueKitSignUpOrSignInPolicy(){
+    @Bean("blueKitSignUpOrSignInPolicy")
+    @ConditionalOnBean(SignUpOrSignInPolicy.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-up-or-sign-in", value = {"name", "redirect-url"})
+    @ConfigurationProperties("blue-kit.b2c.policy.sign-up-or-sign-in")
+    public SignUpOrSignInPolicy blueKitSignUpOrSignInPolicy(){
 
-    return new SignUpOrSignInPolicy();
-  }
+        return new SignUpOrSignInPolicy();
+    }
 
-  @Bean("blueKitEditProfilePolicy")
-  @ConditionalOnBean(EditProfilePolicy.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.edit-profile", value = {"name", "redirect-url"})
-  @ConfigurationProperties("blue-kit.b2c.policy.edit-profile")
-  public EditProfilePolicy blueKitEditProfilePolicy(){
+    @Bean("blueKitEditProfilePolicy")
+    @ConditionalOnBean(EditProfilePolicy.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.edit-profile", value = {"name", "redirect-url"})
+    @ConfigurationProperties("blue-kit.b2c.policy.edit-profile")
+    public EditProfilePolicy blueKitEditProfilePolicy(){
 
-    return new EditProfilePolicy();
-  }
+        return new EditProfilePolicy();
+    }
 
-  @Bean("blueKitResetPasswordPolicy")
-  @ConditionalOnBean(ResetPasswordPolicy.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.edit-profile", value = {"name", "redirect-url"})
-  @ConfigurationProperties("blue-kit.b2c.policy.reset-password")
-  public ResetPasswordPolicy blueKitResetPasswordPolicy(){
+    @Bean("blueKitResetPasswordPolicy")
+    @ConditionalOnBean(ResetPasswordPolicy.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.edit-profile", value = {"name", "redirect-url"})
+    @ConfigurationProperties("blue-kit.b2c.policy.reset-password")
+    public ResetPasswordPolicy blueKitResetPasswordPolicy(){
 
-    return new ResetPasswordPolicy();
-  }
+        return new ResetPasswordPolicy();
+    }
 
-  @Bean("blueKitSignOutPolicy")
-  @ConditionalOnBean(SignOutPolicy.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-out")
-  @ConfigurationProperties("blue-kit.b2c.policy.sign-out")
-  public SignOutPolicy blueKitSignOutPolicy(){
+    @Bean("blueKitSignOutPolicy")
+    @ConditionalOnBean(SignOutPolicy.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.sign-out")
+    @ConfigurationProperties("blue-kit.b2c.policy.sign-out")
+    public SignOutPolicy blueKitSignOutPolicy(){
 
-    return new SignOutPolicy();
-  }
+        return new SignOutPolicy();
+    }
 
-  @Bean("blueKitChangeEmailPolicy")
-  @ConditionalOnBean(ChangeEmailPolicy.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.change-email", value = {"name", "redirect-url", "template-url"})
-  @ConfigurationProperties("blue-kit.b2c.policy.change-email")
-  public ChangeEmailPolicy blueKitChangeEmailPolicy(){
+    @Bean("blueKitChangeEmailPolicy")
+    @ConditionalOnBean(ChangeEmailPolicy.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.policy.change-email", value = {"name", "redirect-url", "template-url"})
+    @ConfigurationProperties("blue-kit.b2c.policy.change-email")
+    public ChangeEmailPolicy blueKitChangeEmailPolicy(){
 
-    throw new NotFoundException("'change-email' is not a valid policy (yet) provided by Microsoft's Azure AD B2C. You must manually change the email using the GraphApi instead.");
-  }
+        throw new NotFoundException("'change-email' is not a valid policy (yet) provided by Microsoft's Azure AD B2C. You must manually change the email using the GraphApi instead.");
+    }
 }

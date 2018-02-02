@@ -8,7 +8,7 @@ import java.util.List;
  * @author J. Keith Hoopes *
  */
 @SuppressWarnings("unused")
-public interface IAzureCustomAttributeCacheService{
+public interface CustomAttributeCacheService{
 
-  List<String> getCustomAttributeNames();
+    List<String> getCustomAttributeNames();
 }

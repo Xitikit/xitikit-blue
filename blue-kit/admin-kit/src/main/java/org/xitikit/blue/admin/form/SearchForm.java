@@ -7,27 +7,27 @@ import java.io.Serializable;
  */
 public class SearchForm implements Serializable{
 
-  private String givenName;
+    private String givenName;
 
-  private String surname;
+    private String surname;
 
-  public String getGivenName(){
+    public String getGivenName(){
 
-    return givenName;
-  }
+        return givenName;
+    }
 
-  public void setGivenName(final String givenName){
+    public void setGivenName(final String givenName){
 
-    this.givenName = givenName;
-  }
+        this.givenName = givenName;
+    }
 
-  public String getSurname(){
+    public String getSurname(){
 
-    return surname;
-  }
+        return surname;
+    }
 
-  public void setSurname(final String surname){
+    public void setSurname(final String surname){
 
-    this.surname = surname;
-  }
+        this.surname = surname;
+    }
 }

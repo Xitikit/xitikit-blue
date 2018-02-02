@@ -11,49 +11,49 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class AccountViewTest{
 
-  @Test
-  void givenName(){
+    @Test
+    void givenName(){
 
-    AccountView view = new AccountView();
-    assertNull(view.getGivenName());
-    view.setGivenName(" Name ");
-    assertEquals(" Name ", view.getGivenName());
-    view.setGivenName(" ");
-    assertEquals(" ", view.getGivenName());
-    view.setGivenName("");
-    assertEquals("", view.getGivenName());
-    view.setGivenName(null);
-    assertEquals(null, view.getGivenName());
-  }
+        AccountView view = new AccountView();
+        assertNull(view.getGivenName());
+        view.setGivenName(" Name ");
+        assertEquals(" Name ", view.getGivenName());
+        view.setGivenName(" ");
+        assertEquals(" ", view.getGivenName());
+        view.setGivenName("");
+        assertEquals("", view.getGivenName());
+        view.setGivenName(null);
+        assertEquals(null, view.getGivenName());
+    }
 
-  @Test
-  void surName(){
+    @Test
+    void surName(){
 
-    AccountView view = new AccountView();
-    assertNull(view.getSurname());
-    view.setSurname(" Name ");
-    assertEquals(" Name ", view.getSurname());
-    view.setSurname(" ");
-    assertEquals(" ", view.getSurname());
-    view.setSurname("");
-    assertEquals("", view.getSurname());
-    view.setSurname(null);
-    assertEquals(null, view.getSurname());
-  }
+        AccountView view = new AccountView();
+        assertNull(view.getSurname());
+        view.setSurname(" Name ");
+        assertEquals(" Name ", view.getSurname());
+        view.setSurname(" ");
+        assertEquals(" ", view.getSurname());
+        view.setSurname("");
+        assertEquals("", view.getSurname());
+        view.setSurname(null);
+        assertEquals(null, view.getSurname());
+    }
 
-  @Test
-  void webAccountId(){
+    @Test
+    void webAccountId(){
 
-    String uuid = UUID.randomUUID().toString();
-    AccountView view = new AccountView();
-    assertNull(view.getAccountId());
-    view.setAccountId(uuid);
-    assertEquals(uuid, view.getAccountId());
-    view.setAccountId(" ");
-    assertEquals(" ", view.getAccountId());
-    view.setAccountId("");
-    assertEquals("", view.getAccountId());
-    view.setAccountId(null);
-    assertEquals(null, view.getAccountId());
-  }
+        String uuid = UUID.randomUUID().toString();
+        AccountView view = new AccountView();
+        assertNull(view.getAccountId());
+        view.setAccountId(uuid);
+        assertEquals(uuid, view.getAccountId());
+        view.setAccountId(" ");
+        assertEquals(" ", view.getAccountId());
+        view.setAccountId("");
+        assertEquals("", view.getAccountId());
+        view.setAccountId(null);
+        assertEquals(null, view.getAccountId());
+    }
 }

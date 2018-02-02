@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.xitikit.blue.kit</groupId>
     <artifactId>blue-kit</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.admin</groupId>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c</groupId>
       <artifactId>spring-boot-starter-blue-b2c</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.0-SNAPSHOT</version>
     </dependency>
     <!--SPRING BOOT-->
     <dependency>

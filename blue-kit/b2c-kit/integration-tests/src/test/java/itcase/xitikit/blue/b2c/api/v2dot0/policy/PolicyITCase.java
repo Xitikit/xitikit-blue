@@ -19,29 +19,29 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = ITCaseApplication.class, webEnvironment = WebEnvironment.MOCK)
 class PolicyITCase{
 
-  @Autowired
-  private SimplePolicyConfiguration simplePolicyConfiguration;
+    @Autowired
+    private SimplePolicyConfiguration simplePolicyConfiguration;
 
-  @Test
-  void signInConfiguration(){
+    @Test
+    void signInConfiguration(){
 
-    SignInPolicy signInPolicy;
-    assertNotNull(simplePolicyConfiguration);
+        SignInPolicy signInPolicy;
+        assertNotNull(simplePolicyConfiguration);
 
-    signInPolicy = simplePolicyConfiguration.getSignIn();
-    assertNotNull(signInPolicy);
+        signInPolicy = simplePolicyConfiguration.getSignIn();
+        assertNotNull(signInPolicy);
 
-    assertEquals("one", signInPolicy.getName());
-    assertEquals("http://test/", signInPolicy.getRedirectUrl());
-    assertEquals("", signInPolicy.getTemplateUrl());
-    assertFalse(signInPolicy.isDisabled());
+        assertEquals("one", signInPolicy.getName());
+        assertEquals("http://test/", signInPolicy.getRedirectUrl());
+        assertEquals("", signInPolicy.getTemplateUrl());
+        assertFalse(signInPolicy.isDisabled());
 
-    signInPolicy = simplePolicyConfiguration.getSignIn();
-    assertNotNull(signInPolicy, "signInPolicy should not be null, even when disabled.");
-    assertEquals("", signInPolicy.getName());
-    assertEquals("", signInPolicy.getRedirectUrl());
-    assertEquals("", signInPolicy.getTemplateUrl());
-    assertTrue(signInPolicy.isDisabled());
-  }
+        signInPolicy = simplePolicyConfiguration.getSignIn();
+        assertNotNull(signInPolicy, "signInPolicy should not be null, even when disabled.");
+        assertEquals("", signInPolicy.getName());
+        assertEquals("", signInPolicy.getRedirectUrl());
+        assertEquals("", signInPolicy.getTemplateUrl());
+        assertTrue(signInPolicy.isDisabled());
+    }
 
 }

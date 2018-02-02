@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class MainController{
 
-  @Autowired
-  @Qualifier("azureGraphApiClient")
-  private AzureGraphApiClient azureGraphApiClient;
+    @Autowired
+    @Qualifier("azureGraphApiClient")
+    private AzureGraphApiClient azureGraphApiClient;
 
 }

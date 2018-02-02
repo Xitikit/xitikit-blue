@@ -1,9 +1,5 @@
 package org.xitikit.blue.graphapi.properties;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 /**
@@ -11,14 +7,34 @@ import java.util.List;
  *
  * @author J. Keith Hoopes
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserProperties{
 
-  /**
-   * These are the custom attributes you have manually created inside of Azure B2CProperties
-   * for users of the target tenant.
-   */
-  private List<String> customAttributes;
+    /**
+     * These are the custom attributes you have manually created inside of Azure B2CProperties
+     * for users of the target tenant.
+     */
+    private List<String> customAttributes;
+
+    // STANDARD CONSTRUCTORS
+
+    public UserProperties(){
+
+    }
+
+    public UserProperties(final List<String> customAttributes){
+
+        this.customAttributes = customAttributes;
+    }
+
+    //STANDARD GETTERS AND SETTERS
+
+    public List<String> getCustomAttributes(){
+
+        return customAttributes;
+    }
+
+    public void setCustomAttributes(final List<String> customAttributes){
+
+        this.customAttributes = customAttributes;
+    }
 }

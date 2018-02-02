@@ -1,0 +1,42 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration",
+      "name": "xitikit.blue.kit.b2c.policy",
+      "type": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration",
+      "name": "xitikit.blue.kit.b2c.policy.edit-profile",
+      "type": "org.xitikit.blue.b2c.kit.v2dot0.policy.EditProfilePolicy"
+    },
+    {
+      "sourceType": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration",
+      "name": "xitikit.blue.kit.b2c.policy.reset-password",
+      "type": "org.xitikit.blue.b2c.kit.v2dot0.policy.ResetPasswordPolicy"
+    },
+    {
+      "sourceType": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration",
+      "name": "xitikit.blue.kit.b2c.policy.sign-in",
+      "type": "org.xitikit.blue.b2c.kit.v2dot0.policy.SignInPolicy"
+    },
+    {
+      "sourceType": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration",
+      "name": "xitikit.blue.kit.b2c.policy.sign-out",
+      "type": "org.xitikit.blue.b2c.kit.v2dot0.policy.SignOutPolicy"
+    },
+    {
+      "sourceType": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration",
+      "name": "xitikit.blue.kit.b2c.policy.sign-up",
+      "type": "org.xitikit.blue.b2c.kit.v2dot0.policy.SignUpPolicy"
+    },
+    {
+      "sourceType": "org.xitikit.blue.boot.b2c.SimplePolicyConfiguration",
+      "name": "xitikit.blue.kit.b2c.policy.sign-up-or-sign-in",
+      "type": "org.xitikit.blue.b2c.kit.v2dot0.policy.SignUpOrSignInPolicy"
+    }
+  ]
+}

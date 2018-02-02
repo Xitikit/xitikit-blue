@@ -25,49 +25,49 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = TestApplicationContext.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class EnableGraphApiTest{
 
-  @Autowired
-  @Qualifier("graphApiClientProperties")
-  private GraphApiClientProperties graphApiClientProperties;
+    @Autowired
+    @Qualifier("graphApiClientProperties")
+    private GraphApiClientProperties graphApiClientProperties;
 
-  @Autowired
-  @Qualifier("graphApiUserProperties")
-  private UserProperties userProperties;
+    @Autowired
+    @Qualifier("graphApiUserProperties")
+    private UserProperties userProperties;
 
-  @Autowired
-  private AzureGraphApiClient azureGraphApiClient;
+    @Autowired
+    private AzureGraphApiClient azureGraphApiClient;
 
-  @Autowired
-  private GraphApiUserService graphApiUserService;
+    @Autowired
+    private GraphApiUserService graphApiUserService;
 
-  @Test
-  void verifyUserService(){
+    @Test
+    void verifyUserService(){
 
-    assertNotNull(graphApiUserService);
-  }
+        assertNotNull(graphApiUserService);
+    }
 
-  @Test
-  void verifyClient(){
+    @Test
+    void verifyClient(){
 
-    assertNotNull(azureGraphApiClient);
-  }
+        assertNotNull(azureGraphApiClient);
+    }
 
-  @Test
-  void verifyUserProperties(){
+    @Test
+    void verifyUserProperties(){
 
-    assertNotNull(userProperties);
-  }
+        assertNotNull(userProperties);
+    }
 
-  @SuppressWarnings("Duplicates")
-  @Test
-  void verifyClientProperties(){
+    @SuppressWarnings("Duplicates")
+    @Test
+    void verifyClientProperties(){
 
-    assertNotNull(graphApiClientProperties);
-    assertNotNull(graphApiClientProperties.getApiVersion());
-    assertNotNull(graphApiClientProperties.getBaseUrl());
-    assertNotNull(graphApiClientProperties.getClientId());
-    assertNotNull(graphApiClientProperties.getClientSecret());
-    assertNotNull(graphApiClientProperties.getTenantId());
-    int timeout = graphApiClientProperties.getTimeout();
-    assertTrue(timeout > 0);
-  }
+        assertNotNull(graphApiClientProperties);
+        assertNotNull(graphApiClientProperties.getApiVersion());
+        assertNotNull(graphApiClientProperties.getBaseUrl());
+        assertNotNull(graphApiClientProperties.getClientId());
+        assertNotNull(graphApiClientProperties.getClientSecret());
+        assertNotNull(graphApiClientProperties.getTenantId());
+        int timeout = graphApiClientProperties.getTimeout();
+        assertTrue(timeout > 0);
+    }
 }

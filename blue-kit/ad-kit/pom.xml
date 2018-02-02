@@ -7,12 +7,12 @@
   <parent>
     <groupId>org.xitikit.blue.kit</groupId>
     <artifactId>blue-kit</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.kit.ad</groupId>
   <artifactId>ad-kit</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
 </project>

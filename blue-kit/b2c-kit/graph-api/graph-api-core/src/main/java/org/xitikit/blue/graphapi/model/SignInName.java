@@ -10,61 +10,61 @@ import java.util.Map;
 
 /**
  * @author J. Keith Hoopes
- *   Copyright Xitikit.org 2017
+ *     Copyright Xitikit.org 2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SignInName{
 
-  private String type;
+    private String type;
 
-  private String value;
+    private String value;
 
-  @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<>();
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
-  // CONSTRUCTORS
+    // CONSTRUCTORS
 
-  public SignInName(){
+    public SignInName(){
 
-  }
+    }
 
-  public SignInName(final String type, final String value){
+    public SignInName(final String type, final String value){
 
-    this.type = type;
-    this.value = value;
-  }
+        this.type = type;
+        this.value = value;
+    }
 
-  // GETTERS AND SETTERS
+    // GETTERS AND SETTERS
 
-  public String getType(){
+    public String getType(){
 
-    return type;
-  }
+        return type;
+    }
 
-  public void setType(final String type){
+    public void setType(final String type){
 
-    this.type = type;
-  }
+        this.type = type;
+    }
 
-  public String getValue(){
+    public String getValue(){
 
-    return value;
-  }
+        return value;
+    }
 
-  public void setValue(final String value){
+    public void setValue(final String value){
 
-    this.value = value;
-  }
+        this.value = value;
+    }
 
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties(){
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties(){
 
-    return this.additionalProperties;
-  }
+        return this.additionalProperties;
+    }
 
-  @JsonAnySetter
-  public void setAdditionalProperty(final String name, final Object value){
+    @JsonAnySetter
+    public void setAdditionalProperty(final String name, final Object value){
 
-    this.additionalProperties.put(name, value);
-  }
+        this.additionalProperties.put(name, value);
+    }
 }

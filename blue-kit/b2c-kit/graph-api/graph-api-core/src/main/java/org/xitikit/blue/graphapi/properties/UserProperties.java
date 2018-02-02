@@ -9,32 +9,32 @@ import java.util.List;
  */
 public class UserProperties{
 
-  /**
-   * These are the custom attributes you have manually created inside of Azure B2CProperties
-   * for users of the target tenant.
-   */
-  private List<String> customAttributes;
+    /**
+     * These are the custom attributes you have manually created inside of Azure B2CProperties
+     * for users of the target tenant.
+     */
+    private List<String> customAttributes;
 
-  // CONSTRUCTORS
+    // CONSTRUCTORS
 
-  public UserProperties(){
+    public UserProperties(){
 
-  }
+    }
 
-  public UserProperties(final List<String> customAttributes){
+    public UserProperties(final List<String> customAttributes){
 
-    this.customAttributes = customAttributes;
-  }
+        this.customAttributes = customAttributes;
+    }
 
-  // GETTERS AND SETTERS
+    // GETTERS AND SETTERS
 
-  public List<String> getCustomAttributes(){
+    public List<String> getCustomAttributes(){
 
-    return customAttributes;
-  }
+        return customAttributes;
+    }
 
-  public void setCustomAttributes(final List<String> customAttributes){
+    public void setCustomAttributes(final List<String> customAttributes){
 
-    this.customAttributes = customAttributes;
-  }
+        this.customAttributes = customAttributes;
+    }
 }

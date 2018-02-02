@@ -5,14 +5,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.xitikit.blue.kit.b2c</groupId>
+    <groupId>org.xitikit.blue.kit</groupId>
     <artifactId>b2c-kit</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
   <artifactId>spring-kit</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <url>${project.parent.url}</url>

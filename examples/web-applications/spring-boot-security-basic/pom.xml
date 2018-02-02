@@ -7,12 +7,12 @@
   <parent>
     <groupId>org.xitikit.blue.examples.web</groupId>
     <artifactId>web-applications-kit</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0-SNAPSHOT</version>
   </parent>
 
   <groupId>org.xitikit.blue.examples.web</groupId>
   <artifactId>spring-boot-security-basic</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <dependencies>
@@ -20,17 +20,17 @@
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c</groupId>
       <artifactId>common</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c</groupId>
       <artifactId>configuration</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.xitikit.blue.kit.b2c</groupId>
       <artifactId>authentication</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.0-SNAPSHOT</version>
     </dependency>
     <!--Spring Boot-->
     <dependency>
