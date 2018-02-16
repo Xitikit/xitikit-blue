@@ -38,6 +38,8 @@ public final class BlueWebTokenBuilder{
     public BlueWebToken build(){
 
         BlueWebToken token = new BlueWebToken();
+        token.setGivenName((String) store.get("givenName"));
+        token.setFamilyName((String) store.get("familyName"));
         token.setAccessTokenHash((String) store.get("accessTokenHash"));
         token.setAudience((String) store.get("audience"));
         token.setAuthContextReference((String) store.get("authContextReference"));
@@ -62,7 +64,7 @@ public final class BlueWebTokenBuilder{
                 .stream()
                 .filter(e -> e != null && e.getKey() != null)
                 .forEach(
-                    entry -> token.set(entry.getKey(), entry.getValue())
+                    entry -> token.setAdditionalProperty(entry.getKey(), entry.getValue())
                 );
         }
         return token;
@@ -213,7 +215,7 @@ public final class BlueWebTokenBuilder{
         return this;
     }
 
-    public BlueWebTokenBuilder withAdditionalProperties(Map<String, Object> additionalProperties){
+    public BlueWebTokenBuilder withAdditionalProperties(final Map<String, Object> additionalProperties){
 
         store.put("additionalProperties", additionalProperties);
         return this;

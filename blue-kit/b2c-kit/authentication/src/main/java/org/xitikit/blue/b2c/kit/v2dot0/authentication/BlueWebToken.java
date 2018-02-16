@@ -1,9 +1,6 @@
 package org.xitikit.blue.b2c.kit.v2dot0.authentication;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -143,14 +140,14 @@ public class BlueWebToken{
      */
     @Nullable
     @JsonProperty("given_name")
-    private String firstName;
+    private String givenName;
 
     /**
-     * The user's last name.
+     * The user's surname, or last name.
      */
     @Nullable
     @JsonProperty("family_name")
-    private String lastName;
+    private String familyName;
 
     /**
      * The expiration time claim is the time at which the token becomes invalid, represented in epoch time.
@@ -205,6 +202,7 @@ public class BlueWebToken{
      * @return the first email listed or null
      */
     @Nullable
+    @JsonIgnore
     public String getFirstEmail(){
 
         return emails != null && !emails.isEmpty() ? emails.get(0) : null;
@@ -365,25 +363,25 @@ public class BlueWebToken{
     }
 
     @Nullable
-    public String getFirstName(){
+    public String getGivenName(){
 
-        return firstName;
+        return givenName;
     }
 
-    public void setFirstName(@Nullable final String firstName){
+    public void setGivenName(@Nullable final String givenName){
 
-        this.firstName = firstName;
+        this.givenName = givenName;
     }
 
     @Nullable
-    public String getLastName(){
+    public String getFamilyName(){
 
-        return lastName;
+        return familyName;
     }
 
-    public void setLastName(@Nullable final String lastName){
+    public void setFamilyName(@Nullable final String familyName){
 
-        this.lastName = lastName;
+        this.familyName = familyName;
     }
 
     @Nullable
@@ -419,13 +417,13 @@ public class BlueWebToken{
     }
 
     @JsonAnyGetter
-    public Object get(final String key){
+    public Map<String, Object> getAdditionalProperties(){
 
-        return additionalProperties.get(key);
+        return additionalProperties;
     }
 
     @JsonAnySetter
-    public void set(final String key, final Object value){
+    public void setAdditionalProperty(final String key, final Object value){
 
         additionalProperties.put(key, value);
     }

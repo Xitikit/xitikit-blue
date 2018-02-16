@@ -15,7 +15,7 @@ import static java.util.Arrays.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright Xitikit.org 2017
+ * Copyright Xitikit.org ${year}
  *
  * @author J. Keith Hoopes on 5/4/2017
  */
@@ -32,7 +32,25 @@ class BlueWebTokenTest{
             .ofInstant(now, ZoneId.systemDefault())
             .plusMinutes(30);
         ZonedDateTime nbf = exp.minusMinutes(1);
-        String jsonToken = "{\n" + "    \"exp\": " + exp.toEpochSecond() + ",\n" + "    \"nbf\": " + nbf.toEpochSecond() + ",\n" + "    \"ver\": \"1.0\",\n" + "    \"iss\": \"https://login.microsoftonline.com/11111111-1111-1111-1111-111111111111/v2.0/\",\n" + "    \"acr\": \"b2c_1_what-you-named-the-policy\",\n" + "    \"sub\": \"Not supported currently. Use oid claim.\",\n" + "    \"aud\": \"11111111-1111-1111-1111-111111111111\",\n" + "    \"nonce\": \"11111111-1111-1111-1111-111111111111\",\n" + "    \"iat\": " + iat.toEpochSecond() + ",\n" + "    \"auth_time\": " + auth_time.toEpochSecond() + ",\n" + "    \"oid\": \"11111111-1111-1111-1111-111111111111\",\n" + "    \"given_name\": \"One Punch\",\n" + "    \"family_name\": \"Saitama\",\n" + "    \"emails\": [\n" + "       \"caped.baldy@heroassociation.org\"\n" + "    ]\n" + "}";
+        String jsonToken = "" +
+            "{\n" +
+            "    \"exp\": " + exp.toEpochSecond() + ",\n" +
+            "    \"nbf\": " + nbf.toEpochSecond() + ",\n" +
+            "    \"ver\": \"1.0\",\n" +
+            "    \"iss\": \"https://login.microsoftonline.com/11111111-1111-1111-1111-111111111111/v2.0/\",\n" +
+            "    \"acr\": \"b2c_1_what-you-named-the-policy\",\n" +
+            "    \"sub\": \"Not supported currently. Use oid claim.\",\n" +
+            "    \"aud\": \"11111111-1111-1111-1111-111111111111\",\n" +
+            "    \"nonce\": \"11111111-1111-1111-1111-111111111111\",\n" +
+            "    \"iat\": " + iat.toEpochSecond() + ",\n" +
+            "    \"auth_time\": " + auth_time.toEpochSecond() + ",\n" +
+            "    \"oid\": \"11111111-1111-1111-1111-111111111111\",\n" +
+            "    \"given_name\": \"One Punch\",\n" +
+            "    \"family_name\": \"Saitama\",\n" +
+            "    \"emails\": [\n" +
+            "       \"caped.baldy@heroassociation.org\"\n" +
+            "    ]\n" +
+            "}";
 
         BlueWebToken token = mapper.readValue(jsonToken, BlueWebToken.class);
         assertEquals(token.getExpiration(), exp);
@@ -46,11 +64,12 @@ class BlueWebTokenTest{
         assertEquals(token.getIssuedAt(), iat);
         assertEquals(token.getAuthTime(), auth_time);
         assertEquals(token.getObjectId(), "11111111-1111-1111-1111-111111111111");
-        assertEquals(token.getFirstName(), "One Punch");
-        assertEquals(token.getLastName(), "Saitama");
+        assertEquals(token.getGivenName(), "One Punch");
+        assertEquals(token.getFamilyName(), "Saitama");
         assertEquals(token.getFirstEmail(), "caped.baldy@heroassociation.org");
     }
 
+    @SuppressWarnings("ObjectEquality")
     @Test
     void builder(){
 
@@ -100,28 +119,13 @@ class BlueWebTokenTest{
         assertEquals(b.getVersion(), "2.0");
 
         BlueWebToken c = builder.clear()
-                                .with(
-                                    "test",
-                                    "test",
-                                    now,
-                                    "B2C_1_test",
-                                    "test",
-                                    asList("one@test.test", "one@test.test"),
-                                    now.plusMinutes(1),
-                                    "test",
-                                    now,
-                                    "test",
-                                    true,
-                                    "test",
-                                    now.minusMinutes(1),
-                                    "test",
-                                    "test",
-                                    "test",
-                                    "2.0",
-                                    new HashMap<>())
-                                .withProperty("test", "test")
-                                .withProperty("ing", "ing")
-                                .build();
+            .with("test", "test", now, "B2C_1_test", "test",
+                asList("one@test.test", "one@test.test"), now.plusMinutes(1),
+                "test", now, "test", true, "test", now.minusMinutes(1), "test",
+                "test", "test", "2.0", new HashMap<>())
+            .withProperty("test", "test")
+            .withProperty("ing", "ing")
+            .build();
 
         assertFalse(a == c);//reference should NOT be the same
         assertEquals(c.getAccessTokenHash(), "test");
@@ -142,8 +146,8 @@ class BlueWebTokenTest{
         assertEquals(c.getSubject(), "test");
         assertEquals(c.getTrustedFrameworkPolicy(), "test");
         assertEquals(c.getVersion(), "2.0");
-        assertEquals(c.get("test"), "test");
-        assertEquals(c.get("ing"), "ing");
-        assertNull(c.get("given_name"));
+        assertEquals(c.getAdditionalProperties().get("test"), "test");
+        assertEquals(c.getAdditionalProperties().get("ing"), "ing");
+        assertNull(c.getAdditionalProperties().get("given_name"));
     }
 }
