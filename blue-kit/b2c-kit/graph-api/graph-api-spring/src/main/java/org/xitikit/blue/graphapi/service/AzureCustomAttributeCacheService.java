@@ -19,97 +19,97 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class AzureCustomAttributeCacheService implements IAzureCustomAttributeCacheService{
 
-  private static final Logger log = LoggerFactory.getLogger(AzureCustomAttributeCacheService.class);
+    private static final Logger log = LoggerFactory.getLogger(AzureCustomAttributeCacheService.class);
 
-  private static ConcurrentHashMap<String, String> customAttributes = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, String> customAttributes = new ConcurrentHashMap<>();
 
-  private final UserProperties userProperties;
+    private final UserProperties userProperties;
 
-  private final AzureGraphApiClient azureGraphApiClient;
+    private final AzureGraphApiClient azureGraphApiClient;
 
-  public AzureCustomAttributeCacheService(
-    final UserProperties userProperties,
-    final AzureGraphApiClient azureGraphApiClient){
+    public AzureCustomAttributeCacheService(
+        final UserProperties userProperties,
+        final AzureGraphApiClient azureGraphApiClient){
 
-    this.userProperties = userProperties;
-    this.azureGraphApiClient = azureGraphApiClient;
+        this.userProperties = userProperties;
+        this.azureGraphApiClient = azureGraphApiClient;
 
-    init();
-  }
-
-  private void init(){
-
-    try{
-      //TODO: Setup linked attribute names here.
-    }catch(Exception e){
-      final String msg = "" +
-                           "An error occurred while retrieving the name of an " +
-                           "extension property for the azure custom user attributes. Error: " +
-                           e.getMessage();
-      log.error(msg, e);
-      throw new IllegalArgumentException(msg, e);
+        init();
     }
-  }
 
-  //    public String getLinkedAttributeName() {
-  //
-  //        if (customAttributes.containsKey(IS_LINKED) && StringUtils.isNotEmpty(customAttributes.get(IS_LINKED))) {
-  //            return customAttributes.get(IS_LINKED);
-  //        } else {
-  //            org.xitikit.blue.graphapi.model.ExtensionProperty extensionProperty = getExtensionProperties(userProperties.getCustomAttributeTwoName());
-  //            if (extensionProperty != null) {
-  //                customAttributes.put(IS_LINKED, extensionProperty.getName());
-  //                return customAttributes.get(IS_LINKED);
-  //            }
-  //        }
-  //        throw new NotFoundException("No values found for azure extension custom isLinked attribute");
-  //    }
-  //
-  //    public String getSignUpAttributeName() {
-  //
-  //        if (customAttributes.containsKey(SIGNUP_DATETIME) && StringUtils.isNotEmpty(customAttributes.get(SIGNUP_DATETIME))) {
-  //            return customAttributes.get(SIGNUP_DATETIME);
-  //        } else {
-  //            org.xitikit.blue.graphapi.model.ExtensionProperty extensionProperty = getExtensionProperties(userProperties.getCustomAttributeOnePropertyName());
-  //            if (extensionProperty != null) {
-  //                customAttributes.put(SIGNUP_DATETIME, extensionProperty.getName());
-  //                return customAttributes.get(SIGNUP_DATETIME);
-  //            }
-  //        }
-  //        throw new NotFoundException("No values found for azure extension custom customAttributeOne attribute");
-  //    }
+    private void init(){
 
-  private ExtensionProperty getExtensionProperties(String propertyName){
-
-    try{
-      List<Application> applicationList = azureGraphApiClient
-                                            .getApplications()
-                                            .getValue();
-      for(Application application : applicationList){
-        if(application
-             .getDisplayName()
-             .equals("b2c-extensions-app")){
-          ExtensionProperties extensionProperties = azureGraphApiClient.getExtensionProperties(application.getObjectId());
-          if(extensionProperties != null && extensionProperties.getValue() != null){
-            for(org.xitikit.blue.graphapi.model.ExtensionProperty extensionProperty : extensionProperties.getValue()){
-              if(extensionProperty
-                   .getName()
-                   .contains(propertyName)){
-                return extensionProperty;
-              }
-            }
-          }
+        try{
+            //TODO: Setup linked attribute names here.
+        }catch(Exception e){
+            final String msg = "" +
+                "An error occurred while retrieving the name of an " +
+                "extension property for the azure custom user attributes. Error: " +
+                e.getMessage();
+            log.error(msg, e);
+            throw new IllegalArgumentException(msg, e);
         }
-      }
-    }catch(Exception e){
-      log.error("Cannot fetch value of azure extension for custom attribute " + e.getMessage(), e);
     }
-    throw new NotFoundException("No values found for azure extension custom attribute");
-  }
 
-  @Override
-  public List<String> getCustomAttributeNames(){
+    //    public String getLinkedAttributeName() {
+    //
+    //        if (customAttributes.containsKey(IS_LINKED) && StringUtils.isNotEmpty(customAttributes.get(IS_LINKED))) {
+    //            return customAttributes.get(IS_LINKED);
+    //        } else {
+    //            org.xitikit.blue.graphapi.model.ExtensionProperty extensionProperty = getExtensionProperties(userProperties.getCustomAttributeTwoName());
+    //            if (extensionProperty != null) {
+    //                customAttributes.put(IS_LINKED, extensionProperty.getName());
+    //                return customAttributes.get(IS_LINKED);
+    //            }
+    //        }
+    //        throw new NotFoundException("No values found for azure extension custom isLinked attribute");
+    //    }
+    //
+    //    public String getSignUpAttributeName() {
+    //
+    //        if (customAttributes.containsKey(SIGNUP_DATETIME) && StringUtils.isNotEmpty(customAttributes.get(SIGNUP_DATETIME))) {
+    //            return customAttributes.get(SIGNUP_DATETIME);
+    //        } else {
+    //            org.xitikit.blue.graphapi.model.ExtensionProperty extensionProperty = getExtensionProperties(userProperties.getCustomAttributeOnePropertyName());
+    //            if (extensionProperty != null) {
+    //                customAttributes.put(SIGNUP_DATETIME, extensionProperty.getName());
+    //                return customAttributes.get(SIGNUP_DATETIME);
+    //            }
+    //        }
+    //        throw new NotFoundException("No values found for azure extension custom customAttributeOne attribute");
+    //    }
 
-    return null;
-  }
+    private ExtensionProperty getExtensionProperties(String propertyName){
+
+        try{
+            List<Application> applicationList = azureGraphApiClient
+                .getApplications()
+                .getValue();
+            for(Application application : applicationList){
+                if(application
+                    .getDisplayName()
+                    .equals("b2c-extensions-app")){
+                    ExtensionProperties extensionProperties = azureGraphApiClient.getExtensionProperties(application.getObjectId());
+                    if(extensionProperties != null && extensionProperties.getValue() != null){
+                        for(org.xitikit.blue.graphapi.model.ExtensionProperty extensionProperty : extensionProperties.getValue()){
+                            if(extensionProperty
+                                .getName()
+                                .contains(propertyName)){
+                                return extensionProperty;
+                            }
+                        }
+                    }
+                }
+            }
+        }catch(Exception e){
+            log.error("Cannot fetch value of azure extension for custom attribute " + e.getMessage(), e);
+        }
+        throw new NotFoundException("No values found for azure extension custom attribute");
+    }
+
+    @Override
+    public List<String> getCustomAttributeNames(){
+
+        return null;
+    }
 }

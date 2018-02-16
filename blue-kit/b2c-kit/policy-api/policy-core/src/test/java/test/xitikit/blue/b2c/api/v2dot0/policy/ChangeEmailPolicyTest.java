@@ -11,35 +11,35 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class ChangeEmailPolicyTest{
 
-  private final ChangeEmailPolicy a = new ChangeEmailPolicy();
+    private final ChangeEmailPolicy a = new ChangeEmailPolicy();
 
-  private final PolicyForB2C b = a;
+    private final PolicyForB2C b = a;
 
-  @Test
-  void Name(){
+    @Test
+    void Name(){
 
-    b.setName("test");
-    assertEquals("", b.getName());
-  }
+        b.setName("test");
+        assertEquals("", b.getName());
+    }
 
-  @Test
-  void RedirectUrl(){
+    @Test
+    void RedirectUrl(){
 
-    b.setRedirectUrl("test");
-    assertEquals("", b.getRedirectUrl());
-  }
+        b.setRedirectUrl("test");
+        assertEquals("", b.getRedirectUrl());
+    }
 
-  @Test
-  void TemplateUrl(){
+    @Test
+    void TemplateUrl(){
 
-    b.setTemplateUrl("test");
-    assertEquals("", b.getTemplateUrl());
-  }
+        b.setTemplateUrl("test");
+        assertEquals("", b.getTemplateUrl());
+    }
 
-  @Test
-  void Disabled(){
+    @Test
+    void Disabled(){
 
-    b.setDisabled(false);
-    assertTrue(b.isDisabled());
-  }
+        b.setDisabled(false);
+        assertTrue(b.isDisabled());
+    }
 }

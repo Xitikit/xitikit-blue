@@ -11,14 +11,14 @@ import org.xitikit.blue.boot.b2c.SimplePolicyConfiguration;
 @SpringBootApplication
 public class ITCaseApplication{
 
-  public static void main(final String[] args){
+    public static void main(final String[] args){
 
-    SpringApplication.run(ITCaseApplication.class, args);
-  }
+        SpringApplication.run(ITCaseApplication.class, args);
+    }
 
-  @Bean
-  public static SimplePolicyConfiguration policyConfiguration(){
+    @Bean
+    public static SimplePolicyConfiguration policyConfiguration(){
 
-    return new SimplePolicyConfiguration();
-  }
+        return new SimplePolicyConfiguration();
+    }
 }

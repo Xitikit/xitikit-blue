@@ -11,40 +11,40 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SignInPolicyTest{
 
-  private final SignInPolicy b = new SignInPolicy();
+    private final SignInPolicy b = new SignInPolicy();
 
-  @Test
-  void Inheritance(){
-    //Make sure it aways implements
-    //noinspection ConstantConditions
-    assertTrue(b instanceof PolicyForB2C);
-  }
+    @Test
+    void Inheritance(){
+        //Make sure it aways implements
+        //noinspection ConstantConditions
+        assertTrue(b instanceof PolicyForB2C);
+    }
 
-  @Test
-  void Name(){
+    @Test
+    void Name(){
 
-    b.setName("test");
-    assertEquals("test", b.getName());
-  }
+        b.setName("test");
+        assertEquals("test", b.getName());
+    }
 
-  @Test
-  void RedirectUrl(){
+    @Test
+    void RedirectUrl(){
 
-    b.setRedirectUrl("test");
-    assertEquals("test", b.getRedirectUrl());
-  }
+        b.setRedirectUrl("test");
+        assertEquals("test", b.getRedirectUrl());
+    }
 
-  @Test
-  void TemplateUrl(){
-    //Sign In policies are not configurable with templates.
-    b.setTemplateUrl("test");
-    assertEquals("", b.getTemplateUrl());
-  }
+    @Test
+    void TemplateUrl(){
+        //Sign In policies are not configurable with templates.
+        b.setTemplateUrl("test");
+        assertEquals("", b.getTemplateUrl());
+    }
 
-  @Test
-  void Disabled(){
+    @Test
+    void Disabled(){
 
-    b.setDisabled(false);
-    assertFalse(b.isDisabled());
-  }
+        b.setDisabled(false);
+        assertFalse(b.isDisabled());
+    }
 }

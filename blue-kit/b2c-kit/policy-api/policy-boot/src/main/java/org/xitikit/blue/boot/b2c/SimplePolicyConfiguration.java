@@ -13,75 +13,75 @@ import org.xitikit.blue.b2c.kit.v2dot0.policy.*;
 @ConfigurationProperties("xitikit.blue.kit.b2c.policy")
 public class SimplePolicyConfiguration{
 
-  private SignUpPolicy signUp;
+    private SignUpPolicy signUp;
 
-  private SignInPolicy signIn;
+    private SignInPolicy signIn;
 
-  private SignUpOrSignInPolicy signUpOrSignIn;
+    private SignUpOrSignInPolicy signUpOrSignIn;
 
-  private ResetPasswordPolicy resetPassword;
+    private ResetPasswordPolicy resetPassword;
 
-  private EditProfilePolicy editProfile;
+    private EditProfilePolicy editProfile;
 
-  private SignOutPolicy signOut;
+    private SignOutPolicy signOut;
 
-  public SignUpPolicy getSignUp(){
+    public SignUpPolicy getSignUp(){
 
-    return signUp;
-  }
+        return signUp;
+    }
 
-  public void setSignUp(final SignUpPolicy signUp){
+    public void setSignUp(final SignUpPolicy signUp){
 
-    this.signUp = signUp;
-  }
+        this.signUp = signUp;
+    }
 
-  public SignInPolicy getSignIn(){
+    public SignInPolicy getSignIn(){
 
-    return signIn;
-  }
+        return signIn;
+    }
 
-  public void setSignIn(final SignInPolicy signIn){
+    public void setSignIn(final SignInPolicy signIn){
 
-    this.signIn = signIn;
-  }
+        this.signIn = signIn;
+    }
 
-  public SignUpOrSignInPolicy getSignUpOrSignIn(){
+    public SignUpOrSignInPolicy getSignUpOrSignIn(){
 
-    return signUpOrSignIn;
-  }
+        return signUpOrSignIn;
+    }
 
-  public void setSignUpOrSignIn(final SignUpOrSignInPolicy signUpOrSignIn){
+    public void setSignUpOrSignIn(final SignUpOrSignInPolicy signUpOrSignIn){
 
-    this.signUpOrSignIn = signUpOrSignIn;
-  }
+        this.signUpOrSignIn = signUpOrSignIn;
+    }
 
-  public ResetPasswordPolicy getResetPassword(){
+    public ResetPasswordPolicy getResetPassword(){
 
-    return resetPassword;
-  }
+        return resetPassword;
+    }
 
-  public void setResetPassword(final ResetPasswordPolicy resetPassword){
+    public void setResetPassword(final ResetPasswordPolicy resetPassword){
 
-    this.resetPassword = resetPassword;
-  }
+        this.resetPassword = resetPassword;
+    }
 
-  public EditProfilePolicy getEditProfile(){
+    public EditProfilePolicy getEditProfile(){
 
-    return editProfile;
-  }
+        return editProfile;
+    }
 
-  public void setEditProfile(final EditProfilePolicy editProfile){
+    public void setEditProfile(final EditProfilePolicy editProfile){
 
-    this.editProfile = editProfile;
-  }
+        this.editProfile = editProfile;
+    }
 
-  public SignOutPolicy getSignOut(){
+    public SignOutPolicy getSignOut(){
 
-    return signOut;
-  }
+        return signOut;
+    }
 
-  public void setSignOut(final SignOutPolicy signOut){
+    public void setSignOut(final SignOutPolicy signOut){
 
-    this.signOut = signOut;
-  }
+        this.signOut = signOut;
+    }
 }

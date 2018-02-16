@@ -10,5 +10,5 @@ package org.xitikit.blue.b2c.kit.v2dot0.authentication;
  */
 public enum PolicyErrorCodes{
 
-  access_denied;
+    access_denied;
 }

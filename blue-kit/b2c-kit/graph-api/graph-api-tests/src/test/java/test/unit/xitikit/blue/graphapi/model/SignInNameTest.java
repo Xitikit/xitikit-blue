@@ -7,14 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SignInNameTest{
 
-    public static SignInName testCase(){
-
-        SignInName signInName = new SignInName("emailAddress", "emailAddress@something.xyz");
-        signInName.setAdditionalProperty("something", "whatever");
-
-        return signInName;
-    }
-
     public static SignInName testCaseGoogle(){
 
         SignInName signInName = new SignInName("google", "email@gmail.com");
@@ -42,5 +34,13 @@ class SignInNameTest{
         signInName.setValue("test");
         assertEquals("test", signInName.getType());
         assertEquals("test", signInName.getValue());
+    }
+
+    public static SignInName testCase(){
+
+        SignInName signInName = new SignInName("emailAddress", "emailAddress@something.xyz");
+        signInName.setAdditionalProperty("something", "whatever");
+
+        return signInName;
     }
 }

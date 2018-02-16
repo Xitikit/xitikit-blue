@@ -11,33 +11,33 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SearchFormTest{
 
-  @Test
-  void givenName(){
+    @Test
+    void givenName(){
 
-    SearchForm form = new SearchForm();
-    assertNull(form.getGivenName());
-    form.setGivenName(" Name ");
-    assertEquals(" Name ", form.getGivenName());
-    form.setGivenName(" ");
-    assertEquals(" ", form.getGivenName());
-    form.setGivenName("");
-    assertEquals("", form.getGivenName());
-    form.setGivenName(null);
-    assertEquals(null, form.getGivenName());
-  }
+        SearchForm form = new SearchForm();
+        assertNull(form.getGivenName());
+        form.setGivenName(" Name ");
+        assertEquals(" Name ", form.getGivenName());
+        form.setGivenName(" ");
+        assertEquals(" ", form.getGivenName());
+        form.setGivenName("");
+        assertEquals("", form.getGivenName());
+        form.setGivenName(null);
+        assertEquals(null, form.getGivenName());
+    }
 
-  @Test
-  void surName(){
+    @Test
+    void surName(){
 
-    SearchForm form = new SearchForm();
-    assertNull(form.getSurname());
-    form.setSurname(" Name ");
-    assertEquals(" Name ", form.getSurname());
-    form.setSurname(" ");
-    assertEquals(" ", form.getSurname());
-    form.setSurname("");
-    assertEquals("", form.getSurname());
-    form.setSurname(null);
-    assertEquals(null, form.getSurname());
-  }
+        SearchForm form = new SearchForm();
+        assertNull(form.getSurname());
+        form.setSurname(" Name ");
+        assertEquals(" Name ", form.getSurname());
+        form.setSurname(" ");
+        assertEquals(" ", form.getSurname());
+        form.setSurname("");
+        assertEquals("", form.getSurname());
+        form.setSurname(null);
+        assertEquals(null, form.getSurname());
+    }
 }

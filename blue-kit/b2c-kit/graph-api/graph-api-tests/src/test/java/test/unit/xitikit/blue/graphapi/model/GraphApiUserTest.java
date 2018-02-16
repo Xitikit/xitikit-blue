@@ -11,25 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GraphApiUserTest{
 
-    public static GraphApiUser testCase(){
-
-        GraphApiUser user = new GraphApiUser(
-            UUID.randomUUID().toString(),
-            Boolean.TRUE,
-            new PasswordProfile("super secret", false),
-            asList(
-                SignInNameTest.testCase(),
-                SignInNameTest.testCaseGoogle()),
-            "surname",
-            "displayName",
-            "givenName",
-            "userPrincipalName"
-        );
-        user.setAdditionalProperty("AdditionalProperty", "AdditionalProperty");
-
-        return user;
-    }
-
     @Test
     void testWYSIWYG(){
 
@@ -56,5 +37,24 @@ class GraphApiUserTest{
         assertTrue(user.getSignInNames().size() == 2);
         assertEquals("userPrincipalName", user.getUserPrincipalName());
         assertEquals("AdditionalProperty", user.getAdditionalProperties().get("AdditionalProperty"));
+    }
+
+    public static GraphApiUser testCase(){
+
+        GraphApiUser user = new GraphApiUser(
+            UUID.randomUUID().toString(),
+            Boolean.TRUE,
+            new PasswordProfile("super secret", false),
+            asList(
+                SignInNameTest.testCase(),
+                SignInNameTest.testCaseGoogle()),
+            "surname",
+            "displayName",
+            "givenName",
+            "userPrincipalName"
+        );
+        user.setAdditionalProperty("AdditionalProperty", "AdditionalProperty");
+
+        return user;
     }
 }

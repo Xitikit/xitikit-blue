@@ -11,20 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SuppressWarnings("WeakerAccess")
 class PaginatedUsersTest{
 
-    public static PaginatedUsers testCase(){
-
-        PaginatedUsers paginatedUsers = new PaginatedUsers(
-            asList(
-                GraphApiUserTest.testCase(),
-                GraphApiUserTest.testCase()
-            ),
-            "http://something/whatever$skiptoken=1",
-            "{odata:'something'}");
-        paginatedUsers.setAdditionalProperty("unexpected", "value");
-
-        return paginatedUsers;
-    }
-
     @Test
     void testWYSIWYG(){
 
@@ -56,5 +42,19 @@ class PaginatedUsersTest{
         paginatedUsers.setNextLink("http://something/without.a.skip.token");
         assertEquals("http://something/without.a.skip.token", paginatedUsers.getNextLink());
         assertNull(paginatedUsers.getSkiptoken());
+    }
+
+    public static PaginatedUsers testCase(){
+
+        PaginatedUsers paginatedUsers = new PaginatedUsers(
+            asList(
+                GraphApiUserTest.testCase(),
+                GraphApiUserTest.testCase()
+            ),
+            "http://something/whatever$skiptoken=1",
+            "{odata:'something'}");
+        paginatedUsers.setAdditionalProperty("unexpected", "value");
+
+        return paginatedUsers;
     }
 }

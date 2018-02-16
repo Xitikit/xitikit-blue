@@ -11,9 +11,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 class SpringContextApplicationTests{
 
-  @Test
-  void contextLoads(){
+    @Test
+    void contextLoads(){
 
-  }
+    }
 
 }

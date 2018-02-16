@@ -14,84 +14,84 @@ import static org.xitikit.blue.b2c.kit.v2dot0.authentication.VerificationUtil.*;
  */
 class VerificationUtilTest{
 
-  @Test
-  void typeSecuredObjectMapperShouldNotAllowMapDeserialization(){
+    @Test
+    void typeSecuredObjectMapperShouldNotAllowMapDeserialization(){
 
-    assertThrows(Exception.class,
-      () -> typeSecuredObjectMapper()
-              .readValue(
-                "{'one':'one'}",
-                Map.class));
-  }
+        assertThrows(Exception.class,
+            () -> typeSecuredObjectMapper()
+                .readValue(
+                    "{'one':'one'}",
+                    Map.class));
+    }
 
-  @Test
-  void validateIssuerTest(){
+    @Test
+    void validateIssuerTest(){
 
-    // validateIssuer();
-  }
+        // validateIssuer();
+    }
 
-  @Test
-  void validateExpirationTest(){
+    @Test
+    void validateExpirationTest(){
 
-  }
+    }
 
-  @Test
-  void getKeyIdTest(){
+    @Test
+    void getKeyIdTest(){
 
-  }
+    }
 
-  @Test
-  void getKeyId1Test(){
+    @Test
+    void getKeyId1Test(){
 
-  }
+    }
 
-  @Test
-  void modulusTest(){
+    @Test
+    void modulusTest(){
 
-  }
+    }
 
-  @Test
-  void exponentTest(){
+    @Test
+    void exponentTest(){
 
-  }
+    }
 
-  @Test
-  void encodedModulusTest(){
+    @Test
+    void encodedModulusTest(){
 
-  }
+    }
 
-  @Test
-  void encodedExponentTest(){
+    @Test
+    void encodedExponentTest(){
 
-  }
+    }
 
-  @Test
-  void safeDecodeBase64Test(){
+    @Test
+    void safeDecodeBase64Test(){
 
-  }
+    }
 
-  @Test
-  void kidForKeyIdTest(){
+    @Test
+    void kidForKeyIdTest(){
 
-  }
+    }
 
-  @Test
-  void safeNodeTest(){
+    @Test
+    void safeNodeTest(){
 
-  }
+    }
 
-  @Test
-  void jwksUriTest(){
+    @Test
+    void jwksUriTest(){
 
-  }
+    }
 
-  @Test
-  void parseKeyTest(){
+    @Test
+    void parseKeyTest(){
 
-  }
+    }
 
-  @Test
-  void rsaPublicKeySpecTest(){
+    @Test
+    void rsaPublicKeySpecTest(){
 
-  }
+    }
 }

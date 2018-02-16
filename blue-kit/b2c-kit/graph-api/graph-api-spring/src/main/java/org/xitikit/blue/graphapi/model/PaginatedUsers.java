@@ -9,91 +9,91 @@ import java.util.Map;
 
 /**
  * @author J. Keith Hoopes
- *   Copyright Xitikit.org 2017
+ *     Copyright Xitikit.org 2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaginatedUsers{
 
-  private List<GraphApiUser> users = new ArrayList<>();
+    private List<GraphApiUser> users = new ArrayList<>();
 
-  @JsonProperty("odata.nextLink")
-  private String nextLink;
+    @JsonProperty("odata.nextLink")
+    private String nextLink;
 
-  @JsonProperty("odata.metadata")
-  private String metaData;
+    @JsonProperty("odata.metadata")
+    private String metaData;
 
-  @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<>();
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
-  // STANDARD CONSTRUCTORS
+    // STANDARD CONSTRUCTORS
 
-  public PaginatedUsers(){
+    public PaginatedUsers(){
 
-  }
-
-  public PaginatedUsers(final List<GraphApiUser> users, final String nextLink, final String metaData){
-
-    this.users = users;
-    this.nextLink = nextLink;
-    this.metaData = metaData;
-  }
-
-  // SPECIALIZED METHODS
-  
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties(){
-
-    return this.additionalProperties;
-  }
-
-  @JsonAnySetter
-  public void setAdditionalProperty(final String name, final Object value){
-
-    this.additionalProperties.put(name, value);
-  }
-
-  @JsonIgnore
-  public String getNextLinkToken(){
-
-    if(nextLink != null && !"".equals(nextLink.trim())){
-      int index = nextLink.indexOf("$skiptoken=");
-      if(index != -1){
-        return nextLink.substring(index + "$skiptoken=".length());
-      }
-      return null;
     }
-    return null;
-  }
 
-  // GETTERS AND SETTERS
+    public PaginatedUsers(final List<GraphApiUser> users, final String nextLink, final String metaData){
 
-  public List<GraphApiUser> getUsers(){
+        this.users = users;
+        this.nextLink = nextLink;
+        this.metaData = metaData;
+    }
 
-    return users;
-  }
+    // SPECIALIZED METHODS
 
-  public void setUsers(final List<GraphApiUser> users){
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties(){
 
-    this.users = users;
-  }
+        return this.additionalProperties;
+    }
 
-  public String getNextLink(){
+    @JsonAnySetter
+    public void setAdditionalProperty(final String name, final Object value){
 
-    return nextLink;
-  }
+        this.additionalProperties.put(name, value);
+    }
 
-  public void setNextLink(final String nextLink){
+    @JsonIgnore
+    public String getNextLinkToken(){
 
-    this.nextLink = nextLink;
-  }
+        if(nextLink != null && !"".equals(nextLink.trim())){
+            int index = nextLink.indexOf("$skiptoken=");
+            if(index != -1){
+                return nextLink.substring(index + "$skiptoken=".length());
+            }
+            return null;
+        }
+        return null;
+    }
 
-  public String getMetaData(){
+    // GETTERS AND SETTERS
 
-    return metaData;
-  }
+    public List<GraphApiUser> getUsers(){
 
-  public void setMetaData(final String metaData){
+        return users;
+    }
 
-    this.metaData = metaData;
-  }
+    public void setUsers(final List<GraphApiUser> users){
+
+        this.users = users;
+    }
+
+    public String getNextLink(){
+
+        return nextLink;
+    }
+
+    public void setNextLink(final String nextLink){
+
+        this.nextLink = nextLink;
+    }
+
+    public String getMetaData(){
+
+        return metaData;
+    }
+
+    public void setMetaData(final String metaData){
+
+        this.metaData = metaData;
+    }
 }

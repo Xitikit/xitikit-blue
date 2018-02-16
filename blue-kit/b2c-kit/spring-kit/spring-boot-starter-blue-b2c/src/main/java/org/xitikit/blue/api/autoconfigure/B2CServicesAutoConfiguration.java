@@ -31,70 +31,70 @@ import org.xitikit.blue.b2c.kit.v2dot0.policy.*;
 @AutoConfigureAfter(B2CPolicyAutoConfiguration.class)
 public class B2CServicesAutoConfiguration{
 
-  @Bean
-  @ConfigurationProperties("blue-kit.b2c.nonce")
-  @ConditionalOnMissingBean(NonceProperties.class)
-  public NonceProperties blueKitNonceProperties(){
+    @Bean
+    @ConfigurationProperties("blue-kit.b2c.nonce")
+    @ConditionalOnMissingBean(NonceProperties.class)
+    public NonceProperties blueKitNonceProperties(){
 
-    return new NonceProperties();
-  }
-
-  @Bean
-  @Autowired
-  @ConditionalOnMissingBean(NonceStore.class)
-  @ConditionalOnProperty(prefix = "blue-kit.b2c.nonce", name = "disabled", havingValue = "false")
-  public NonceStore blueKitNonceStore(final NonceProperties nonceProperties){
-    //TODO: Add logic for checking whether a shared caching framework is enabled
-    return new GreedyNonceStore(nonceProperties.getTimeout());
-  }
-
-  @Bean
-  @Autowired
-  @ConditionalOnBean(NonceProperties.class)
-  @ConditionalOnMissingBean(NonceService.class)
-  public NonceService blueKitNonceService(final NonceStore nonceStore, final NonceProperties nonceProperties){
-    //TODO: Add logic for checking whether a shared caching framework is enabled
-    if(nonceProperties.isDisabled()){
-      return new NonceService(){
-
-        @Override
-        @NonNull
-        public Nonce generate(){
-
-          return new Nonce();
-        }
-
-        @Override
-        public boolean isValid(final String nonce){
-
-          return false;
-        }
-
-        @Override
-        public boolean isDisabled(){
-
-          return true;
-        }
-      };
+        return new NonceProperties();
     }
-    return new SimpleNonceService(nonceStore, nonceProperties);
-  }
 
-  @Bean("blueKitB2CAuthenticationService")
-  @Autowired
-  @ConditionalOnMissingBean(B2CAuthenticationService.class)
-  @ConditionalOnBean(
-    value = {B2CProperties.class, SignUpPolicy.class, SignInPolicy.class, SignUpOrSignInPolicy.class, ResetPasswordPolicy.class, EditProfilePolicy.class, SignOutPolicy.class, NonceProperties.class, NonceService.class})
-  public B2CAuthenticationService blueKitB2CAuthenticationService(
-    final ClaimValidationService claimValidationService,
-    final NonceService nonceService,
-    final UrlService urlService,
-    final RestTemplate restTemplate){
+    @Bean
+    @Autowired
+    @ConditionalOnMissingBean(NonceStore.class)
+    @ConditionalOnProperty(prefix = "blue-kit.b2c.nonce", name = "disabled", havingValue = "false")
+    public NonceStore blueKitNonceStore(final NonceProperties nonceProperties){
+        //TODO: Add logic for checking whether a shared caching framework is enabled
+        return new GreedyNonceStore(nonceProperties.getTimeout());
+    }
 
-    return new SimpleB2CAuthenticationService(
-      claimValidationService,
-      nonceService,
-      urlService,
-      restTemplate);
-  }
+    @Bean
+    @Autowired
+    @ConditionalOnBean(NonceProperties.class)
+    @ConditionalOnMissingBean(NonceService.class)
+    public NonceService blueKitNonceService(final NonceStore nonceStore, final NonceProperties nonceProperties){
+        //TODO: Add logic for checking whether a shared caching framework is enabled
+        if(nonceProperties.isDisabled()){
+            return new NonceService(){
+
+                @Override
+                @NonNull
+                public Nonce generate(){
+
+                    return new Nonce();
+                }
+
+                @Override
+                public boolean isValid(final String nonce){
+
+                    return false;
+                }
+
+                @Override
+                public boolean isDisabled(){
+
+                    return true;
+                }
+            };
+        }
+        return new SimpleNonceService(nonceStore, nonceProperties);
+    }
+
+    @Bean("blueKitB2CAuthenticationService")
+    @Autowired
+    @ConditionalOnMissingBean(B2CAuthenticationService.class)
+    @ConditionalOnBean(
+        value = {B2CProperties.class, SignUpPolicy.class, SignInPolicy.class, SignUpOrSignInPolicy.class, ResetPasswordPolicy.class, EditProfilePolicy.class, SignOutPolicy.class, NonceProperties.class, NonceService.class})
+    public B2CAuthenticationService blueKitB2CAuthenticationService(
+        final ClaimValidationService claimValidationService,
+        final NonceService nonceService,
+        final UrlService urlService,
+        final RestTemplate restTemplate){
+
+        return new SimpleB2CAuthenticationService(
+            claimValidationService,
+            nonceService,
+            urlService,
+            restTemplate);
+    }
 }

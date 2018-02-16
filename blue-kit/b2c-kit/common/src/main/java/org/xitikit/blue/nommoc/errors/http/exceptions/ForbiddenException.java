@@ -13,20 +13,20 @@ import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
  */
 public class ForbiddenException extends BlueKitHttpException{
 
-  private static final ErrorCode ERROR_CODE = FORBIDDEN;
+    private static final ErrorCode ERROR_CODE = FORBIDDEN;
 
-  public ForbiddenException(){
+    public ForbiddenException(){
 
-    super(ERROR_CODE);
-  }
+        super(ERROR_CODE);
+    }
 
-  public ForbiddenException(final Throwable t){
+    public ForbiddenException(final Throwable t){
 
-    super(ERROR_CODE, t);
-  }
+        super(ERROR_CODE, t);
+    }
 
-  public ForbiddenException(final String... arguments){
+    public ForbiddenException(final String... arguments){
 
-    super(ERROR_CODE, arguments);
-  }
+        super(ERROR_CODE, arguments);
+    }
 }

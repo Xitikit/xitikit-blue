@@ -6,13 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordProfileTest{
 
-    public static PasswordProfile testCase(){
-
-        PasswordProfile passwordProfile = new PasswordProfile(" whatever with a space in front", true);
-        passwordProfile.setAdditionalProperty("something", "something with a space at the end ");
-        return passwordProfile;
-    }
-
     @Test
     void testWYSIWYG(){
 
@@ -26,5 +19,12 @@ class PasswordProfileTest{
         assertEquals(" whatever with a space in front", passwordProfile.getPassword());
         assertTrue(passwordProfile.getForceChangePasswordNextLogin());
         assertEquals("something with a space at the end ", passwordProfile.getAdditionalProperties().get("something"));
+    }
+
+    public static PasswordProfile testCase(){
+
+        PasswordProfile passwordProfile = new PasswordProfile(" whatever with a space in front", true);
+        passwordProfile.setAdditionalProperty("something", "something with a space at the end ");
+        return passwordProfile;
     }
 }

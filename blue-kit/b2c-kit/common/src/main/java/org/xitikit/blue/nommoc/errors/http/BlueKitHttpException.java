@@ -10,48 +10,48 @@ import static java.util.Arrays.*;
  */
 public abstract class BlueKitHttpException extends RuntimeException{
 
-  private final ErrorCode errorCode;
+    private final ErrorCode errorCode;
 
-  private final List<String> arguments = new ArrayList<>();
+    private final List<String> arguments = new ArrayList<>();
 
-  protected BlueKitHttpException(final ErrorCode errorCode){
+    protected BlueKitHttpException(final ErrorCode errorCode){
 
-    Verify.notNull(errorCode, "'errorCode' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode)'.");
-    this.errorCode = errorCode;
-  }
+        Verify.notNull(errorCode, "'errorCode' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode)'.");
+        this.errorCode = errorCode;
+    }
 
-  protected BlueKitHttpException(final ErrorCode errorCode, final Throwable throwable){
+    protected BlueKitHttpException(final ErrorCode errorCode, final Throwable throwable){
 
-    super(throwable);
+        super(throwable);
 
-    Verify.notNull(errorCode, "'errorCode' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final Throwable t)'.");
-    Verify.notNull(errorCode, "'throwable' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final Throwable t)'.");
+        Verify.notNull(errorCode, "'errorCode' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final Throwable t)'.");
+        Verify.notNull(errorCode, "'throwable' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final Throwable t)'.");
 
-    this.errorCode = errorCode;
-  }
+        this.errorCode = errorCode;
+    }
 
-  protected BlueKitHttpException(final ErrorCode errorCode, final String... arguments){
+    protected BlueKitHttpException(final ErrorCode errorCode, final String... arguments){
 
-    Verify.notNull(errorCode, "'errorCode' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final String... arguments)'.");
-    Verify.notNull(arguments, "'arguments' were null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final String... arguments)'.");
+        Verify.notNull(errorCode, "'errorCode' was null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final String... arguments)'.");
+        Verify.notNull(arguments, "'arguments' were null in 'BlueKitHttpException::BlueKitHttpException(final ErrorCode errorCode, final String... arguments)'.");
 
-    this.errorCode = errorCode;
-    this.arguments.addAll(asList(arguments));
-  }
+        this.errorCode = errorCode;
+        this.arguments.addAll(asList(arguments));
+    }
 
-  public ErrorCode getErrorCode(){
+    public ErrorCode getErrorCode(){
 
-    return errorCode;
-  }
+        return errorCode;
+    }
 
-  public BlueKitHttpException withArguments(final String... arguments){
+    public BlueKitHttpException withArguments(final String... arguments){
 
-    this.arguments.addAll(asList(arguments));
-    return this;
-  }
+        this.arguments.addAll(asList(arguments));
+        return this;
+    }
 
-  public String[] getArguments(){
+    public String[] getArguments(){
 
-    return arguments.toArray(new String[arguments.size()]);
-  }
+        return arguments.toArray(new String[arguments.size()]);
+    }
 }

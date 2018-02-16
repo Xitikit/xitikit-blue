@@ -15,122 +15,122 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccessToken{
 
-  @JsonProperty("token_type")
-  private String tokenType;
+    @JsonProperty("token_type")
+    private String tokenType;
 
-  @JsonProperty("scope")
-  private String scope;
+    @JsonProperty("scope")
+    private String scope;
 
-  @JsonProperty("expires_in")
-  private Long expiresIn;
+    @JsonProperty("expires_in")
+    private Long expiresIn;
 
-  @JsonProperty("ext_expires_in")
-  private Long extExpiresIn;
+    @JsonProperty("ext_expires_in")
+    private Long extExpiresIn;
 
-  @JsonProperty("expires_on")
-  private Long expiresOn;
+    @JsonProperty("expires_on")
+    private Long expiresOn;
 
-  @JsonProperty("not_before")
-  private Long notBefore;
+    @JsonProperty("not_before")
+    private Long notBefore;
 
-  @JsonProperty("access_token")
-  private String accessToken;
+    @JsonProperty("access_token")
+    private String accessToken;
 
-  @JsonProperty("resource")
-  private String resource;
+    @JsonProperty("resource")
+    private String resource;
 
-  @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<>();
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties(){
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties(){
 
-    return this.additionalProperties;
-  }
+        return this.additionalProperties;
+    }
 
-  @JsonAnySetter
-  public void setAdditionalProperty(final String name, final Object value){
+    @JsonAnySetter
+    public void setAdditionalProperty(final String name, final Object value){
 
-    this.additionalProperties.put(name, value);
-  }
+        this.additionalProperties.put(name, value);
+    }
 
-  public String getTokenType(){
+    public String getTokenType(){
 
-    return tokenType;
-  }
+        return tokenType;
+    }
 
-  public void setTokenType(final String tokenType){
+    public void setTokenType(final String tokenType){
 
-    this.tokenType = tokenType;
-  }
+        this.tokenType = tokenType;
+    }
 
-  public String getScope(){
+    public String getScope(){
 
-    return scope;
-  }
+        return scope;
+    }
 
-  public void setScope(final String scope){
+    public void setScope(final String scope){
 
-    this.scope = scope;
-  }
+        this.scope = scope;
+    }
 
-  public Long getExpiresIn(){
+    public Long getExpiresIn(){
 
-    return expiresIn;
-  }
+        return expiresIn;
+    }
 
-  public void setExpiresIn(final Long expiresIn){
+    public void setExpiresIn(final Long expiresIn){
 
-    this.expiresIn = expiresIn;
-  }
+        this.expiresIn = expiresIn;
+    }
 
-  public Long getExtExpiresIn(){
+    public Long getExtExpiresIn(){
 
-    return extExpiresIn;
-  }
+        return extExpiresIn;
+    }
 
-  public void setExtExpiresIn(final Long extExpiresIn){
+    public void setExtExpiresIn(final Long extExpiresIn){
 
-    this.extExpiresIn = extExpiresIn;
-  }
+        this.extExpiresIn = extExpiresIn;
+    }
 
-  public Long getExpiresOn(){
+    public Long getExpiresOn(){
 
-    return expiresOn;
-  }
+        return expiresOn;
+    }
 
-  public void setExpiresOn(final Long expiresOn){
+    public void setExpiresOn(final Long expiresOn){
 
-    this.expiresOn = expiresOn;
-  }
+        this.expiresOn = expiresOn;
+    }
 
-  public Long getNotBefore(){
+    public Long getNotBefore(){
 
-    return notBefore;
-  }
+        return notBefore;
+    }
 
-  public void setNotBefore(final Long notBefore){
+    public void setNotBefore(final Long notBefore){
 
-    this.notBefore = notBefore;
-  }
+        this.notBefore = notBefore;
+    }
 
-  public String getAccessToken(){
+    public String getAccessToken(){
 
-    return accessToken;
-  }
+        return accessToken;
+    }
 
-  public void setAccessToken(final String accessToken){
+    public void setAccessToken(final String accessToken){
 
-    this.accessToken = accessToken;
-  }
+        this.accessToken = accessToken;
+    }
 
-  public String getResource(){
+    public String getResource(){
 
-    return resource;
-  }
+        return resource;
+    }
 
-  public void setResource(final String resource){
+    public void setResource(final String resource){
 
-    this.resource = resource;
-  }
+        this.resource = resource;
+    }
 }

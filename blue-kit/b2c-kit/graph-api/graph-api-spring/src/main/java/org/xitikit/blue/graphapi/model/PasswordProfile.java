@@ -19,6 +19,9 @@ public class PasswordProfile{
 
     private Boolean forceChangePasswordNextLogin;
 
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<>();
+
     public PasswordProfile(){
 
     }
@@ -28,9 +31,6 @@ public class PasswordProfile{
         this.password = password;
         this.forceChangePasswordNextLogin = forceChangePasswordNextLogin;
     }
-
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties(){
