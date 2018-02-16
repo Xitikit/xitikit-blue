@@ -1,6 +1,7 @@
 package org.xitikit.blue.b2c.kit.v2dot0.authentication;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.NonceProperties;
@@ -22,54 +23,55 @@ import javax.annotation.Nonnull;
  * @author J. Keith Hoopes
  * @see NonceService
  */
-@Slf4j
 @Service
 public final class SimpleNonceService implements NonceService{
 
-  private final NonceStore nonceStore;
+    private static final Logger log = LoggerFactory.getLogger(SimpleNonceService.class);
 
-  private final NonceProperties nonceProperties;
+    private final NonceStore nonceStore;
 
-  @Autowired
-  public SimpleNonceService(
-    @Nonnull final NonceStore nonceStore,
-    @Nonnull final NonceProperties nonceProperties){
+    private final NonceProperties nonceProperties;
 
-    this.nonceStore = nonceStore;
-    this.nonceProperties = nonceProperties;
-  }
+    @Autowired
+    public SimpleNonceService(
+        @Nonnull final NonceStore nonceStore,
+        @Nonnull final NonceProperties nonceProperties){
 
-  @Override
-  public Nonce generate(){
-
-    Nonce nonce = new Nonce();
-    nonceStore.put(nonce);
-
-    return nonce;
-  }
-
-  @Override
-  public boolean isValid(@Nonnull final String nonceValue){
-
-    Integer timeout = nonceProperties.getTimeout();
-    if(nonceProperties.isDisabled() || nonceProperties.getTimeout() == null || nonceProperties.getTimeout() < 1){
-      // Nonce services are considered to be disabled if the user explicitly disables them
-      // or they have not set a positive timeout value. If the nonce services are disabled,
-      // then we do not care what the value is; all values are considered valid.
-      return true;
+        this.nonceStore = nonceStore;
+        this.nonceProperties = nonceProperties;
     }
-    Nonce nonce = nonceStore.get(nonceValue);
-    if(nonce == null){
-      return false;
+
+    @Override
+    public Nonce generate(){
+
+        Nonce nonce = new Nonce();
+        nonceStore.put(nonce);
+
+        return nonce;
     }
-    long now = System.currentTimeMillis();
-    long diff = now - nonce.getSystemTimeAtCreation();
-    return diff > timeout * 1000;
-  }
 
-  @Override
-  public boolean isDisabled(){
+    @Override
+    public boolean isValid(@Nonnull final String nonceValue){
 
-    return nonceProperties.isDisabled();
-  }
+        Integer timeout = nonceProperties.getTimeout();
+        if(nonceProperties.isDisabled() || nonceProperties.getTimeout() == null || nonceProperties.getTimeout() < 1){
+            // Nonce services are considered to be disabled if the user explicitly disables them
+            // or they have not set a positive timeout value. If the nonce services are disabled,
+            // then we do not care what the value is; all values are considered valid.
+            return true;
+        }
+        Nonce nonce = nonceStore.get(nonceValue);
+        if(nonce == null){
+            return false;
+        }
+        long now = System.currentTimeMillis();
+        long diff = now - nonce.getSystemTimeAtCreation();
+        return diff > timeout * 1000;
+    }
+
+    @Override
+    public boolean isDisabled(){
+
+        return nonceProperties.isDisabled();
+    }
 }

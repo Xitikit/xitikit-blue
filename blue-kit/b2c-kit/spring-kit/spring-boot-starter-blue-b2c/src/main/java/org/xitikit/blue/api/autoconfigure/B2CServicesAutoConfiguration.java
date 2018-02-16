@@ -1,6 +1,5 @@
 package org.xitikit.blue.api.autoconfigure;
 
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -10,15 +9,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.lang.NonNull;
 import org.springframework.web.client.RestTemplate;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.B2CProperties;
 import org.xitikit.blue.api.b2c.v2dot0.configuration.NonceProperties;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.GreedyNonceStore;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.Nonce;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.SimpleB2CAuthenticationService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.SimpleNonceService;
+import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.*;
 import org.xitikit.blue.b2c.kit.v2dot0.policy.*;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.GreedyNonceStore;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.Nonce;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleB2CAuthenticationService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.SimpleNonceService;
-import org.xitikit.blue.noitacitnehtua.api.v2dot0.interfaces.*;
 
 /**
  * Copyright Xitikit.org 2017

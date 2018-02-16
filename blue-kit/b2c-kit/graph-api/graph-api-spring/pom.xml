@@ -65,11 +65,6 @@
       <artifactId>spring-boot-autoconfigure</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.xitikit.blue.kit.b2c.spring</groupId>
-      <artifactId>graph-api-boot</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
   </dependencies>
 
 </project>

@@ -22,6 +22,7 @@
   <modules>
     <module>graph-api-core</module>
     <module>graph-api-spring</module>
+    <module>graph-api-boot</module>
     <module>graph-api-tests</module>
   </modules>
 

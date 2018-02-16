@@ -1,5 +1,7 @@
 package org.xitikit.blue.b2c.kit.v2dot0.authentication;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -17,65 +19,66 @@ import static org.xitikit.blue.b2c.kit.v2dot0.authentication.TimeComparison.*;
  *
  * @author J. Keith Hoopes
  */
-@SuppressWarnings("WeakerAccess")
 @Service
 public class SimpleClaimValidationService implements ClaimValidationService{
 
-  private final B2CProperties b2CProperties;
+    private static final Logger log = LoggerFactory.getLogger(SimpleClaimValidationService.class);
 
-  private final AuthenticationProperties authenticationProperties;
+    private final B2CProperties b2CProperties;
 
-  @Autowired
-  public SimpleClaimValidationService(
-    final B2CProperties b2CProperties,
-    final AuthenticationProperties authenticationProperties){
+    private final AuthenticationProperties authenticationProperties;
 
-    Assert.notNull(b2CProperties, "Missing required parameter 'b2CProperties' (org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.ClaimValidationService::new)");
-    Assert.notNull(b2CProperties, "Missing required parameter 'authenticationProperties' (org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.ClaimValidationService::new)");
+    @Autowired
+    public SimpleClaimValidationService(
+        final B2CProperties b2CProperties,
+        final AuthenticationProperties authenticationProperties){
 
-    this.b2CProperties = b2CProperties;
-    this.authenticationProperties = authenticationProperties;
-  }
+        Assert.notNull(b2CProperties, "Missing required parameter 'b2CProperties' (org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.ClaimValidationService::new)");
+        Assert.notNull(b2CProperties, "Missing required parameter 'authenticationProperties' (org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.ClaimValidationService::new)");
 
-  @Override
-  public boolean validateAudience(final BlueWebToken token){
+        this.b2CProperties = b2CProperties;
+        this.authenticationProperties = authenticationProperties;
+    }
 
-    return b2CProperties
-             .getAppId()
-             .equals(token.getAudience());
-  }
+    @Override
+    public boolean validateAudience(final BlueWebToken token){
 
-  @Override
-  public boolean validateNotBefore(
-    @Nonnull final BlueWebToken token,
-    @Nullable final Long now){
+        return b2CProperties
+            .getAppId()
+            .equals(token.getAudience());
+    }
 
-    Assert.notNull(token, "Missing required parameter 'token' (org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.ClaimValidationService::validateNotBefore)");
+    @Override
+    public boolean validateNotBefore(
+        @Nonnull final BlueWebToken token,
+        @Nullable final Long now){
 
-    // While unlikely, it's ok to be equal.
-    return comparisonOf(
-      token.getNotBefore(),
-      paddedNow(now)
-    ).isLessOrEqual();
-  }
+        Assert.notNull(token, "Missing required parameter 'token' (org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.ClaimValidationService::validateNotBefore)");
 
-  private Long paddedNow(final Long now){
+        // While unlikely, it's ok to be equal.
+        return comparisonOf(
+            token.getNotBefore(),
+            paddedNow(now)
+        ).isLessOrEqual();
+    }
 
-    return now == null ? null :
-             now + authenticationProperties
-                     .getNotBefore()
-                     .getPaddingInMilliseconds();
-  }
+    private Long paddedNow(final Long now){
 
-  @Override
-  public boolean validateIssuer(final BlueWebToken token){
+        return now == null ? null :
+            now + authenticationProperties
+                .getNotBefore()
+                .getPaddingInMilliseconds();
+    }
 
-    return VerificationUtil.validateIssuer(token);
-  }
+    @Override
+    public boolean validateIssuer(final BlueWebToken token){
 
-  @Override
-  public boolean validateExpiration(final BlueWebToken token, final long now){
+        return VerificationUtil.validateIssuer(token);
+    }
 
-    return VerificationUtil.validateExpiration(token, now);
-  }
+    @Override
+    public boolean validateExpiration(final BlueWebToken token, final long now){
+
+        return VerificationUtil.validateExpiration(token, now);
+    }
 }

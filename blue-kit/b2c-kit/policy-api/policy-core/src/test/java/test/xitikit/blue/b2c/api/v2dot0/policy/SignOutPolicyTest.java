@@ -11,40 +11,41 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SignOutPolicyTest{
 
-  private final SignOutPolicy b = new SignOutPolicy();
+    private final SignOutPolicy b = new SignOutPolicy();
 
-  @Test
-  void Inheritance(){
-    //Make sure it aways implements
-    //noinspection ConstantConditions
-    assertTrue(b instanceof PolicyForB2C);
-  }
+    @Test
+    void Inheritance(){
+        //Make sure it aways implements
+        //noinspection ConstantConditions
+        assertTrue(b instanceof PolicyForB2C);
+    }
 
-  @Test
-  void Name(){
+    @Test
+    void Name(){
 
-    b.setName("test");
-    assertEquals("test", b.getName());
-  }
+        b.setName("test");
+        assertEquals("test", b.getName());
+    }
 
-  @Test
-  void RedirectUrl(){
+    @Test
+    void RedirectUrl(){
 
-    b.setRedirectUrl("test");
-    assertEquals("test", b.getRedirectUrl());
-  }
+        b.setRedirectUrl("test");
+        assertEquals("test", b.getRedirectUrl());
+    }
 
-  @Test
-  void TemplateUrl(){
+    @Test
+    void TemplateUrl(){
 
-    b.setTemplateUrl("test");
-    assertEquals("SignOut should never have a template", "", b.getTemplateUrl());
-  }
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> b.setTemplateUrl("test"));
+    }
 
-  @Test
-  void Disabled(){
+    @Test
+    void Disabled(){
 
-    b.setDisabled(false);
-    assertFalse(b.isDisabled());
-  }
+        b.setDisabled(false);
+        assertFalse(b.isDisabled());
+    }
 }

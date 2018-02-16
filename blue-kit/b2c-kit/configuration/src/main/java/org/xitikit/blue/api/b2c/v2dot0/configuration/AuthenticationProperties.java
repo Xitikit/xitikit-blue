@@ -12,40 +12,69 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties
 public class AuthenticationProperties{
 
-  private NotBefore notBefore;
+    private NotBefore notBefore;
 
-  public class NotBefore{
+    public AuthenticationProperties(){
 
-    /**
-     * The "not before" token sometimes comes back from microsoft in the future. In milliseconds, this lets us pad the "now"
-     * time, in effect saying "as long as it's not TOO far in the future, we're okay with it."
-     */
-    private long paddingInMilliseconds = 0;
-
-    /**
-     * Indicates that the 'not before' claim should be validated.     *
-     * Default: true.
-     */
-    private boolean enabled = true;
-
-    public long getPaddingInMilliseconds(){
-
-      return enabled ? paddingInMilliseconds : 0;
     }
 
-    public void setPaddingInMilliseconds(final long paddingInMilliseconds){
+    public AuthenticationProperties(final NotBefore notBefore){
 
-      this.paddingInMilliseconds = paddingInMilliseconds;
+        this.notBefore = notBefore;
     }
 
-    public boolean isEnabled(){
+    public NotBefore getNotBefore(){
 
-      return enabled;
+        return notBefore;
     }
 
-    public void setEnabled(final boolean enabled){
+    public void setNotBefore(final NotBefore notBefore){
 
-      this.enabled = enabled;
+        this.notBefore = notBefore;
     }
-  }
+
+    public class NotBefore{
+
+        /**
+         * The "not before" token sometimes comes back from microsoft in the future. In milliseconds, this lets us pad the "now"
+         * time, in effect saying "as long as it's not TOO far in the future, we're okay with it."
+         */
+        private long paddingInMilliseconds = 0;
+
+        /**
+         * Indicates that the 'not before' claim should be validated.     *
+         * Default: true.
+         */
+        private boolean enabled = true;
+
+        public NotBefore(){
+
+        }
+
+        public NotBefore(final long paddingInMilliseconds, final boolean enabled){
+
+            this.paddingInMilliseconds = paddingInMilliseconds;
+            this.enabled = enabled;
+        }
+
+        public long getPaddingInMilliseconds(){
+
+            return paddingInMilliseconds;
+        }
+
+        public void setPaddingInMilliseconds(final long paddingInMilliseconds){
+
+            this.paddingInMilliseconds = paddingInMilliseconds;
+        }
+
+        public boolean isEnabled(){
+
+            return enabled;
+        }
+
+        public void setEnabled(final boolean enabled){
+
+            this.enabled = enabled;
+        }
+    }
 }

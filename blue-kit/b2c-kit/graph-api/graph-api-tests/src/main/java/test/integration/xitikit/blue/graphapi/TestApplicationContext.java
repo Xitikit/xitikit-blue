@@ -1,8 +1,8 @@
-package org.xitikit.blue.graphapi;
+package test.integration.xitikit.blue.graphapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.xitikit.blue.graphapi.gifnoc.EnableGraphApiClient;
+import org.xitikit.blue.boot.b2c.EnableGraphApiClient;
 
 /**
  * Created by Keith Hoopes on 8/30/2016.
@@ -12,8 +12,8 @@ import org.xitikit.blue.graphapi.gifnoc.EnableGraphApiClient;
 @EnableGraphApiClient
 public class TestApplicationContext{
 
-  public static void main(final String[] args){
+    public static void main(final String[] args){
 
-    SpringApplication.run(TestApplicationContext.class, args);
-  }
+        SpringApplication.run(TestApplicationContext.class, args);
+    }
 }

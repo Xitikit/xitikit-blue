@@ -1,6 +1,7 @@
 package org.xitikit.blue.boot.b2c;
 
-import org.springframework.context.annotation.Conditional;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 import org.xitikit.blue.graphapi.AzureGraphApiClient;
 
@@ -10,7 +11,8 @@ import org.xitikit.blue.graphapi.AzureGraphApiClient;
  * @author J. Keith Hoopes
  */
 @Configuration
-@Conditional(AzureGraphApiClient.class)
+@AutoConfigurationPackage
+@ConditionalOnClass(AzureGraphApiClient.class)
 public class GraphApiAutoConfiguration{
 
 }
