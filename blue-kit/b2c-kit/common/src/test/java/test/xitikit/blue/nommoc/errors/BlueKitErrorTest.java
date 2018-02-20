@@ -2,16 +2,16 @@ package test.xitikit.blue.nommoc.errors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.xitikit.blue.nommoc.errors.http.BlueKitError;
-import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
-import org.xitikit.blue.nommoc.errors.http.ErrorCode;
-import org.xitikit.blue.nommoc.errors.http.exceptions.*;
+import org.xitikit.blue.common.errors.BlueKitError;
+import org.xitikit.blue.common.errors.BlueKitHttpException;
+import org.xitikit.blue.common.errors.ErrorCode;
+import org.xitikit.blue.common.errors.exceptions.*;
 
 import java.io.IOException;
 
 import static java.util.Arrays.*;
 import static junit.framework.TestCase.*;
-import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
+import static org.xitikit.blue.common.errors.ErrorCode.*;
 
 /**
  * Copyright ${year}

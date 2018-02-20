@@ -17,6 +17,7 @@
 
   <modules>
     <module>web-applications</module>
+    <module>simple-web-app</module>
   </modules>
 
 </project>

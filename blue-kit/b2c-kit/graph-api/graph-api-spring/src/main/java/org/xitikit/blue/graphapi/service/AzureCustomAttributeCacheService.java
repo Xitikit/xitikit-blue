@@ -7,7 +7,7 @@ import org.xitikit.blue.graphapi.model.Application;
 import org.xitikit.blue.graphapi.model.ExtensionProperties;
 import org.xitikit.blue.graphapi.model.ExtensionProperty;
 import org.xitikit.blue.graphapi.properties.UserProperties;
-import org.xitikit.blue.nommoc.errors.http.exceptions.NotFoundException;
+import org.xitikit.blue.common.errors.exceptions.NotFoundException;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;

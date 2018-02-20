@@ -5,9 +5,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.xitikit.blue.api.b2c.v2dot0.configuration.B2CProperties;
-import org.xitikit.blue.b2c.kit.v2dot0.policy.*;
-import org.xitikit.blue.nommoc.errors.http.exceptions.NotFoundException;
+import org.xitikit.blue.b2c.v2dot0.policy.*;
+import org.xitikit.blue.common.properties.B2CProperties;
+import org.xitikit.bluekit.b2c.v2dot0.policy.*;
+import org.xitikit.blue.common.errors.exceptions.NotFoundException;
 
 /**
  * Copyright Xitikit.org 2017

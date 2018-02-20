@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.xitikit.blue.b2c.api.v2dot0.policy.itcase.ITCaseApplication;
-import org.xitikit.blue.b2c.kit.v2dot0.policy.SignInPolicy;
-import org.xitikit.blue.boot.b2c.SimplePolicyConfiguration;
+import org.xitikit.blue.b2c.v2dot0.policy.SignInPolicy;
+import org.xitikit.blue.b2c.v2dot0.policy.PolicyConfiguration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,15 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class PolicyITCase{
 
     @Autowired
-    private SimplePolicyConfiguration simplePolicyConfiguration;
+    private PolicyConfiguration policyConfiguration;
 
     @Test
     void signInConfiguration(){
 
         SignInPolicy signInPolicy;
-        assertNotNull(simplePolicyConfiguration);
+        assertNotNull(policyConfiguration);
 
-        signInPolicy = simplePolicyConfiguration.getSignIn();
+        signInPolicy = policyConfiguration.getSignIn();
         assertNotNull(signInPolicy);
 
         assertEquals("one", signInPolicy.getName());
@@ -36,7 +36,7 @@ class PolicyITCase{
         assertEquals("", signInPolicy.getTemplateUrl());
         assertFalse(signInPolicy.isDisabled());
 
-        signInPolicy = simplePolicyConfiguration.getSignIn();
+        signInPolicy = policyConfiguration.getSignIn();
         assertNotNull(signInPolicy, "signInPolicy should not be null, even when disabled.");
         assertEquals("", signInPolicy.getName());
         assertEquals("", signInPolicy.getRedirectUrl());

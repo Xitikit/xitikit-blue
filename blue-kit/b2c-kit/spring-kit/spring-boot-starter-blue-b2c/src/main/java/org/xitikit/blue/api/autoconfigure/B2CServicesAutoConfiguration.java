@@ -11,21 +11,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.lang.NonNull;
 import org.springframework.web.client.RestTemplate;
-import org.xitikit.blue.api.b2c.v2dot0.configuration.B2CProperties;
-import org.xitikit.blue.api.b2c.v2dot0.configuration.NonceProperties;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.GreedyNonceStore;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.Nonce;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.SimpleB2CAuthenticationService;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.SimpleNonceService;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.*;
-import org.xitikit.blue.b2c.kit.v2dot0.policy.*;
+import org.xitikit.blue.b2c.v2dot0.authentication.B2CAuthenticationService;
+import org.xitikit.blue.b2c.v2dot0.authentication.ClaimValidationService;
+import org.xitikit.blue.b2c.v2dot0.authentication.SimpleB2CAuthenticationService;
+import org.xitikit.blue.b2c.v2dot0.policy.*;
+import org.xitikit.blue.common.properties.B2CProperties;
+import org.xitikit.blue.common.properties.NonceProperties;
+import org.xitikit.blue.common.services.nonce.*;
 
 /**
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes on 5/4/2017.
  */
-@SuppressWarnings("SpringJavaAutowiringInspection")
+@SuppressWarnings({"SpringJavaAutowiringInspection", "SpringJavaInjectionPointsAutowiringInspection"})
 @Configuration
 @Import(B2CPolicyAutoConfiguration.class)
 @AutoConfigureAfter(B2CPolicyAutoConfiguration.class)
@@ -88,13 +87,13 @@ public class B2CServicesAutoConfiguration{
     public B2CAuthenticationService blueKitB2CAuthenticationService(
         final ClaimValidationService claimValidationService,
         final NonceService nonceService,
-        final UrlService urlService,
+        final PolicyUrlService policyUrlService,
         final RestTemplate restTemplate){
 
         return new SimpleB2CAuthenticationService(
             claimValidationService,
             nonceService,
-            urlService,
+            policyUrlService,
             restTemplate);
     }
 }

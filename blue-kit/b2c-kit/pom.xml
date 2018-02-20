@@ -22,7 +22,6 @@
   <modules>
     <module>authentication</module>
     <module>common</module>
-    <module>configuration</module>
     <module>graph-api</module>
     <module>integration-tests</module>
     <module>policy-api</module>

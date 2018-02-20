@@ -1,0 +1,39 @@
+package org.xitikit.blue.common.services.nonce;
+
+import javax.annotation.Nonnull;
+import java.util.UUID;
+
+/**
+ * Represents a unique token used to ensure that
+ * authentication attempts only occur once,and not more.
+ *
+ * Copyright Xitikit.org 2017
+ *
+ * @author J. Keith Hoopes
+ */
+public final class Nonce{
+
+    private final long systemTimeAtCreation = System.currentTimeMillis();
+
+    private final String value = UUID.randomUUID().toString();
+
+    @Nonnull
+    public String getValue(){
+
+        return value;
+    }
+
+    public long getSystemTimeAtCreation(){
+
+        return systemTimeAtCreation;
+    }
+
+    @Override
+    public String toString(){
+
+        return "Nonce{" +
+            "systemTimeAtCreation=" + systemTimeAtCreation +
+            ", value='" + value + '\'' +
+            '}';
+    }
+}

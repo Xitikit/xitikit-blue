@@ -3,7 +3,7 @@ package org.xitikit.blue.b2c.api.v2dot0.policy.itcase;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.xitikit.blue.boot.b2c.SimplePolicyConfiguration;
+import org.xitikit.blue.b2c.v2dot0.policy.PolicyConfiguration;
 
 /**
  * Created by Keith on 10/15/2017.
@@ -17,8 +17,8 @@ public class ITCaseApplication{
     }
 
     @Bean
-    public static SimplePolicyConfiguration policyConfiguration(){
+    public static PolicyConfiguration policyConfiguration(){
 
-        return new SimplePolicyConfiguration();
+        return new PolicyConfiguration();
     }
 }

@@ -1,7 +1,7 @@
 package org.xitikit.blue.graphapi.service;
 
 import org.xitikit.blue.graphapi.model.*;
-import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
+import org.xitikit.blue.common.errors.BlueKitHttpException;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

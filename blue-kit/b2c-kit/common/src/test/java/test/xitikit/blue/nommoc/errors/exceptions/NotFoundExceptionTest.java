@@ -1,11 +1,11 @@
 package test.xitikit.blue.nommoc.errors.exceptions;
 
 import org.junit.jupiter.api.Test;
-import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
-import org.xitikit.blue.nommoc.errors.http.exceptions.NotFoundException;
+import org.xitikit.blue.common.errors.BlueKitHttpException;
+import org.xitikit.blue.common.errors.exceptions.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.xitikit.blue.nommoc.errors.http.ErrorCode.*;
+import static org.xitikit.blue.common.errors.ErrorCode.*;
 
 /**
  * Copyright Xitikit.org 2017

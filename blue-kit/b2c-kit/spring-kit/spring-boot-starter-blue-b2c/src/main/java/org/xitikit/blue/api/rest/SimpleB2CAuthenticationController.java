@@ -9,11 +9,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.BlueWebToken;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.B2CAuthenticationService;
-import org.xitikit.blue.b2c.kit.v2dot0.authentication.interfaces.UrlService;
+import org.xitikit.bluekit.b2c.v2dot0.authentication.BlueWebToken;
+import org.xitikit.bluekit.b2c.v2dot0.authentication.interfaces.B2CAuthenticationService;
+import org.xitikit.bluekit.b2c.v2dot0.authentication.interfaces.UrlService;
 
-import static org.xitikit.blue.b2c.kit.v2dot0.authentication.PolicyErrorCodes.*;
+import static org.xitikit.bluekit.b2c.v2dot0.authentication.PolicyErrorCodes.*;
 
 /**
  * Handles Azure B2C related requests and redirects.

@@ -1,9 +1,9 @@
 package test.xitikit.blue.nommoc.errors.exceptions;
 
 import org.junit.jupiter.api.Test;
-import org.xitikit.blue.nommoc.errors.http.BlueKitHttpException;
-import org.xitikit.blue.nommoc.errors.http.ErrorCode;
-import org.xitikit.blue.nommoc.errors.http.exceptions.ForbiddenException;
+import org.xitikit.blue.common.errors.BlueKitHttpException;
+import org.xitikit.blue.common.errors.ErrorCode;
+import org.xitikit.blue.common.errors.exceptions.ForbiddenException;
 
 import static junit.framework.TestCase.*;
 
