@@ -2,8 +2,8 @@ package test.xitikit.blue.b2c.kit.v2dot0.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.xitikit.bluekit.b2c.v2dot0.authentication.BlueWebToken;
-import org.xitikit.bluekit.b2c.v2dot0.authentication.BlueWebTokenBuilder;
+import org.xitikit.blue.b2c.v2dot0.authentication.BlueWebToken;
+import org.xitikit.blue.b2c.v2dot0.authentication.BlueWebTokenBuilder;
 
 import java.io.IOException;
 import java.time.Instant;

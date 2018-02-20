@@ -14,37 +14,39 @@ class SignOutPolicyTest{
     private final SignOutPolicy b = new SignOutPolicy();
 
     @Test
-    void Inheritance(){
+    void testInheritance(){
         //Make sure it aways implements
         //noinspection ConstantConditions
         assertTrue(b instanceof PolicyForB2C);
     }
 
     @Test
-    void Name(){
+    void testName(){
 
         b.setName("test");
         assertEquals("test", b.getName());
     }
 
     @Test
-    void RedirectUrl(){
+    void testRedirectUrl(){
 
         b.setRedirectUrl("test");
         assertEquals("test", b.getRedirectUrl());
     }
 
     @Test
-    void TemplateUrl(){
+    void testTemplateUrl(){
 
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> b.setTemplateUrl("test"));
+        b.setTemplateUrl("test");
+        assertNull(b.getTemplateUrl());
     }
 
     @Test
-    void Disabled(){
+    void testDisabled(){
 
+        assertFalse(b.isDisabled());
+        b.setDisabled(true);
+        assertTrue(b.isDisabled());
         b.setDisabled(false);
         assertFalse(b.isDisabled());
     }

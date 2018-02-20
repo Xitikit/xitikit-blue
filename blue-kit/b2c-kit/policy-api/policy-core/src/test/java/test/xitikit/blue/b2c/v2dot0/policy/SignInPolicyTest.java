@@ -14,8 +14,8 @@ class SignInPolicyTest{
     private final SignInPolicy b = new SignInPolicy();
 
     @Test
-    void Inheritance(){
-        //Make sure it aways implements
+    void inheritance(){
+        //Make sure it aways implements PolicyForB2C
         //noinspection ConstantConditions
         assertTrue(b instanceof PolicyForB2C);
     }
@@ -38,7 +38,7 @@ class SignInPolicyTest{
     void TemplateUrl(){
         //Sign In policies are not configurable with templates.
         b.setTemplateUrl("test");
-        assertEquals("", b.getTemplateUrl());
+        assertNull(b.getTemplateUrl());
     }
 
     @Test

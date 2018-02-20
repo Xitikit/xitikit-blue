@@ -6,9 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.xitikit.blue.b2c.v2dot0.policy.*;
-import org.xitikit.blue.common.properties.B2CProperties;
-import org.xitikit.bluekit.b2c.v2dot0.policy.*;
 import org.xitikit.blue.common.errors.exceptions.NotFoundException;
+import org.xitikit.blue.common.properties.B2CProperties;
 
 /**
  * Copyright Xitikit.org 2017

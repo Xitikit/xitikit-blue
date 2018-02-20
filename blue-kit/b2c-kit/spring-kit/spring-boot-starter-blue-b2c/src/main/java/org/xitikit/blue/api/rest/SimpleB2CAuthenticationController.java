@@ -9,11 +9,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.xitikit.bluekit.b2c.v2dot0.authentication.BlueWebToken;
-import org.xitikit.bluekit.b2c.v2dot0.authentication.interfaces.B2CAuthenticationService;
-import org.xitikit.bluekit.b2c.v2dot0.authentication.interfaces.UrlService;
+import org.xitikit.blue.b2c.v2dot0.authentication.B2CAuthenticationService;
+import org.xitikit.blue.b2c.v2dot0.authentication.BlueWebToken;
+import org.xitikit.blue.b2c.v2dot0.policy.PolicyUrlService;
 
-import static org.xitikit.bluekit.b2c.v2dot0.authentication.PolicyErrorCodes.*;
+import static org.xitikit.blue.b2c.v2dot0.authentication.PolicyErrorCodes.access_denied;
 
 /**
  * Handles Azure B2C related requests and redirects.
@@ -28,7 +28,7 @@ public class SimpleB2CAuthenticationController implements B2CAuthenticationContr
 
     private final B2CAuthenticationService blueKitB2CAuthenticationService;
 
-    private final UrlService urlService;
+    private final PolicyUrlService urlService;
 
     @Value("${security.auth.successRedirect}")
     private String authSuccessRedirect;
@@ -43,7 +43,7 @@ public class SimpleB2CAuthenticationController implements B2CAuthenticationContr
     private String resetPasswordSuccessRedirect;
 
     @Autowired
-    public SimpleB2CAuthenticationController(final B2CAuthenticationService blueKitB2CAuthenticationService, final UrlService urlService){
+    public SimpleB2CAuthenticationController(final B2CAuthenticationService blueKitB2CAuthenticationService, final PolicyUrlService urlService){
 
         this.blueKitB2CAuthenticationService = blueKitB2CAuthenticationService;
         this.urlService = urlService;

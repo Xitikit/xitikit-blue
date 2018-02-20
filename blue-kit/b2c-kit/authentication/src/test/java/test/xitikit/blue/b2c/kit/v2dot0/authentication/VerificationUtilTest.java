@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.xitikit.bluekit.b2c.v2dot0.authentication.VerificationUtil.*;
+import static org.xitikit.blue.b2c.v2dot0.authentication.VerificationUtil.*;
 
 /**
  * Copyright ${year}
