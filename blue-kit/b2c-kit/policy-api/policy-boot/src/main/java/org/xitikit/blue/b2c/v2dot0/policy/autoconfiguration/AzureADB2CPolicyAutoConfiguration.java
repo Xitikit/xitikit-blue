@@ -19,7 +19,7 @@ import org.xitikit.blue.b2c.v2dot0.policy.*;
 @AutoConfigurationPackage
 @ConditionalOnBean(annotation = EnablePoliciesAzureAdB2C.class)
 @ConditionalOnProperty(
-    prefix = "blue-kit.b2c.policy.",
+    prefix = "blue-kit.b2c.",
     name = "domain")
 @EnableConfigurationProperties(PolicyConfiguration.class)
 public class AzureADB2CPolicyAutoConfiguration{
@@ -29,16 +29,13 @@ public class AzureADB2CPolicyAutoConfiguration{
     @ConfigurationProperties("xitikit.bluekit.policy")
     public PolicyConfiguration blueKitPolicyProperties(){
 
-        return new PolicyConfiguration(
-            new SignUpPolicy(),
-            new SignInPolicy(),
-            new SignUpOrSignInPolicy(),
-            new ResetPasswordPolicy(),
-            new EditProfilePolicy(),
-            new SignOutPolicy()
-        );
+        return PolicyConfigurationFactory
+            .instance()
+            .withDefaults()
+            .build();
     }
 
+    @Configuration
     @ConditionalOnProperty(
         prefix = "blue-kit.b2c.policy.sign-in.",
         name = "name")
@@ -55,7 +52,10 @@ public class AzureADB2CPolicyAutoConfiguration{
         public void addViewControllers(final ViewControllerRegistry registry){
 
             registry.addRedirectViewController(
-                (contextPath == null ? "" : contextPath.trim()) + "/bluekit/signin",
+                (contextPath == null
+                    ? ""
+                    : contextPath.trim()
+                ) + "/bluekit/signin",
                 policyConfiguration
                     .getSignIn()
                     .getRedirectUrl());

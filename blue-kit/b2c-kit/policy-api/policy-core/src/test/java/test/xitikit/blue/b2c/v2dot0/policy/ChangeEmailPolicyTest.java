@@ -7,7 +7,14 @@ import org.xitikit.blue.b2c.v2dot0.policy.PolicyForB2C;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Created by Keith on 10/15/2017.
+ * As of the date of creation, Azure AD B2C does not support changing the email
+ * through a policy (such as the EditProfilePolicyA). To change a users email,
+ * the graph-api module should be used to create a custom programatic approach
+ * to email changes.
+ * <p>
+ * Copyright Xitkit.org ${year}
+ *
+ * @author Keith Hoopes
  */
 class ChangeEmailPolicyTest{
 
@@ -19,21 +26,21 @@ class ChangeEmailPolicyTest{
     void Name(){
 
         b.setName("test");
-        assertEquals("", b.getName());
+        assertNull(b.getName());
     }
 
     @Test
     void RedirectUrl(){
 
         b.setRedirectUrl("test");
-        assertEquals("", b.getRedirectUrl());
+        assertNull(b.getRedirectUrl());
     }
 
     @Test
     void TemplateUrl(){
 
         b.setTemplateUrl("test");
-        assertEquals("", b.getTemplateUrl());
+        assertNull(b.getTemplateUrl());
     }
 
     @Test

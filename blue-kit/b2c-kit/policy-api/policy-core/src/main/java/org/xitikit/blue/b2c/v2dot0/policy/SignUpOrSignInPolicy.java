@@ -1,11 +1,48 @@
 package org.xitikit.blue.b2c.v2dot0.policy;
 
 /**
+ * This class contains the configuration for a built in Azure AD B2C 'sign-up-or-sign-in' policy.
+ * <p>
+ * https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-policies#create-a-sign-up-or-sign-in-policy
+ * <p>
+ * The properties of this class should be inherently WYSIWYG, but the autoconfiguration
+ * of the policy-boot module should contain logic for certain default values of the
+ * fields.
+ * <p>
+ * Refer to the documentation for each individual field for an understanding of how
+ * this class is used.
+ * <p>
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
  */
 public class SignUpOrSignInPolicy implements PolicyForB2C{
+
+    /**
+     * Optional.
+     * <p>
+     * Default: {@link PolicyUrlUtil.Defaults}.SIGN_UP_OR_SIGN_IN_BASE
+     * <p>
+     * It is recommended that developers only use the default value, but it
+     * allows for those exceptions when there is no other choice but to use custom values.
+     * <p>
+     * If the value that is set for the {@link SignUpOrSignInPolicy} 'basePath' property
+     * is blank, then it will use the default value. This includes the default value for
+     * the {@link PolicyConfiguration} 'basePath', while any custom value will be ignored.
+     * <p>
+     * This is the path relative to the applications context-path
+     * that is used for all {@link SignUpOrSignInPolicy} related requests made
+     * to the local application. The value should always start with '/',
+     * and never end with '/'.
+     * <p>
+     * The value that is set for the 'basePath' property in the {@link PolicyConfiguration}
+     * is ignored when a non-blank value is provided here. If you include your own value,
+     * it must be relative to the applications context-path.
+     * <p>
+     * Warning: Do NOT set this value to be blank nor '/', or you may see
+     * some unexpected behaviour.
+     */
+    private String basePath = PolicyUrlUtil.Defaults.SIGN_UP_OR_SIGN_IN_BASE;
 
     /**
      * This is the exact name of the policy web flow given after it was created.
@@ -57,41 +94,61 @@ public class SignUpOrSignInPolicy implements PolicyForB2C{
         this.disabled = disabled;
     }
 
+    @Override
+    public String getBasePath(){
+
+        return basePath;
+    }
+
+    @Override
+    public void setBasePath(final String basePath){
+
+        this.basePath = basePath;
+    }
+
+    @Override
     public String getName(){
 
         return name;
     }
 
+    @Override
     public void setName(final String name){
 
         this.name = name;
     }
 
+    @Override
     public String getRedirectUrl(){
 
         return redirectUrl;
     }
 
+    @Override
     public void setRedirectUrl(final String redirectUrl){
 
         this.redirectUrl = redirectUrl;
     }
 
+    @Override
     public String getTemplateUrl(){
 
         return templateUrl;
     }
 
+    @Override
     public void setTemplateUrl(final String templateUrl){
 
         this.templateUrl = templateUrl;
     }
 
+    @Override
     public boolean isDisabled(){
 
         return disabled;
     }
 
+    @Override
     public void setDisabled(final boolean disabled){
 
         this.disabled = disabled;

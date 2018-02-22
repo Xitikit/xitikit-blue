@@ -7,6 +7,10 @@ package org.xitikit.blue.b2c.v2dot0.policy;
  */
 public interface PolicyForB2C{
 
+    String getBasePath();
+
+    void setBasePath(String basePath);
+
     /**
      * @return {@link String}: the name of the
      *     configured or custom policy in Azure AD B2C.   *

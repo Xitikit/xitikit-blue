@@ -3,7 +3,7 @@ package org.xitikit.blue.b2c.v2dot0.policy;
 /**
  * This class provides some useful methods for programmatically
  * instantiating a custom policy configuration.
- *
+ * <p>
  * This factory is not thread safe.
  */
 public final class PolicyConfigurationFactory{
@@ -38,15 +38,22 @@ public final class PolicyConfigurationFactory{
      *
      * @return this instance of {@link PolicyConfigurationFactory}
      */
-    public PolicyConfigurationFactory disableEverything(){
+    public PolicyConfigurationFactory withDefaults(){
 
         return this
+            .withPolicyBasePath(PolicyUrlUtil.Defaults.POLICY_BASE)
             .disableEditProfile()
             .disableResetPassword()
             .disableSignIn()
             .disableSignOut()
             .disableSignUp()
             .disableSignUpOrSignIn();
+    }
+
+    public PolicyConfigurationFactory withPolicyBasePath(final String basePath){
+
+        target.setBasePath(basePath);
+        return this;
     }
 
     /**
@@ -95,7 +102,7 @@ public final class PolicyConfigurationFactory{
 
         target.setSignOut(
             new SignOutPolicy(
-                "", "", true
+                "", "", "", true
             )
         );
         return this;
@@ -112,7 +119,7 @@ public final class PolicyConfigurationFactory{
 
         target.setSignIn(
             new SignInPolicy(
-                "", "", true
+                "", "", "", true
             )
         );
         return this;
@@ -129,7 +136,7 @@ public final class PolicyConfigurationFactory{
 
         target.setResetPassword(
             new ResetPasswordPolicy(
-                "", "", "", true
+                "", "", "", "", true
             )
         );
         return this;
@@ -146,7 +153,7 @@ public final class PolicyConfigurationFactory{
 
         target.setEditProfile(
             new EditProfilePolicy(
-                "", "", "", true
+                "", "", "", "", true
             )
         );
         return this;
@@ -160,6 +167,37 @@ public final class PolicyConfigurationFactory{
     public PolicyConfiguration build(){
 
         return new PolicyConfiguration(
+            target.getBasePath(),
+            target.getEditProfile() == null ? null
+                : new EditProfilePolicy(
+                target.getBasePath(),
+                target.getEditProfile().getName(),
+                target.getEditProfile().getRedirectUrl(),
+                target.getEditProfile().getTemplateUrl(),
+                target.getEditProfile().isDisabled()
+            ),
+            target.getResetPassword() == null ? null
+                : new ResetPasswordPolicy(
+                target.getBasePath(),
+                target.getResetPassword().getName(),
+                target.getResetPassword().getRedirectUrl(),
+                target.getResetPassword().getTemplateUrl(),
+                target.getResetPassword().isDisabled()
+            ),
+            target.getSignIn() == null ? null
+                : new SignInPolicy(
+                target.getBasePath(),
+                target.getSignIn().getName(),
+                target.getSignIn().getRedirectUrl(),
+                target.getSignIn().isDisabled()
+            ),
+            target.getSignOut() == null ? null
+                : new SignOutPolicy(
+                target.getBasePath(),
+                target.getSignOut().getName(),
+                target.getSignOut().getRedirectUrl(),
+                target.getSignOut().isDisabled()
+            ),
             target.getSignUp() == null ? null
                 : new SignUpPolicy(
                 target.getSignUp().getName(),
@@ -167,38 +205,12 @@ public final class PolicyConfigurationFactory{
                 target.getSignUp().getTemplateUrl(),
                 target.getSignUp().isDisabled()
             ),
-            target.getSignIn() == null ? null
-                : new SignInPolicy(
-                target.getSignIn().getName(),
-                target.getSignIn().getRedirectUrl(),
-                target.getSignIn().isDisabled()
-            ),
             target.getSignUpOrSignIn() == null ? null
                 : new SignUpOrSignInPolicy(
                 target.getSignUpOrSignIn().getName(),
                 target.getSignUpOrSignIn().getRedirectUrl(),
                 target.getSignUpOrSignIn().getTemplateUrl(),
                 target.getSignUpOrSignIn().isDisabled()
-            ),
-            target.getResetPassword() == null ? null
-                : new ResetPasswordPolicy(
-                target.getResetPassword().getName(),
-                target.getResetPassword().getRedirectUrl(),
-                target.getResetPassword().getTemplateUrl(),
-                target.getResetPassword().isDisabled()
-            ),
-            target.getEditProfile() == null ? null
-                : new EditProfilePolicy(
-                target.getEditProfile().getName(),
-                target.getEditProfile().getRedirectUrl(),
-                target.getEditProfile().getTemplateUrl(),
-                target.getEditProfile().isDisabled()
-            ),
-            target.getSignOut() == null ? null
-                : new SignOutPolicy(
-                target.getSignOut().getName(),
-                target.getSignOut().getRedirectUrl(),
-                target.getSignOut().isDisabled()
             )
         );
     }

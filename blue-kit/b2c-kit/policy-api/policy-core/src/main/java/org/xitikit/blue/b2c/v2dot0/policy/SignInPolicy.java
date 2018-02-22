@@ -4,6 +4,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class contains the configuration for a built in Azure AD B2C 'sign-in' policy.
+ * <p>
+ * https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-policies#create-a-sign-in-policy
+ * <p>
+ * The properties of this class should be inherently WYSIWYG, but the autoconfiguration
+ * of the policy-boot module should contain logic for certain default values of the
+ * fields.
+ * <p>
+ * Refer to the documentation for each individual field for an understanding of how
+ * this class is used.
+ * <p>
  * Copyright Xitikit.org 2017
  *
  * @author J. Keith Hoopes
@@ -11,6 +22,37 @@ import org.slf4j.LoggerFactory;
 public class SignInPolicy implements PolicyForB2C{
 
     private static final Logger log = LoggerFactory.getLogger(SignInPolicy.class);
+
+    /**
+     * Optional.
+     * <p>
+     * Default: {@code {@link PolicyUrlUtil.Defaults}.SIGN_IN_BASE}
+     * <p>
+     * Developers should normally only use the default value, but the core module
+     * allows for those exceptions when there is no other choice but to use custom values.
+     * The logic for this, however, is only in the policy-boot module. If only the policy-core
+     * module is being used, then this field should be WYSIWYG. The following is a set of
+     * guidelines that should be followed by the policy-boot module when handling values in
+     * this configuration.
+     * <p>
+     * If the value that is set for the {@link SignInPolicy} 'basePath' property
+     * is blank, then it  should use the default value of {@link PolicyUrlUtil.Defaults}.RESET_PASSWORD_BASE
+     * <p>
+     * This path must be relative to the applications context-path. It is used for all basic {@link SignInPolicy}
+     * related requests made to the local application. The value should always start with '/', and never end
+     * with '/'. This also means that a value of exactly '/' is not allowed either. This will, by intent, prevent
+     * the base path for this policy from being set to the root application context.
+     * <p>
+     * Note: You may notice that the default values all have a relative base of '/blue-kit/policy'. '/blue-kit' is
+     * the base relative path for all autoconfigured request mappings for this project. Since this module is part
+     * of the 'policy-api' subsystem, and is a child of the 'blue-kit' base, the baseUrl for all autoconfigured
+     * policy request mappings is '/blue-kit/policy' + '/${policy-type)'. For example, 'sign-in' policies will
+     * all have a baseUrl of '/blue-kit/policy/sign-in'.
+     * <p>
+     * Warning: Do NOT set this value to be blank nor '/', or you may see
+     * some unexpected behaviour.
+     */
+    private String basePath = PolicyUrlUtil.Defaults.SIGN_IN_BASE;
 
     /**
      * Required when not disabled.
@@ -33,15 +75,38 @@ public class SignInPolicy implements PolicyForB2C{
      */
     private boolean disabled = false;
 
+    /**
+     * default no-arg
+     */
     public SignInPolicy(){
 
     }
 
-    public SignInPolicy(final String name, final String redirectUrl, final boolean disabled){
+    /**
+     * Default all-arg
+     */
+    public SignInPolicy(
+        final String basePath,
+        final String name,
+        final String redirectUrl,
+        final boolean disabled){
 
+        this.basePath = PolicyUrlUtil.checkSignInPath(basePath);
         this.name = name;
         this.redirectUrl = redirectUrl;
         this.disabled = disabled;
+    }
+
+    @Override
+    public String getBasePath(){
+
+        return basePath;
+    }
+
+    @Override
+    public void setBasePath(final String basePath){
+
+        this.basePath = basePath;
     }
 
     @Override
@@ -75,7 +140,7 @@ public class SignInPolicy implements PolicyForB2C{
      * either using the built-in "sign-up-or-sign-in"
      * policy, or create your own custom policy with the
      * Identity Experience Framework.
-     *
+     * <p>
      * https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-overview-custom
      *
      * @return null
@@ -96,7 +161,7 @@ public class SignInPolicy implements PolicyForB2C{
      * either using the built-in "sign-up-or-sign-in"
      * policy, or create your own custom policy with the
      * Identity Experience Framework.
-     *
+     * <p>
      * https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-overview-custom
      *
      * @param ignored Is always ignored.
