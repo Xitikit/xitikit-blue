@@ -1,9 +1,8 @@
 package test.xitikit.blue.b2c.v2dot0.policy;
 
 import org.junit.jupiter.api.Test;
-import org.xitikit.blue.b2c.v2dot0.policy.PolicyConfiguration;
-import org.xitikit.blue.b2c.v2dot0.policy.PolicyConfigurationFactory;
-import org.xitikit.blue.b2c.v2dot0.policy.PolicyUrlUtil;
+import org.xitikit.blue.b2c.v2dot0.policy.*;
+import org.xitikit.blue.b2c.v2dot0.policy.factories.PolicyConfigurationFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,138 +30,207 @@ class PolicyConfigurationFactoryTest{
     }
 
     @Test
-    void withDefaults(){
+    void defaultValues(){
 
         PolicyConfiguration target = PolicyConfigurationFactory
             .instance()
-            .withDefaults()
-            .withPolicyBasePath(PolicyUrlUtil.Defaults.POLICY_BASE)
+            .defaultValues()
             .build();
-
-        assertEquals(PolicyUrlUtil.Defaults.POLICY_BASE, target.getBasePath());
 
         assertNotNull(target.getEditProfile());
         assertEquals(PolicyUrlUtil.Defaults.EDIT_PROFILE_BASE, target.getEditProfile().getBasePath());
-        assertEquals("", target.getEditProfile().getName());
+        assertEquals("b2c_1_edit_profile", target.getEditProfile().getName());
         assertEquals("", target.getEditProfile().getRedirectUrl());
         assertEquals("", target.getEditProfile().getTemplateUrl());
-        assertTrue(target.getEditProfile().isDisabled());
+        assertFalse(target.getEditProfile().isDisabled());
 
         assertNotNull(target.getResetPassword());
         assertEquals(PolicyUrlUtil.Defaults.RESET_PASSWORD_BASE, target.getResetPassword().getBasePath());
-        assertEquals("", target.getResetPassword().getName());
+        assertEquals("b2c_1_reset_password", target.getResetPassword().getName());
         assertEquals("", target.getResetPassword().getRedirectUrl());
         assertEquals("", target.getResetPassword().getTemplateUrl());
-        assertTrue(target.getResetPassword().isDisabled());
+        assertFalse(target.getResetPassword().isDisabled());
 
         assertNotNull(target.getSignIn());
         assertEquals(PolicyUrlUtil.Defaults.SIGN_IN_BASE, target.getSignIn().getBasePath());
-        assertEquals("", target.getSignIn().getName());
+        assertEquals("b2c_1_sign_in", target.getSignIn().getName());
         assertEquals("", target.getSignIn().getRedirectUrl());
+        assertNull(target.getSignIn().getTemplateUrl());//sign-in template url is always null
+        assertFalse(target.getSignIn().isDisabled());
+
+        assertNotNull(target.getSignOut());
+        assertEquals(PolicyUrlUtil.Defaults.SIGN_OUT_BASE, target.getSignOut().getBasePath());
+        assertEquals("b2c_1_sign_out", target.getSignOut().getName());
+        assertEquals("", target.getSignOut().getRedirectUrl());
+        assertNull(target.getSignOut().getTemplateUrl());
+        assertFalse(target.getSignOut().isDisabled());
+
+        assertNotNull(target.getSignUp());
+        assertEquals("b2c_1_sign_up", target.getSignUp().getName());
+        assertEquals("", target.getSignUp().getRedirectUrl());
+        assertEquals("", target.getSignUp().getTemplateUrl());
+        assertFalse(target.getSignUp().isDisabled());
+
+        assertNotNull(target.getSignUpOrSignIn());
+        assertEquals("b2c_1_sign_up_or_sign_in", target.getSignUpOrSignIn().getName());
+        assertEquals("", target.getSignUpOrSignIn().getRedirectUrl());
+        assertEquals("", target.getSignUpOrSignIn().getTemplateUrl());
+        assertFalse(target.getSignUpOrSignIn().isDisabled());
+    }
+
+    @Test
+    void editProfile(){
+
+        EditProfilePolicy target = PolicyConfigurationFactory
+            .instance()
+            .editProfile()
+            .defaultValues()
+            .and().build()
+            .getEditProfile();
+
+        assertNotNull(target);
+        assertEquals(PolicyUrlUtil.Defaults.EDIT_PROFILE_BASE, target.getBasePath());
+        assertEquals("b2c_1_edit_profile", target.getName());
+        assertEquals("", target.getRedirectUrl());
+        assertEquals("", target.getTemplateUrl());
+        assertFalse(target.isDisabled());
+    }
+
+    @Test
+    void resetPassword(){
+
+        ResetPasswordPolicy target = PolicyConfigurationFactory
+            .instance()
+            .resetPassword()
+            .defaultValues()
+            .and()
+            .build().getResetPassword();
+
+        assertNotNull(target);
+        assertEquals(PolicyUrlUtil.Defaults.RESET_PASSWORD_BASE, target.getBasePath());
+        assertEquals("b2c_1_reset_password", target.getName());
+        assertEquals("", target.getRedirectUrl());
+        assertEquals("", target.getTemplateUrl());
+        assertFalse(target.isDisabled());
+    }
+
+    @Test
+    void signIn(){
+
+        SignInPolicy target = PolicyConfigurationFactory
+            .instance()
+            .signIn()
+            .defaultValues()
+            .and().build()
+            .getSignIn();
+
+        assertNotNull(target);
+        assertEquals(PolicyUrlUtil.Defaults.SIGN_IN_BASE, target.getBasePath());
+        assertEquals("b2c_1_sign_in", target.getName());
+        assertEquals("", target.getRedirectUrl());
+        assertNull(target.getTemplateUrl());
+        assertFalse(target.isDisabled());
+    }
+
+    @Test
+    void signOut(){
+
+        SignOutPolicy target = PolicyConfigurationFactory
+            .instance()
+            .signOut()
+            .defaultValues()
+            .and().build()
+            .getSignOut();
+
+        assertNotNull(target);
+        assertEquals(PolicyUrlUtil.Defaults.SIGN_OUT_BASE, target.getBasePath());
+        assertEquals("b2c_1_sign_out", target.getName());
+        assertEquals("", target.getRedirectUrl());
+        assertNull(target.getTemplateUrl());
+        assertFalse(target.isDisabled());
+    }
+
+    @Test
+    void signUp(){
+
+        SignUpPolicy target = PolicyConfigurationFactory
+            .instance()
+            .signUp()
+            .defaultValues()
+            .and()
+            .build().getSignUp();
+
+        assertNotNull(target);
+        assertEquals(PolicyUrlUtil.Defaults.SIGN_UP_BASE, target.getBasePath());
+        assertEquals("b2c_1_sign_up", target.getName());
+        assertEquals("", target.getRedirectUrl());
+        assertEquals("", target.getTemplateUrl());
+        assertFalse(target.isDisabled());
+    }
+
+    @Test
+    void signUpOrSignIn(){
+
+        SignUpOrSignInPolicy target = PolicyConfigurationFactory
+            .instance()
+            .signUpOrSignIn()
+            .defaultValues()
+            .and().build()
+            .getSignUpOrSignIn();
+
+        assertNotNull(target);
+        assertEquals(PolicyUrlUtil.Defaults.SIGN_UP_OR_SIGN_IN_BASE, target.getBasePath());
+        assertEquals("b2c_1_sign_up_or_sign_in", target.getName());
+        assertEquals("", target.getRedirectUrl());
+        assertEquals("", target.getTemplateUrl());
+        assertFalse(target.isDisabled());
+    }
+    @Test
+    void disableAll_ShouldOnlyDisable(){
+
+        PolicyConfiguration target = PolicyConfigurationFactory
+            .instance()
+            .disableAll()
+            .build();
+
+        assertNotNull(target.getEditProfile());
+        assertNull(target.getEditProfile().getBasePath());
+        assertNull(target.getEditProfile().getName());
+        assertNull(target.getEditProfile().getRedirectUrl());
+        assertNull(target.getEditProfile().getTemplateUrl());
+        assertTrue(target.getEditProfile().isDisabled());
+
+        assertNotNull(target.getResetPassword());
+        assertNull(target.getResetPassword().getBasePath());
+        assertNull(target.getResetPassword().getName());
+        assertNull(target.getResetPassword().getRedirectUrl());
+        assertNull(target.getResetPassword().getTemplateUrl());
+        assertTrue(target.getResetPassword().isDisabled());
+
+        assertNotNull(target.getSignIn());
+        assertNull(target.getSignIn().getBasePath());
+        assertNull(target.getSignIn().getName());
+        assertNull(target.getSignIn().getRedirectUrl());
         assertNull(target.getSignIn().getTemplateUrl());//sign-in template url is always null
         assertTrue(target.getSignIn().isDisabled());
 
         assertNotNull(target.getSignOut());
-        assertEquals(PolicyUrlUtil.Defaults.SIGN_OUT_BASE, target.getSignOut().getBasePath());
-        assertEquals("", target.getSignOut().getName());
-        assertEquals("", target.getSignOut().getRedirectUrl());
+        assertNull(target.getSignOut().getBasePath());
+        assertNull(target.getSignOut().getName());
+        assertNull(target.getSignOut().getRedirectUrl());
         assertNull(target.getSignOut().getTemplateUrl());
         assertTrue(target.getSignOut().isDisabled());
 
         assertNotNull(target.getSignUp());
-        assertEquals("", target.getSignUp().getName());
-        assertEquals("", target.getSignUp().getRedirectUrl());
-        assertEquals("", target.getSignUp().getTemplateUrl());
+        assertNull(target.getSignUp().getName());
+        assertNull(target.getSignUp().getRedirectUrl());
+        assertNull(target.getSignUp().getTemplateUrl());
         assertTrue(target.getSignUp().isDisabled());
 
         assertNotNull(target.getSignUpOrSignIn());
-        assertEquals("", target.getSignUpOrSignIn().getName());
-        assertEquals("", target.getSignUpOrSignIn().getRedirectUrl());
-        assertEquals("", target.getSignUpOrSignIn().getTemplateUrl());
-        assertTrue(target.getSignUpOrSignIn().isDisabled());
-    }
-
-    @Test
-    void disableEditProfile(){
-
-        PolicyConfiguration target = PolicyConfigurationFactory
-            .instance()
-            .disableEditProfile()
-            .build();
-        assertNotNull(target.getEditProfile());
-        assertEquals("", target.getEditProfile().getName());
-        assertEquals("", target.getEditProfile().getRedirectUrl());
-        assertEquals("", target.getEditProfile().getTemplateUrl());
-        assertTrue(target.getEditProfile().isDisabled());
-    }
-
-    @Test
-    void disableResetPassword(){
-
-        PolicyConfiguration target = PolicyConfigurationFactory
-            .instance()
-            .disableResetPassword()
-            .build();
-        assertNotNull(target.getResetPassword());
-        assertEquals("", target.getResetPassword().getName());
-        assertEquals("", target.getResetPassword().getRedirectUrl());
-        assertEquals("", target.getResetPassword().getTemplateUrl());
-        assertTrue(target.getResetPassword().isDisabled());
-    }
-
-    @Test
-    void disableSignIn(){
-
-        PolicyConfiguration target = PolicyConfigurationFactory
-            .instance()
-            .disableSignIn()
-            .build();
-        assertNotNull(target.getSignIn());
-        assertEquals("", target.getSignIn().getName());
-        assertEquals("", target.getSignIn().getRedirectUrl());
-        assertNull(target.getSignIn().getTemplateUrl());
-        assertTrue(target.getSignIn().isDisabled());
-    }
-
-    @Test
-    void disableSignOut(){
-
-        PolicyConfiguration target = PolicyConfigurationFactory
-            .instance()
-            .disableSignOut()
-            .build();
-        assertNotNull(target.getSignOut());
-        assertEquals("", target.getSignOut().getName());
-        assertEquals("", target.getSignOut().getRedirectUrl());
-        assertNull(target.getSignOut().getTemplateUrl());
-        assertTrue(target.getSignOut().isDisabled());
-    }
-
-    @Test
-    void disableSignUp(){
-
-        PolicyConfiguration target = PolicyConfigurationFactory
-            .instance()
-            .disableSignUp()
-            .build();
-        assertNotNull(target.getSignUp());
-        assertEquals("", target.getSignUp().getName());
-        assertEquals("", target.getSignUp().getRedirectUrl());
-        assertEquals("", target.getSignUp().getTemplateUrl());
-        assertTrue(target.getSignUp().isDisabled());
-    }
-
-    @Test
-    void disableSignUpOrSignIn(){
-
-        PolicyConfiguration target = PolicyConfigurationFactory
-            .instance()
-            .disableSignUpOrSignIn()
-            .build();
-        assertNotNull(target.getSignUpOrSignIn());
-        assertEquals("", target.getSignUpOrSignIn().getName());
-        assertEquals("", target.getSignUpOrSignIn().getRedirectUrl());
-        assertEquals("", target.getSignUpOrSignIn().getTemplateUrl());
+        assertNull(target.getSignUpOrSignIn().getName());
+        assertNull(target.getSignUpOrSignIn().getRedirectUrl());
+        assertNull(target.getSignUpOrSignIn().getTemplateUrl());
         assertTrue(target.getSignUpOrSignIn().isDisabled());
     }
 

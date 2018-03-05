@@ -23,7 +23,7 @@ class PolicyConfigurationTest{
     void testAllArgsWYSIWYG(){
 
         PolicyConfiguration props = new PolicyConfiguration(
-            null, null, null, null, null, null, null
+            null, null, null, null, null, null
         );
         assertNull(props.getEditProfile());
         assertNull(props.getEditProfile());
@@ -34,7 +34,6 @@ class PolicyConfigurationTest{
         assertNull(props.getSignUpOrSignIn());
 
         props = new PolicyConfiguration(
-            null,
             new EditProfilePolicy(),
             new ResetPasswordPolicy(),
             new SignInPolicy(),

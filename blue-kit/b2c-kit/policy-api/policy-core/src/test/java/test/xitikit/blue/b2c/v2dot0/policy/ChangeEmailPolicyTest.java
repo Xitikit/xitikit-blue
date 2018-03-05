@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * As of the date of creation, Azure AD B2C does not support changing the email
- * through a policy (such as the EditProfilePolicyA). To change a users email,
- * the graph-api module should be used to create a custom programatic approach
+ * through a built in policy (such as the EditProfilePolicy). To change a users email,
+ * the graph-api module should be used to create a custom programmatic approach
  * to email changes.
  * <p>
  * Copyright Xitkit.org ${year}

@@ -22,28 +22,24 @@ public class SignUpPolicy implements PolicyForB2C{
     /**
      * Optional.
      * <p>
-     * Default: {@link PolicyUrlUtil.Defaults}.SIGN_UP_OR_SIGN_IN_BASE
+     * Default: {@link PolicyUrlUtil.Defaults}.SIGN_UP_BASE
      * <p>
      * It is recommended that developers only use the default value, but it
      * allows for those exceptions when there is no other choice but to use custom values.
      * <p>
-     * If the value that is set for the {@link SignUpOrSignInPolicy} 'basePath' property
+     * If the value that is set for the {@link SignUpPolicy} 'basePath' property
      * is blank, then it will use the default value. This includes the default value for
      * the {@link PolicyConfiguration} 'basePath', while any custom value will be ignored.
      * <p>
      * This is the path relative to the applications context-path
-     * that is used for all {@link SignUpOrSignInPolicy} related requests made
+     * that is used for all {@link SignUpPolicy} related requests made
      * to the local application. The value should always start with '/',
      * and never end with '/'.
-     * <p>
-     * The value that is set for the 'basePath' property in the {@link PolicyConfiguration}
-     * is ignored when a non-blank value is provided here. If you include your own value,
-     * it must be relative to the applications context-path.
      * <p>
      * Warning: Do NOT set this value to be blank nor '/', or you may see
      * some unexpected behaviour.
      */
-    private String basePath = PolicyUrlUtil.Defaults.SIGN_UP_BASE;
+    private String basePath;
 
     /**
      * This is the exact name of the policy web flow given after it was created.
@@ -87,8 +83,9 @@ public class SignUpPolicy implements PolicyForB2C{
      * @param templateUrl {@see SignUpPolicy.templateUrl}
      * @param disabled {@see SignUpPolicy.disabled}
      */
-    public SignUpPolicy(final String name, final String redirectUrl, final String templateUrl, final boolean disabled){
+    public SignUpPolicy(final String basePath, final String name, final String redirectUrl, final String templateUrl, final boolean disabled){
 
+        this.basePath = basePath;
         this.name = name;
         this.redirectUrl = redirectUrl;
         this.templateUrl = templateUrl;

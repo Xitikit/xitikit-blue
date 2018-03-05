@@ -52,7 +52,7 @@ public class SignInPolicy implements PolicyForB2C{
      * Warning: Do NOT set this value to be blank nor '/', or you may see
      * some unexpected behaviour.
      */
-    private String basePath = PolicyUrlUtil.Defaults.SIGN_IN_BASE;
+    private String basePath;
 
     /**
      * Required when not disabled.
@@ -91,7 +91,7 @@ public class SignInPolicy implements PolicyForB2C{
         final String redirectUrl,
         final boolean disabled){
 
-        this.basePath = PolicyUrlUtil.checkSignInPath(basePath);
+        this.basePath = basePath;
         this.name = name;
         this.redirectUrl = redirectUrl;
         this.disabled = disabled;

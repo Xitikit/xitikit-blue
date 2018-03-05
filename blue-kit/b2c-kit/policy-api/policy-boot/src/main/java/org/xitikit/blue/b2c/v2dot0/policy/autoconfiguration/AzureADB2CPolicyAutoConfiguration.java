@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.xitikit.blue.b2c.v2dot0.policy.*;
+import org.xitikit.blue.b2c.v2dot0.policy.PolicyConfiguration;
+import org.xitikit.blue.b2c.v2dot0.policy.factories.PolicyConfigurationFactory;
 
 @Configuration
 @AutoConfigurationPackage
@@ -31,7 +32,7 @@ public class AzureADB2CPolicyAutoConfiguration{
 
         return PolicyConfigurationFactory
             .instance()
-            .withDefaults()
+            .disableAll()
             .build();
     }
 

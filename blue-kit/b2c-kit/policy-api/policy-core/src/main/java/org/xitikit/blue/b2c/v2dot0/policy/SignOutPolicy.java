@@ -40,14 +40,10 @@ public class SignOutPolicy implements PolicyForB2C{
      * to the local application. The value should always start with '/',
      * and never end with '/'.
      * <p>
-     * The value that is set for the 'basePath' property in the {@link PolicyConfiguration}
-     * is ignored when a non-blank value is provided here. If you include your own value,
-     * it must be relative to the applications context-path.
-     * <p>
      * Warning: Do NOT set this value to be blank nor '/', or you may see
      * some unexpected behaviour.
      */
-    private String basePath = PolicyUrlUtil.Defaults.SIGN_IN_BASE;
+    private String basePath;
 
     /**
      * Optional.

@@ -3,6 +3,8 @@ package org.xitikit.blue.b2c.v2dot0.policy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nullable;
+
 /**
  * As of the date of creation, Azure AD B2C does not support changing the email
  * through a policy (such as the EditProfilePolicyA). To change a users email,
@@ -59,7 +61,7 @@ public class ChangeEmailPolicy implements PolicyForB2C{
         if(log.isDebugEnabled()){
             log.debug("Policy Not Supported -> ChangeEmailPolicy::getRedirectUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
         }
-        return "";
+        return null;
     }
 
     @Override
@@ -70,13 +72,14 @@ public class ChangeEmailPolicy implements PolicyForB2C{
         }
     }
 
+    @Nullable
     @Override
     public String getTemplateUrl(){
 
         if(log.isDebugEnabled()){
             log.debug("Policy Not Supported -> ChangeEmailPolicy::getTemplateUrl was called, but ChangeEmailPolicy is not supported in Azure AD B2C.");
         }
-        return "";
+        return null;
     }
 
     @Override

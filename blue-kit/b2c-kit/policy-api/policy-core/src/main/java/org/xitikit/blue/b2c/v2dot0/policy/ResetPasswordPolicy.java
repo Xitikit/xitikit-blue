@@ -33,14 +33,10 @@ public class ResetPasswordPolicy implements PolicyForB2C{
      * to the local application. The value should always start with '/',
      * and never end with '/'.
      * <p>
-     * The value that is set for the 'basePath' property in the {@link PolicyConfiguration}
-     * is ignored when a non-blank value is provided here. If you include your own value,
-     * it must be relative to the applications context-path.
-     * <p>
      * Warning: Do NOT set this value to be blank nor '/', or you may see
      * some unexpected behaviour.
      */
-    private String basePath = PolicyUrlUtil.Defaults.RESET_PASSWORD_BASE;
+    private String basePath;
 
     /**
      * Required when not disabled.
@@ -80,7 +76,7 @@ public class ResetPasswordPolicy implements PolicyForB2C{
         final String templateUrl,
         final boolean disabled){
 
-        this.basePath = PolicyUrlUtil.checkResetPasswordPath(basePath);
+        this.basePath = basePath;
         this.name = name;
         this.redirectUrl = redirectUrl;
         this.templateUrl = templateUrl;
