@@ -27,6 +27,10 @@ import static org.xitikit.blue.b2c.v2dot0.authentication.TimeComparison.*;
  */
 //TODO: This might be better off as a service than a util class.
 //TODO: The concern is with the ObjectMapper and risks with deserialization.
+//TODO: It might be better to allow the injection og the ObjectMapper so that
+//TODO: serialization concerns can be dealt with by the container, or perhaps
+//TODO: it would be better to create a POJO for deserialization instead of
+//TODO: relying on the JsonNode. I'm leaning towards the latter.
 public final class VerificationUtil{
 
     private static final Logger log = LoggerFactory.getLogger(VerificationUtil.class);
