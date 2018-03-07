@@ -31,32 +31,32 @@ public final class PolicyConfigurationFactory{
     /**
      * Force use of the instance method.
      */
-    private PolicyConfigurationFactory(final PolicyConfiguration policyConfiguration){
+    private PolicyConfigurationFactory(final B2cPolicyConfiguration b2cPolicyConfiguration){
 
-        assert policyConfiguration != null;
+        assert b2cPolicyConfiguration != null;
 
         if(log.isDebugEnabled()){
-            log.debug("Creating PolicyConfigurationFactory for: " + policyConfiguration);
+            log.debug("Creating PolicyConfigurationFactory for: " + b2cPolicyConfiguration);
         }
-        this.editProfile = new EditProfileFactory(this, policyConfiguration.getEditProfile());
-        this.resetPassword = new ResetPasswordFactory(this, policyConfiguration.getResetPassword());
-        this.signIn = new SignInFactory(this, policyConfiguration.getSignIn());
-        this.signOut = new SignOutFactory(this, policyConfiguration.getSignOut());
-        this.signUp = new SignUpFactory(this, policyConfiguration.getSignUp());
-        this.signUpOrSignIn = new SignUpOrSignInFactory(this, policyConfiguration.getSignUpOrSignIn());
+        this.editProfile = new EditProfileFactory(this, b2cPolicyConfiguration.getEditProfile());
+        this.resetPassword = new ResetPasswordFactory(this, b2cPolicyConfiguration.getResetPassword());
+        this.signIn = new SignInFactory(this, b2cPolicyConfiguration.getSignIn());
+        this.signOut = new SignOutFactory(this, b2cPolicyConfiguration.getSignOut());
+        this.signUp = new SignUpFactory(this, b2cPolicyConfiguration.getSignUp());
+        this.signUpOrSignIn = new SignUpOrSignInFactory(this, b2cPolicyConfiguration.getSignUpOrSignIn());
     }
 
     public static PolicyConfigurationFactory instance(){
 
-        return new PolicyConfigurationFactory(new PolicyConfiguration());
+        return new PolicyConfigurationFactory(new B2cPolicyConfiguration());
     }
 
-    public static PolicyConfigurationFactory of(final PolicyConfiguration policyConfiguration){
+    public static PolicyConfigurationFactory of(final B2cPolicyConfiguration b2cPolicyConfiguration){
 
         return new PolicyConfigurationFactory(
-            policyConfiguration == null
-                ? new PolicyConfiguration()
-                : policyConfiguration);
+            b2cPolicyConfiguration == null
+                ? new B2cPolicyConfiguration()
+                : b2cPolicyConfiguration);
     }
 
     /**
@@ -115,7 +115,7 @@ public final class PolicyConfigurationFactory{
 
     /**
      * Sets all {@link String} values of every policy on the target
-     * {@link PolicyConfiguration} to an empty {@link String},
+     * {@link B2cPolicyConfiguration} to an empty {@link String},
      * and the "disabled" property of each to true.
      *
      * @return this instance of {@link PolicyConfigurationFactory}
@@ -149,13 +149,13 @@ public final class PolicyConfigurationFactory{
     }
 
     /**
-     * @return a new instance of {@link PolicyConfiguration}
+     * @return a new instance of {@link B2cPolicyConfiguration}
      *     which will have all the values as have been set
      *     by this factory up to now.
      */
-    public PolicyConfiguration build(){
+    public B2cPolicyConfiguration build(){
 
-        return new PolicyConfiguration(
+        return new B2cPolicyConfiguration(
             editProfile.build(),
             resetPassword.build(),
             signIn.build(),

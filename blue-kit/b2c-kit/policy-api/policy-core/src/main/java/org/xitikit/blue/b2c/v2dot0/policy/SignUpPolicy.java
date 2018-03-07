@@ -29,7 +29,7 @@ public class SignUpPolicy implements PolicyForB2C{
      * <p>
      * If the value that is set for the {@link SignUpPolicy} 'basePath' property
      * is blank, then it will use the default value. This includes the default value for
-     * the {@link PolicyConfiguration} 'basePath', while any custom value will be ignored.
+     * the {@link B2cPolicyConfiguration} 'basePath', while any custom value will be ignored.
      * <p>
      * This is the path relative to the applications context-path
      * that is used for all {@link SignUpPolicy} related requests made

@@ -3,12 +3,12 @@ package org.xitikit.examples.bluekit.simplewebapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.xitikit.blue.b2c.v2dot0.policy.PolicyConfiguration;
+import org.xitikit.blue.b2c.v2dot0.policy.B2cPolicyConfiguration;
 
 public class WebMvcConfig implements WebMvcConfigurer{
 
     @Autowired
-    private PolicyConfiguration policyConfiguration;
+    private B2cPolicyConfiguration b2cPolicyConfiguration;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry){

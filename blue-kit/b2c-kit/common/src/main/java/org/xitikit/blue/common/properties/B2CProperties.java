@@ -23,25 +23,15 @@ public class B2CProperties{
     private String domain;
 
     /**
-     * This is the name of the "reset password" policy specific to the environment the application is deployed on.
-     */
-    private String resetPasswordPolicy;
-
-    /**
-     * The endpoint that a user is redirected to after completing an azure "reset password" policy flow.
-     */
-    private String resetPasswordRedirect;
-
-    /**
-     * In milliseconds. How long the user has to complete an action inside of azure.
-     */
-    private String nonceTimeout;
-
-    /**
      * The "not before" token sometimes comes back from microsoft in the future. In milliseconds, this lets us pad the "now"
      * time, in effect saying "as long as it's not TOO far in the future, we're okay with it."
      */
     private String notBeforePaddingMilliseconds;
+
+    /**
+     * Configuration options for using a nonce for validation.
+     */
+    private NonceProperties nonce;
 
     public String getAppId(){
 
@@ -73,36 +63,6 @@ public class B2CProperties{
         this.domain = domain;
     }
 
-    public String getResetPasswordPolicy(){
-
-        return resetPasswordPolicy;
-    }
-
-    public void setResetPasswordPolicy(final String resetPasswordPolicy){
-
-        this.resetPasswordPolicy = resetPasswordPolicy;
-    }
-
-    public String getResetPasswordRedirect(){
-
-        return resetPasswordRedirect;
-    }
-
-    public void setResetPasswordRedirect(final String resetPasswordRedirect){
-
-        this.resetPasswordRedirect = resetPasswordRedirect;
-    }
-
-    public String getNonceTimeout(){
-
-        return nonceTimeout;
-    }
-
-    public void setNonceTimeout(final String nonceTimeout){
-
-        this.nonceTimeout = nonceTimeout;
-    }
-
     public String getNotBeforePaddingMilliseconds(){
 
         return notBeforePaddingMilliseconds;
@@ -111,5 +71,15 @@ public class B2CProperties{
     public void setNotBeforePaddingMilliseconds(final String notBeforePaddingMilliseconds){
 
         this.notBeforePaddingMilliseconds = notBeforePaddingMilliseconds;
+    }
+
+    public NonceProperties getNonce(){
+
+        return nonce;
+    }
+
+    public void setNonce(final NonceProperties nonce){
+
+        this.nonce = nonce;
     }
 }

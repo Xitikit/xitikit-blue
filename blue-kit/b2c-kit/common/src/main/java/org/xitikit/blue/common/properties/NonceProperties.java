@@ -10,12 +10,12 @@ public class NonceProperties{
     /**
      * Indicates whether or not the application should pass a nonce
      * value to authentication requests.
-     * Defaults to true.
      */
     private boolean disabled = true;
 
     /**
      * Optional.
+     *
      * Time in seconds that the nonce value is valid.
      * Defaults to 120 seconds (2 minutes).
      */

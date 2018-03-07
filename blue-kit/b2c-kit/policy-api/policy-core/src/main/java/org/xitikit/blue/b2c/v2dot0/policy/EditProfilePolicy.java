@@ -26,7 +26,7 @@ public class EditProfilePolicy implements PolicyForB2C{
      * <p>
      * If the value that is set for the {@link EditProfilePolicy} 'basePath' property
      * is blank, then it will use the default value (including the default value for
-     * the {@link PolicyConfiguration} 'basePath'.
+     * the {@link B2cPolicyConfiguration} 'basePath'.
      * <p>
      * This is the path relative to the applications context-path
      * that is used for all EditProfilePolicy related requests made
